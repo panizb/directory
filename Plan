@@ -1,0 +1,25 @@
+1. Draw an ER model for my DB and turn it into MySQL
+2. Write as many use-cases as you can
+3. A brief domain model (maybe in mind!)
+
+Coding starts:
+    3. Log in form (using Google API)
+    4. Handling Sessions
+    5. Start with classes like DB Handler, User, Contact and ... and also think about a PHP Makefile
+
+6. Making the UI look nicer
+7. Check the Standards
+8. Write a composer
+9. Write unit tests
+
+10. Write a manifest
+11. Vagrant up
+12. Gitlab!
+
+Doing meanwhile:
+    *Testing each unit of code
+    *Iterate through coding steps
+    *Asking lots of questions
+
+
+
