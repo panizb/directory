@@ -1,30 +1,28 @@
 <?php
 
 namespace DB;
+
 use \PDO;
 
 class DBHandler
 {
     public $conn;
-	public function connect ()
-	{
-		$servername = 'localhost';
+    public function connect()
+    {
+        $servername = 'localhost';
         $username = 'root';
         $password = '';
         $dbname = 'directory';
-		try {
-    $this->conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        try {
+            $this->conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
-    $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully"; 
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            echo "Connected successfully";
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
     }
-catch(PDOException $e)
-    {
-    echo "Connection failed: " . $e->getMessage();
-    }
-
-	}
-    public function ExecuteWithReturn($Query, array $params = [])
+    public function executeWithReturn($Query, array $params = [])
     {
         $sth = $this->conn->prepare($Query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute($params);
@@ -62,14 +60,4 @@ catch(PDOException $e)
 
 // SELECT 1 FROM table WHERE param1 = '1234566' AND password = 'something'
 // SELECT 1 FROM table WHERE param1 = '1234566' AND password = :pwd
-
-
-
-
-
-
-
-
-
-
-} 
+}
