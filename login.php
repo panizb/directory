@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
         $password = mysql_real_escape_string($password);
         $command= "SELECT * from Employee where Password LIKE :password AND User_Name LIKE :username";
         $params= array (":password" => $password,":username" => $username);
-        $result = $db->ExecuteWithReturn($command, $params);
+        $result = $db->executeWithReturn($command, $params);
         foreach ($result as $row) {
             echo "<li>{$row['User_Name']}</li>";
         }
