@@ -23,6 +23,15 @@ border-bottom:1px solid #ccc;
 margin:10px -40px;
 margin-bottom:30px
 }
+#google {
+width:300px;
+float:left;
+border-radius:10px;
+font-family:raleway;
+border:2px solid #ccc;
+padding:10px 40px 25px;
+margin-top:70px
+}
 #login {
 width:300px;
 float:left;

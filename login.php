@@ -11,12 +11,16 @@ if (isset($_POST['submit'])) {
 // Define $username and $password
         $username=$_POST['username'];
         $password=$_POST['password'];
+        $servername='localhost';
+        $dbname='directory';
+        $DBUsername='root';
+        $DBPassword='';
         $db = new DB\DBHandler();
-        $db->connect();
-        $username = stripslashes($username);
-        $password = stripslashes($password);
-        $username = mysql_real_escape_string($username);
-        $password = mysql_real_escape_string($password);
+        $db->connect("mysql:host=$servername;dbname=$dbname", $DBUsername, $DBPassword);
+        // $username = stripslashes($username);
+        // $password = stripslashes($password);
+        // $username = mysql_real_escape_string($username);
+        // $password = mysql_real_escape_string($password);
         $command= "SELECT * from Employee where Password LIKE :password AND User_Name LIKE :username";
         $params= array (":password" => $password,":username" => $username);
         $result = $db->executeWithReturn($command, $params);
@@ -31,3 +35,34 @@ if (isset($_POST['submit'])) {
         }
     }
 }
+
+// class Calendar
+// {
+
+//     private $db;
+
+//     public function setDb(DB\DBHandler $db)
+//     {
+//         $this->db = $db
+//     }
+
+//     public function countingAbsenceDays($userId)
+//     {
+//         $res = $this->db->query('SELECT COUNT(1) as number FROM absence WHERE userID = ' . (int)$userID)
+//         $days = $res->fetch()['number'];
+//         return $days;
+//     }
+
+// }
+
+// $mock = $this
+//        ->getMockBuilder("PDOMock")
+//        ->disableOriginalConstructor()
+//        ->setMethods(array("query", 'fetch'))
+//        ->getMock();
+
+//        $calendar = new Calendar();
+//        $calendar->setDb($mock);
+
+// $calendar->countingAbsenceDays(1234) == 5
+// $calendar->countingAbsenceDays(4) == 50

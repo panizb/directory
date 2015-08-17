@@ -6,15 +6,22 @@ use \PDO;
 
 class DBHandler
 {
-    public $conn;
+    public $dsn;
+    public $username;
+    public $password;
+
+    public function __construct($dsn, $username = null, $password = null)
+    {
+        $this->dsn = $dsn;
+        $this->username = $username;
+        $this->password = $password;
+    }
+
+    private $conn;
     public function connect()
     {
-        $servername = 'localhost';
-        $username = 'root';
-        $password = '';
-        $dbname = 'directory';
         try {
-            $this->conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $this->conn = new PDO($this->dsn, $this->username, $this->password);
         // set the PDO error mode to exception
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Connected successfully";
@@ -22,9 +29,9 @@ class DBHandler
             echo "Connection failed: " . $e->getMessage();
         }
     }
-    public function executeWithReturn($Query, array $params = [])
+    public function executeWithReturn($query, array $params = [])
     {
-        $sth = $this->conn->prepare($Query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $sth = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute($params);
         return $sth->fetchAll();
     }

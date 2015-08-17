@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.4.12
+- https://www.phpmyadmin.net
+-
+- Host: localhost
+- Generation Time: Aug 17, 2015 at 10:38 AM
+- Server version: 5.6.25
+- PHP Version: 5.6.11
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="directory" collation="latin1_swedish_ci" charset="latin1">
+            <pma:table name="Employee">
+                CREATE TABLE `Employee` (
+                  `Name` varchar(45) NOT NULL,
+                  `Family Name` varchar(60) NOT NULL,
+                  `Private Email` varchar(70) NOT NULL,
+                  `Phone Number` varchar(20) NOT NULL,
+                  `User_Name` varchar(15) NOT NULL,
+                  `Password` varchar(20) NOT NULL,
+                  `Website` varchar(200) NOT NULL,
+                  PRIMARY KEY (`User_Name`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="Membership">
+                CREATE TABLE `Membership` (
+                  `Username` varchar(15) NOT NULL,
+                  `Team Name` varchar(45) NOT NULL,
+                  PRIMARY KEY (`Username`,`Team Name`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="Social Link">
+                CREATE TABLE `Social Link` (
+                  `Username` varchar(15) NOT NULL,
+                  `Link Address` varchar(200) NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="Social Network">
+                CREATE TABLE `Social Network` (
+                  `Name` varchar(45) NOT NULL,
+                  `Link Address` varchar(200) NOT NULL,
+                  PRIMARY KEY (`Link Address`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="Team">
+                CREATE TABLE `Team` (
+                  `Name` varchar(45) NOT NULL,
+                  `Description` varchar(200) NOT NULL,
+                  PRIMARY KEY (`Name`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'directory'
+    -->
+    <database name="directory">
+        <!-- Table Employee -->
+        <table name="Employee">
+            <column name="Name">Paniz</column>
+            <column name="Family Name">Behboudian</column>
+            <column name="Private Email">p</column>
+            <column name="Phone Number">1</column>
+            <column name="User_Name">pan</column>
+            <column name="Password">123</column>
+            <column name="Website"></column>
+        </table>
+        <!-- Table Membership -->
+        <!-- Table Social Link -->
+        <!-- Table Social Network -->
+        <!-- Table Team -->
+    </database>
+</pma_xml_export>
