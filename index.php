@@ -42,19 +42,46 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
       });
       attachSignin(document.getElementById('customBtn'));
     });
+      	  	window.alert("in the function");
   };
 
   function attachSignin(element) {
-    console.log(element.id);
+
+  	var dbConn = new directory\Authentication();
+  	if (Authentication.isAMember(googleUser.getBasicProfile().getEmail())==true)
+  	{
+  	    console.log(element.id);
     auth2.attachClickHandler(element, {},
         function(googleUser) {
           document.getElementById('name').innerText = "Signed in: " +
               googleUser.getBasicProfile().getName();
         }, function(error) {
           alert(JSON.stringify(error, undefined, 2));
-        });
+        });	
+  	} else {
+  		document.getElementById('name').innerText = "First you must register.";
+  	}
+    
   }
   </script>
+  <a href="#" onclick="signOut();">Sign out</a>
+<script>
+  function signOut() {
+  	if (document.getElementById('name').innerText === 
+          document.getElementById('name').innerText = "Signed in: " +
+              googleUser.getBasicProfile().getName())
+  	{
+  		var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+       document.getElementById('name').innerText = "Signed out";
+   } else {
+   	   document.getElementById('name').innerText = "You have not signed in!";
+   }
+    
+    });
+  }
+</script>
   <style type="text/css">
     #customBtn {
       display: inline-block;
@@ -62,6 +89,7 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
       color: white;
       width: 190px;
       border-radius: 5px;
+      margin:50px auto;
       white-space: nowrap;
     }
     #customBtn:hover {
@@ -92,9 +120,11 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
 </head>
 
 <body>
+
 <div id="google" class="g-signin2" data-onsuccess="onSignIn"></div>
 <script >
 function onSignIn(googleUser) {
+	window.alert("onSignIn");
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
   console.log('Name: ' + profile.getName());
@@ -106,7 +136,7 @@ function onSignIn(googleUser) {
     <span class="label">Sign in with:</span>
     <div id="customBtn" class="customGPlusSignIn">
       <span class="icon"></span>
-      <span class="buttonText">Google</span>
+      <span class="buttonText"> Google</span>
     </div>
   </div>
   <div id="name"></div>

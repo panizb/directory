@@ -15,8 +15,8 @@ if (isset($_POST['submit'])) {
         $dbname='directory';
         $DBUsername='root';
         $DBPassword='';
-        $db = new DB\DBHandler();
-        $db->connect("mysql:host=$servername;dbname=$dbname", $DBUsername, $DBPassword);
+        $db = new DB\DBHandler("mysql:host=$servername;dbname=$dbname", $DBUsername, $DBPassword);
+        $db->connect();
         // $username = stripslashes($username);
         // $password = stripslashes($password);
         // $username = mysql_real_escape_string($username);
