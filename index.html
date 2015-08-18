@@ -1,6 +1,3 @@
-<?php
-include 'Authentication.php'
-?>
 <!DOCTYPE html>
 <html>
 
@@ -11,40 +8,25 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
-
   var googleUser = {};
   var startApp = function() {
-   
-    // if (result)
-    // {
-      gapi.load('auth2', function(){
+    gapi.load('auth2', function(){
       // Retrieve the singleton for the GoogleAuth library and set up the client.
       auth2 = gapi.auth2.init({
         client_id: '548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com',
         cookiepolicy: 'single_host_origin',
+        // Request scopes in addition to 'profile' and 'email'
+        //scope: 'additional_scope'
       });
       attachSignin(document.getElementById('customBtn'));
     });
-    //}
-    
   };
 
   function attachSignin(element) {
 
-
-
-
-    var reuslt=false;
-$.ajax({
-  alert('goh');
-    method: "POST",
-    url: 'authenticate.php',
-    dataType: 'text',
-    data: { username: googleUser.getBasicProfile().getEmail()},)
-
- .done(validate());
-});
-
+  	// var dbConn = new directory\Authentication();
+  	// if (Authentication.isAMember(googleUser.getBasicProfile().getEmail())==true)
+  	// {
   	    console.log(element.id);
     auth2.attachClickHandler(element, {},
         function(googleUser) {
@@ -130,7 +112,7 @@ function onSignIn(googleUser) {
 </script-->
 <div id="gSignInWrapper">
     <span class="label">Sign in with:</span>
-    <div id="customBtn" class="customGPlusSignIn" >
+    <div id="customBtn" class="customGPlusSignIn">
       <span class="icon"></span>
       <span class="buttonText"> Google</span>
     </div>
