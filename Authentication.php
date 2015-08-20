@@ -17,7 +17,6 @@ class Authentication
         $dbConn = new DBHandler("mysql:host=$servername;dbname=$dbname", $dBUsername, $dBPassword);
         $dbConn->connect();
         $command= "SELECT * from Employee where User_Name LIKE :username";
-        echo $username;
         $params= array (":username" => $username);
         $result = $dbConn->executeWithReturn($command, $params);
         // foreach ($result as $row) {
