@@ -10,73 +10,70 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
 <title>Welcome to directory!</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 <script src="https://apis.google.com/js/api:client.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script>
 
   var googleUser = {};
   var startApp = function() {
-   
-    // if (result)
-    // {
       gapi.load('auth2', function(){
       // Retrieve the singleton for the GoogleAuth library and set up the client.
       auth2 = gapi.auth2.init({
         client_id: '548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com',
         cookiepolicy: 'single_host_origin',
+        // fetch_basic_profile: false,
+        // scope: 'profile'
       });
       attachSignin(document.getElementById('customBtn'));
     });
-    //}
     
   };
 
   function attachSignin(element) {
 
-
-
-
-    var reuslt=false;
-$.ajax({
-  alert('goh');
-    method: "POST",
-    url: 'authenticate.php',
-    dataType: 'text',
-    data: { username: googleUser.getBasicProfile().getEmail()},)
-
- .done(validate());
-});
-
+ 
   	    console.log(element.id);
     auth2.attachClickHandler(element, {},
         function(googleUser) {
-          document.getElementById('name').innerText = "Signed in: " +
+            var userID=googleUser.getBasicProfile().getEmail();
+            //alert(userID);
+ $.ajax({
+    url: 'authenticate.php',
+    type: 'post',
+    data: { userID : userID },
+    success: function(response) { alert(response);
+     if(!response)
+      {
+        alert("You have not registered yet.");
+      } else {
+              document.getElementById('name').innerText = "Signed in: " +
               googleUser.getBasicProfile().getName();
-        }, function(error) {
+              alert("Yeah.");
+      }
+    }
+});
+}, function(error) {
           alert(JSON.stringify(error, undefined, 2));
         });	
-  	// } else {
-  	// 	document.getElementById('name').innerText = "First you must register.";
-  	// }
+  }
+
+
+
+  function signOut() {
+    // var profile = googleUser.getBasicProfile();
+    // if (document.getElementById('name').innerText === "Signed in: " +
+    //       profile.getName())    
+    // {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+      console.log('User signed out.');
+      document.getElementById('name').innerText = "Signed out";
+    });
+   // } else {
+   //    document.getElementById('name').innerText = "You have not signed in!";
+   // }
     
   }
   </script>
-  <a href="#" onclick="signOut();">Sign out</a>
-<script>
-  function signOut() {
-  	if (document.getElementById('name').innerText === 
-          document.getElementById('name').innerText = "Signed in: " +
-              googleUser.getBasicProfile().getName())
-  	{
-  		var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-       document.getElementById('name').innerText = "Signed out";
-   } else {
-   	   document.getElementById('name').innerText = "You have not signed in!";
-   }
-    
-    });
-  }
-</script>
 
   <style type="text/css">
     #customBtn {
@@ -128,6 +125,7 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail());
 }
 </script-->
+<a href="#" onclick="signOut();">Sign out</a>
 <div id="gSignInWrapper">
     <span class="label">Sign in with:</span>
     <div id="customBtn" class="customGPlusSignIn" >
