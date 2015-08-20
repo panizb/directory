@@ -1,4 +1,6 @@
 <?php
+namespace directory;
+
 include 'Authentication.php'
 ?>
 <!DOCTYPE html>
@@ -41,13 +43,12 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
     type: 'post',
     data: { userID : userID },
     success: function(response) { alert(response);
-     if(!response)
+     if(response!=1)
       {
-        alert("You have not registered yet.");
+        document.getElementById('name').innerText ="You have not registered yet.";
       } else {
               document.getElementById('name').innerText = "Signed in: " +
               googleUser.getBasicProfile().getName();
-              alert("Yeah.");
       }
     }
 });
@@ -65,12 +66,17 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
     // {
       var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(function () {
+    //     var profile = auth2.currentUser.get().getBasicProfile();
+    // if (document.getElementById('name').innerText === "Signed in: " +
+    //       profile.getName())
+    // {
       console.log('User signed out.');
       document.getElementById('name').innerText = "Signed out";
-    });
-   // } else {
+   //  } else {
    //    document.getElementById('name').innerText = "You have not signed in!";
    // }
+    });
+   
     
   }
   </script>
