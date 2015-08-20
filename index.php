@@ -49,7 +49,7 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
       } else {
               document.getElementById('name').innerText = "Signed in: " +
               googleUser.getBasicProfile().getName();
-              //window.location = 'profile.php';
+              window.location = 'profile.php';
       }
     }
 });
