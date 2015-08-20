@@ -11,6 +11,7 @@ include 'Authentication.php'
 content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com">
 <title>Welcome to directory!</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script>
