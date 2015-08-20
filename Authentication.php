@@ -20,9 +20,9 @@ class Authentication
         echo $username;
         $params= array (":username" => $username);
         $result = $dbConn->executeWithReturn($command, $params);
-        foreach ($result as $row) {
-            echo "<li>{$row['User_Name']}</li>";
-        }
+        // foreach ($result as $row) {
+        //     echo "<li>{$row['User_Name']}</li>";
+        // }
         if (sizeof($result) == 1) {
             return true;
         } else {

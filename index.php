@@ -42,19 +42,21 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
     url: 'authenticate.php',
     type: 'post',
     data: { userID : userID },
-    success: function(response) { //alert(response);
+    success: function(response) { alert(response);
      if(response!=1)
       {
         document.getElementById('name').innerText ="You have not registered yet.";
       } else {
               document.getElementById('name').innerText = "Signed in: " +
               googleUser.getBasicProfile().getName();
+              //window.location = 'profile.php';
       }
     }
 });
 }, function(error) {
           alert(JSON.stringify(error, undefined, 2));
         });	
+
   }
 
 
