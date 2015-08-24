@@ -10,10 +10,12 @@ if (isset($_POST['userID'])) {
 if (isset($_POST['id_token'])) {
     $token = $_POST['id_token'];
 }
-    $auth = new Authentication();
+session_start();
+$_SESSION['id'] = $Email;
+$auth = new Authentication();
     $result = $auth->isAMember($Email, $token);
 if ($result) {
- 	session_start();
+    session_start();
 }
 //     $servername='localhost';
 //     $dbname='directory';

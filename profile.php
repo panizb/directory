@@ -1,8 +1,33 @@
 <?php
+namespace directory;
+
+include 'DBHandler.php';
 //if (session_status() === PHP_SESSION_ACTIVE) ? TRUE : FALSE;
-if (isset($_POST['userID']))
-    echo "yes";
+session_start();
+$servername='localhost';
+$dbname='directory';
+$dBUsername='root';
+$dBPassword='';
+$dbConn = new DBHandler("mysql:host=$servername;dbname=$dbname", $dBUsername, $dBPassword);
+$dbConn->connect();
+$command= "SELECT * from Employee where User_Name LIKE :username";
+$params= array (":username" => $_GET['userID']);
+$result = $dbConn->executeWithReturn($command, $params);
+echo "<table border='1'>
+<tr>
+<th>Firstname</th>
+<th>Lastname</th>
+</tr>";
+foreach ($result as $res) {
+    echo'<tr>';
+    echo'<td>'. $res['Name']."</td>";
+    echo'<td>'. $res['Family Name'].'</td>';
+    echo'<td>'. $res['Private Email'].'</td>';
+    echo'<td>'. $res['Website'].'</td>';
+    echo'<tr>';
+}
  ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -100,7 +125,7 @@ if (isset($_POST['userID']))
 </head>
 
 <body>
-	<div style="float:left; magin-left:20 px;" id="gSignInWrapper" class="container">
+	<div style="float:left; magin-left:200 px;" id="gSignInWrapper" class="container">
 	    <div id="hi"></div>
 	    <button href="#" class="btn" style="float:right; magin-right:20 px;">Sign out</button>
 	    <button calss="btn" href="#"><i class="icon-pencil"></i></button> 
