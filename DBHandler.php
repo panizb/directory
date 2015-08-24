@@ -35,4 +35,9 @@ class DBHandler
         $sth->execute($params);
         return $sth->fetchAll();
     }
+    public function executeWithoutReturn($query, array $params = [])
+    {
+        $sth = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $sth->execute($params);
+    }
 }

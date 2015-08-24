@@ -29,7 +29,7 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
         // scope: 'profile'
       });
       
-      
+      attachSignin(document.getElementById('customBtn'));
     });
      
     
@@ -41,6 +41,7 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
     // var googleUser = auth2.then();
     // var email = googleUser.getBasicProfile().getEmail(); 
   if (authResult['code']) {
+    alert('auth code');
     // Send the code to the server
     $.ajax({
       type: 'POST',
@@ -60,29 +61,28 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
     // There was an error.
   }
   alert("before attach3");
-  attachSignin(document.getElementById('customBtn'));
 }
 
   function attachSignin(element) {
-    alert("attach Sign in4");
-  	onsole.log(element.id);
+    //alert("attach Sign in4");
+  	console.log(element.id);
     auth2.attachClickHandler(element, {},
         function(googleUser) {
             var userID=googleUser.getBasicProfile().getEmail();
-
+            var id_token = googleUser.getAuthResponse().id_token;
             //alert(userID);
             $.ajax({
               url: 'authenticate.php',
               type: 'post',
-              data: { userID : userID },
-              success: function(response) { //alert(response);
+              data: { userID : userID , id_token : id_token},
+              success: function(response) { alert(response);
                if(response!=1)
                 {
                   document.getElementById('name').innerText ="You have not registered yet.";
                 } else {
                         document.getElementById('name').innerText = "Signed in: " +
                         googleUser.getBasicProfile().getName();
-                        window.location = 'http://localhost/directory/profile.php';
+                        window.location = 'profile.php?userID=' + googleUser.getBasicProfile().getEmail();
                         //localstorage.setItem('userID', userID);
                         
                 }
@@ -181,15 +181,15 @@ function onSignIn(googleUser) {
       <span class="buttonText"> Google</span>
     </div> -->
   </div>
-  <button href="#" onclick="signOut();" class="btn">Sign out</button>
+  <!--button href="#" onclick="signOut();" class="btn">Sign out</button-->
   <div id="name"></div>
   <script>startApp();</script>
-  <script >
+  <!--script >
   $('#customBtn').click(function() {
     // signInCallback defined in step 6.
     auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback);
   });
-  </script>
+  </script-->
 
   
 

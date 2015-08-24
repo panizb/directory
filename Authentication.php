@@ -8,7 +8,7 @@ use \PDO;
 
 class Authentication
 {
-    public function isAMember($username)
+    public function isAMember($username, $idToken)
     {
         $servername='localhost';
         $dbname='directory';
@@ -23,6 +23,9 @@ class Authentication
         //     echo "<li>{$row['User_Name']}</li>";
         // }
         if (sizeof($result) == 1) {
+            $command= "UPDATE Employee SET Token = :idToken WHERE User_Name = :username";
+            $params= array (":idToken" => $idToken, ":username" => $username);
+            $dbConn->executeWithoutReturn($command, $params);
             return true;
         } else {
             return false;

@@ -1,5 +1,7 @@
-<?php 
-include 'index.php'
+<?php
+//if (session_status() === PHP_SESSION_ACTIVE) ? TRUE : FALSE;
+if (isset($_POST['userID']))
+    echo "yes";
  ?>
 <!DOCTYPE html>
 <html>
@@ -22,12 +24,12 @@ include 'index.php'
   var startApp = function() {
       gapi.load('auth2', function(){
       // Retrieve the singleton for the GoogleAuth library and set up the client.
-      // auth2 = gapi.auth2.init({
-      //   client_id: '548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com',
-      //   cookiepolicy: 'single_host_origin',
-      //   // fetch_basic_profile: false,
-      //   // scope: 'profile'
-      // });
+      auth2 = gapi.auth2.init({
+        client_id: '548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+        // fetch_basic_profile: false,
+        // scope: 'profile'
+      });
       setUp(document.getElementById('hi'));
     });
     
@@ -39,14 +41,14 @@ include 'index.php'
   	    console.log(element.id);
     //auth2.attachClickHandler(element, {},
       //  function(googleUser) {
-      	if (auth2.isSignedIn.get()) {
-      		alert("gooz");
-  var profile = auth2.currentUser.get().getBasicProfile();
-  console.log('ID: ' + profile.getId());
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
-}
+//       	if (auth2.isSignedIn.get()) {
+//       		alert("gooz");
+//   var profile = auth2.currentUser.get().getBasicProfile();
+//   console.log('ID: ' + profile.getId());
+//   console.log('Name: ' + profile.getName());
+//   console.log('Image URL: ' + profile.getImageUrl());
+//   console.log('Email: ' + profile.getEmail());
+// }
 
             //alert(userID);
 //  $.ajax({
@@ -85,7 +87,8 @@ include 'index.php'
     //       profile.getName())
     // {
       console.log('User signed out.');
-      document.getElementById('name').innerText = "Signed out";
+      window.location = 'index.php'
+      //document.getElementById('name').innerText = "Signed out";
    //  } else {
    //    document.getElementById('name').innerText = "You have not signed in!";
    // }
@@ -103,9 +106,9 @@ include 'index.php'
 	    <button calss="btn" href="#"><i class="icon-pencil"></i></button> 
 	    <i class="icon-search"></i>
 	</div>
-    <!--button href="#" onclick="signOut();" class="btn">Sign out</button-->
+    <button href="#" onclick="signOut();" class="btn">Sign out</button>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script src=”js/bootstrap.js”></script>
+	<script src="js/bootstrap.js"></script>
 	<script>startApp();</script>
 
 </body>
