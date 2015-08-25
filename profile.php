@@ -26,7 +26,7 @@ foreach ($result as $res) {
     echo'<td>'. $res['Website'].'</td>';
     echo'<tr>';
 }
- ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -37,9 +37,9 @@ foreach ($result as $res) {
 	<meta charset=”utf-8”>
 	<title>Home Page</title>
 	<!--link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"-->
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="./css/bootstrap.min.css"/>
 	<script src="https://apis.google.com/js/api:client.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script-->
 
 
 
@@ -60,10 +60,10 @@ foreach ($result as $res) {
     
   };
 
-  function setUp(element) {
+  function setUp() {
 
  
-  	    console.log(element.id);
+  	    //console.log(element.id);
     //auth2.attachClickHandler(element, {},
       //  function(googleUser) {
 //       	if (auth2.isSignedIn.get()) {
@@ -125,16 +125,26 @@ foreach ($result as $res) {
 </head>
 
 <body>
-	<div style="float:left; magin-left:200 px;" id="gSignInWrapper" class="container">
-	    <div id="hi"></div>
-	    <button href="#" class="btn" style="float:right; magin-right:20 px;">Sign out</button>
-	    <button calss="btn" href="#"><i class="icon-pencil"></i></button> 
-	    <i class="icon-search"></i>
-	</div>
-    <button href="#" onclick="signOut();" class="btn">Sign out</button>
-	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
+<div class="jumbotron">
+  	<div class="container">
+      <div class="row">
+          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><h2>3FS Directory</h2></div>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <button  class="btn btn-primary" onclick="signOut()";>Sign out</button>
+          </div>   
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <h2>Contacts</h2>
+          </div>
+    </div> 
+	   <!--button class="btn btn-success" href="#"><i class="icon-pencil"></i></button--> 
+</div>
+  
+    <!--script src="js/jquery-2.1.4.min.js"></script-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
 	<script>startApp();</script>
+  
 
 </body>
 
