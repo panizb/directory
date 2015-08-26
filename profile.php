@@ -14,8 +14,13 @@ $command= "SELECT * from Employee where User_Name LIKE :username";
 $params= array (":username" => $_GET['userID']);
 $result = $dbConn->executeWithReturn($command, $params);
 foreach ($result as $res) {
-    //$res = $result;
-    
+ 
+}
+$command= "SELECT Name, Family_Name, User_Name from Employee";
+$params= array ();
+$result2 = $dbConn->executeWithReturn($command, $params);
+foreach ($result2 as $res2) {
+
 }
 ?>
 
@@ -120,8 +125,8 @@ foreach ($result as $res) {
   	<div class="container">
     <!--here is the tilte-->
         <div class="row">
-            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><h2>3FS Directory</h2></div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-9 col-sm-offset-11 col-md-offset-11 col-lg-offset-11"><button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>   
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h2>3FS Directory</h2></div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10"><button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>   
         </div>
     <!--contact scroll-->
         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
@@ -141,11 +146,12 @@ foreach ($result as $res) {
                   </div>
                 </nav-->
                 <!-- Content data-target="#navbar-spy" data-spy="scroll"-->
-                <div style="height:150px; overflow-y:scroll; position:relative;">
+                <div style="height:400px; overflow-y:scroll; position:relative;">
                   <div id="scroll-first">
-                    <h2>First</h2>
-                    <? echo $res['Name']."<br>"; 
-                echo $res['Family Name']; ?>
+                  
+                    <? foreach ($result2 as $res2) {
+                    echo '<a href="viewProfile.php?userID='.$res2['User_Name']."\">".$res2['Name']." ".$res2['Family_Name']."<br></a>"; 
+                    }  ?>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a congue nibh. Ut sodales ipsum sed purus efficitur, dignissim venenatis quam malesuada. Aliquam mattis aliquam erat quis congue. Donec volutpat tincidunt ante ut lacinia. In sit amet mattis libero. Fusce mattis ex nec fermentum scelerisque. Vestibulum mattis nibh pretium scelerisque varius. Duis gravida maximus ex, condimentum condimentum neque mattis sit amet. Cras metus arcu, posuere sed arcu ut, tempus lobortis felis. Nam sodales mauris sit amet leo dapibus consequat. Nam mollis, arcu sed pulvinar imperdiet, orci erat egestas lectus, in porta libero enim quis mi. Nunc quis lectus purus. Praesent quis congue lacus. Integer in scelerisque nisi.
                   </div>
                   <div id="scroll-second">
@@ -171,7 +177,7 @@ foreach ($result as $res) {
             <dd> <? echo $res['Name']; ?> </dd>
          
             <dt class="bg-success">Family Name:</dt>
-            <dd> <? echo $res['Family Name']; ?> </dd>
+            <dd> <? echo $res['Family_Name']; ?> </dd>
             <dt class="bg-warning">Private Email:</dt>
             <dd> <? echo $res['Private Email']; ?> </dd>
             <dt class="bg-danger">Username:</dt>
