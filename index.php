@@ -170,17 +170,30 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail());
 }
 </script-->
+<div class="jumbotron">
+  <div id="gSignInWrapper" class="container">
 
-<div id="gSignInWrapper" class="container">
-    <span class="label">Sign in with:</span>
-    <button id="customBtn" class="btn btn-primary :focus"> Sign in with Google account
-      
-    </button>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <img class="img-rounded" src='3fs_logo_rumen_400x400.jpg' alt="3FS_Logo"></img>
+    </div>
+    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <p>Sign in with:</p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <button id="customBtn" class="btn btn-primary :focus"> Sign in with Google account</button>
+            </div>
+        </div>      
+    </div>
+    
 <!--     <div id="customBtn" class="customGPlusSignIn" >
       <span class="icon"></span>
       <span class="buttonText"> Google</span>
     </div> -->
-  </div>
+</div>
+</div>
+
   <!--button href="#" onclick="signOut();" class="btn">Sign out</button-->
   <div id="name"></div>
   <script>startApp();</script>
