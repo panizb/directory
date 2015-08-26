@@ -173,15 +173,15 @@ function onSignIn(googleUser) {
 <div class="jumbotron">
   <div id="gSignInWrapper" class="container">
 
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <img class="img-rounded" src='3fs_logo_rumen_400x400.jpg' alt="3FS_Logo"></img>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
+      <img class="img-responsive" src="img/3fs.png" width='200px' height='100px' alt="3FS_Logo"></img>
     </div>
-    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <p>Sign in with:</p>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-pull-1 col-sm-pull-1 col-md-pull-1 col-lg-pul-1">
                 <button id="customBtn" class="btn btn-primary :focus"> Sign in with Google account</button>
             </div>
         </div>      

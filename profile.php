@@ -127,11 +127,8 @@ foreach ($result2 as $res2) {
 <body>
 <div class="jumbotron">
   	<div class="container">
-    <!--here is the tilte-->
-        <div class="row">
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h2>3FS Directory</h2></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10"><button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>   
-        </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 "><button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h1>3FS Directory</h1></div>
     <!--contact scroll-->
         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
           <div class="row">
@@ -173,7 +170,16 @@ foreach ($result2 as $res2) {
         </div>
         <!--Profile view-->
         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
-            <h2> Hi <?php echo $res['Name']." !"; ?></h2>
+            
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+                <h2> Hi <?php echo $res['Name']." !"; ?></h2>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2">
+                <img class="img-responsive" src="img/profiles/me.png" width='120px' height='120px' alt="Your Photo"></img>
+              </div>
+            </div>
+            
             <dl>
 
             <h3>Your profile info:</h3>
