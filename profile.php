@@ -19,12 +19,8 @@ echo "<table border='1'>
 <th>Lastname</th>
 </tr>";
 foreach ($result as $res) {
-    echo'<tr>';
-    echo'<td>'. $res['Name']."</td>";
-    echo'<td>'. $res['Family Name'].'</td>';
-    echo'<td>'. $res['Private Email'].'</td>';
-    echo'<td>'. $res['Website'].'</td>';
-    echo'<tr>';
+    //$res = $result;
+    
 }
 ?>
 
@@ -127,15 +123,82 @@ foreach ($result as $res) {
 <body>
 <div class="jumbotron">
   	<div class="container">
-      <div class="row">
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><h2>3FS Directory</h2></div>
-          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            <button  class="btn btn-primary" onclick="signOut()";>Sign out</button>
-          </div>   
-      </div>
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <h2>Contacts</h2>
-          </div>
+    <!--here is the tilte-->
+        <div class="row">
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><h2>3FS Directory</h2></div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-9 col-sm-offset-11 col-md-offset-11 col-lg-offset-11"><button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>   
+        </div>
+    <!--contact scroll-->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <h3>Your Contacts</h3>
+            <h2>Scrollspy</h2>
+            <div style="position:relative;">
+              <!-- Navigation -->
+              <!--nav class="navbar navbar-default navbar-static" role="navigation" id="navbar-spy">
+                <div class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="#scroll-first">First</a></li>
+                    <li><a href="#scroll-second">Second</a></li>
+                    <li><a href="#scroll-third">Third</a></li>
+                  </ul>
+                </div>
+              </nav-->
+
+              <!-- Content data-target="#navbar-spy" data-spy="scroll"-->
+              <div style="height:150px; overflow-y:scroll; position:relative;">
+                <div id="scroll-first">
+                  <h2>First</h2>
+                  <? echo $res['Name']."<br>"; 
+              echo $res['Family Name']; ?>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a congue nibh. Ut sodales ipsum sed purus efficitur, dignissim venenatis quam malesuada. Aliquam mattis aliquam erat quis congue. Donec volutpat tincidunt ante ut lacinia. In sit amet mattis libero. Fusce mattis ex nec fermentum scelerisque. Vestibulum mattis nibh pretium scelerisque varius. Duis gravida maximus ex, condimentum condimentum neque mattis sit amet. Cras metus arcu, posuere sed arcu ut, tempus lobortis felis. Nam sodales mauris sit amet leo dapibus consequat. Nam mollis, arcu sed pulvinar imperdiet, orci erat egestas lectus, in porta libero enim quis mi. Nunc quis lectus purus. Praesent quis congue lacus. Integer in scelerisque nisi.
+                </div>
+                <div id="scroll-second">
+                  <h2>Second</h2>
+                  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed quis pretium justo. Nam tristique vestibulum consectetur. Aliquam at porttitor lectus. Curabitur pharetra luctus arcu, ut lacinia neque tempus at. Sed malesuada purus sit amet risus convallis, ac elementum ex venenatis. Cras magna diam, viverra aliquet finibus eget, dapibus eu augue. Suspendisse potenti. Etiam nec sem turpis.
+                </div>
+                <div id="scroll-third">
+                  <h2>Third</h2>
+                  Donec in tincidunt ipsum. Praesent sed cursus magna. Donec ut tempor augue. Nunc blandit velit purus, in malesuada est tristique ut. Sed lobortis purus eu posuere volutpat. Sed eget massa suscipit libero interdum dapibus. Fusce ac massa non ex porta imperdiet eu ut nibh. Fusce ut sem blandit, mattis neque ut, dignissim massa. Vivamus aliquam non justo vitae scelerisque. Etiam venenatis hendrerit pellentesque.
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+        <!--Profile view-->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <h2> Hi <?php echo $res['Name']." !"; ?></h2>
+            <h3>Your profile info:</h3>
+            <p class="bg-info">First Name:</p>
+            <p> <? echo $res['Name']; ?> </p>
+            <p class="bg-success">Family Name:</p>
+            <p> <? echo $res['Family Name']; ?> </p>
+            <p class="bg-warning">Private Email:</p>
+            <p> <? echo $res['Private Email']; ?> </p>
+            <p class="bg-danger">Username:</p>
+            <p> <? echo $res['User_Name']; ?> </p>
+            <p class="bg-info">Password:</p>
+            <p> <? echo "******"; ?> </p>
+            <p class="bg-success">Phone Number:</p>
+            <p> <? echo $res['Phone Number']; ?> </p>
+            <p class="bg-warning">Website:</p>
+            <p> <? echo $res['Website']; ?> </p>
+            <p class="bg-danger">Social Networks:</p>
+
+
+        </div>
+
+
+
+
+
+
     </div> 
 	   <!--button class="btn btn-success" href="#"><i class="icon-pencil"></i></button--> 
 </div>
