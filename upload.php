@@ -60,15 +60,16 @@ if ($uploadOk == 0) {
         foreach ($result as $res) {
  
         }
-        $filename = './img/profiles/'.$res['Photo'];
+        $filename = $res['Photo'];
         unlink($filename);
         //uploading the new photo
         $command= "UPDATE Employee SET Photo = :photo WHERE User_Name = :username";
-        echo $_SESSION['id'];
-        $params= array (":photo" => basename($_FILES["fileToUpload"]["name"]), ":username" => $_SESSION['id']);
+        //possible to have seperate folders for each user!
+        $params= array (":photo" => "./img/profiles/".basename($_FILES["fileToUpload"]["name"]), ":username" => $_SESSION['id']);
         $dbConn->executeWithoutReturn($command, $params);
         
         echo "The file ". basename($_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        header("Location: edit.php?userID=".$res['User_Name']);
     } else {
         echo "Sorry, there was an error uploading your file.";
     }

@@ -103,29 +103,41 @@ foreach ($result as $res) {
         </div>
         <h3>Profile info</h3>
         
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" action="manipulate.php?userID=<?php echo $res['User_Name']; ?>">
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value=<?php echo $res['Name']; ?> >
+              <input name="name" class="form-control" type="text" value=<?php echo $res['Name']; ?> >
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Family name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value=<?php echo $res['Family_Name']; ?> >
+              <input name="family" class="form-control" type="text" value=<?php echo $res['Family_Name']; ?> >
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Private Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value=<?php echo $res['Private Email']; ?> >
+              <input name="email" class="form-control" type="text" value=<?php echo $res['Private Email']; ?> >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Phone Number:</label>
+            <div class="col-md-8">
+              <input name="phone" class="form-control" type="text" value=<?php echo $res['Phone_Number']; ?> >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Website:</label>
+            <div class="col-md-8">
+              <input name="pweb" class="form-control" type="text" value=<?php echo $res['Website']; ?> >
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Username:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value=<?php echo $res['User_Name']; ?> >
+              <input name="username" class="form-control" type="text" value=<?php echo $res['User_Name']; ?> >
             </div>
           </div>
 
@@ -153,21 +165,21 @@ foreach ($result as $res) {
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value=<?php echo $res['Password']; ?> >
+              <input name="pass" class="form-control" type="password" value=<?php echo $res['Password']; ?> >
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value=<?php echo $res['Password']; ?> >
+              <input name="cpass" class="form-control" type="password" value=<?php echo $res['Password']; ?> >
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input type="button" class="btn btn-primary" value="Save Changes">
+              <input type="submit" name="save" class="btn btn-primary" value="Save Changes" onclick="">
               <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
+              <input type="reset" name="cancel" class="btn btn-default" value="Cancel">
             </div>
           </div>
         </form>

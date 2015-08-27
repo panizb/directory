@@ -203,7 +203,7 @@ foreach ($result2 as $res2) {
             <dt class="bg-info">Password:</dt>
             <dd> <? echo "******"; ?> </dd>
             <dt class="bg-success">Phone Number:</dt>
-            <dd> <? echo $res['Phone Number']; ?> </dd>
+            <dd> <? echo $res['Phone_Number']; ?> </dd>
             <dt class="bg-warning">Website:</dt>
             <dd> <? echo $res['Website']; ?> </dd>
             <dt class="bg-danger">Social Networks:</dt>
