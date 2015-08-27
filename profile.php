@@ -51,12 +51,12 @@ foreach ($result2 as $res2) {
         // fetch_basic_profile: false,
         // scope: 'profile'
       });
-      setUp(document.getElementById('hi'));
+      //setUp(document.getElementById('hi'));
     });
     
   };
 
-  function setUp() {
+ // function setUp() {
 
  
   	    //console.log(element.id);
@@ -92,7 +92,7 @@ foreach ($result2 as $res2) {
 //           alert(JSON.stringify(error, undefined, 2));
 //         });	
 
-  }
+  //}
 
 
 
@@ -181,8 +181,16 @@ foreach ($result2 as $res2) {
             </div>
             
             <dl>
-
-            <h3>Your profile info:</h3>
+            <div class="row">
+              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+               <a href='edit.php?userID=<?php echo $res['User_Name'];?>'><i class="glyphicon glyphicon-pencil"></i>
+                Edit </a><h3>Your profile info:</h3>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+              
+              </div>
+            </div>
+            
             <dt class="bg-info">First Name:</dt>
             <dd> <? echo $res['Name']; ?> </dd>
          
