@@ -197,7 +197,7 @@ foreach ($result2 as $res2) {
             <dt class="bg-success">Family Name:</dt>
             <dd> <? echo $res['Family_Name']; ?> </dd>
             <dt class="bg-warning">Private Email:</dt>
-            <dd> <? echo $res['Private Email']; ?> </dd>
+            <dd> <? echo $res['Private_Email']; ?> </dd>
             <dt class="bg-danger">Username:</dt>
             <dd> <? echo $res['User_Name']; ?> </dd>
             <dt class="bg-info">Password:</dt>

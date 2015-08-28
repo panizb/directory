@@ -119,7 +119,7 @@ foreach ($result as $res) {
           <div class="form-group">
             <label class="col-lg-3 control-label">Private Email:</label>
             <div class="col-lg-8">
-              <input name="email" class="form-control" type="text" value=<?php echo $res['Private Email']; ?> >
+              <input name="email" class="form-control" type="text" value=<?php echo $res['Private_Email']; ?> >
             </div>
           </div>
           <div class="form-group">
@@ -131,7 +131,7 @@ foreach ($result as $res) {
           <div class="form-group">
             <label class="col-md-3 control-label">Website:</label>
             <div class="col-md-8">
-              <input name="pweb" class="form-control" type="text" value=<?php echo $res['Website']; ?> >
+              <input name="web" class="form-control" type="text" value=<?php echo $res['Website']; ?> >
             </div>
           </div>
           <div class="form-group">
@@ -168,12 +168,12 @@ foreach ($result as $res) {
               <input name="pass" class="form-control" type="password" value=<?php echo $res['Password']; ?> >
             </div>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
               <input name="cpass" class="form-control" type="password" value=<?php echo $res['Password']; ?> >
             </div>
-          </div>
+          </div> -->
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
