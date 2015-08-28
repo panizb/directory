@@ -118,10 +118,6 @@ foreach ($result2 as $res2) {
     
   }
   </script>
-  <style type="text/css">
-
-
-    </style>
 </head>
 
 <body>
@@ -133,6 +129,7 @@ foreach ($result2 as $res2) {
         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <h1><? echo "<br>"; ?></h1>
               <h3><? echo "<br>"; ?></h3>
                <h3>Your Contacts:</h3>
               <div style="position:relative;">
@@ -169,7 +166,7 @@ foreach ($result2 as $res2) {
           </div>
         </div>
         <!--Profile view-->
-        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
+        <div  class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
             
             <div class="row">
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
@@ -189,11 +186,10 @@ foreach ($result2 as $res2) {
               <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
               
               </div>
-            </div>
-            
-            <dt class="bg-info">First Name:</dt>
+            </div >
+            <div style="height:400px; overflow-y:scroll">
+              <dt class="bg-info">First Name:</dt>
             <dd> <? echo $res['Name']; ?> </dd>
-         
             <dt class="bg-success">Family Name:</dt>
             <dd> <? echo $res['Family_Name']; ?> </dd>
             <dt class="bg-warning">Private Email:</dt>
@@ -207,6 +203,8 @@ foreach ($result2 as $res2) {
             <dt class="bg-warning">Website:</dt>
             <dd> <? echo $res['Website']; ?> </dd>
             <dt class="bg-danger">Social Networks:</dt>
+            </div>
+            
 
    </dl>
         </div>
