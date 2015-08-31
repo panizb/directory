@@ -173,6 +173,16 @@ foreach ($result2 as $res2) {
               <input name="pass" class="form-control" type="password" value=<?php echo $res['Password']; ?> >
             </div>
           </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Social Networks:</label>
+            <div class="col-lg-8">
+              <input name="social[]" class="form-control" type="text" value= <?php
+                foreach ($result2 as $res2) {
+                    echo "<span class=\"text-info\"><strong>".$res2['Name'].": "."</span></strong>";
+                    echo '<a href='.$res2['Link'].'\'>'.$res2['Link'].'<br></a>';
+                }?> >
+            </div>
+          </div>
           <!-- <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
@@ -187,7 +197,7 @@ foreach ($result2 as $res2) {
               <input type="submit" name="cancel" class="btn btn-default" value="Cancel" onclick="">
             </div>
           </div>
-          
+
         </form>
       </div>
   </div>
