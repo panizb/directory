@@ -37,6 +37,8 @@ if (isset($_GET['save'])) {
 
         $_SESSION['id']=$_GET['username'];
     }
+    // $command= "UPDATE Social_Network SET  = :userID2 WHERE UserID = :userID1" ;
+    //     $params= array (":userID2" => $_GET['username'], ":userID1" => $_SESSION['id']);
     echo "Changes saved!";
 }
 header('Location: profile.php?userID='.$_GET['username']);
