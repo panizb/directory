@@ -31,6 +31,12 @@ if (isset($_GET['save'])) {
     , ":phone" => $_GET['phone'], ":userID2" => $_GET['username'], ":pass" => $_GET['pass']
     , ":web" => $_GET['web'], ":userID" => $_SESSION['id']);
     $dbConn->executeWithoutReturn($command, $params);
+    if ($_GET['username']!=$_SESSION['id']) {
+         $command= "UPDATE Social_Network SET UserID = :userID2 WHERE UserID = :userID1" ;
+        $params= array (":userID2" => $_GET['username'], ":userID1" => $_SESSION['id']);
+
+        $_SESSION['id']=$_GET['username'];
+    }
     echo "Changes saved!";
 }
 header('Location: profile.php?userID='.$_GET['username']);

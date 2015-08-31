@@ -17,7 +17,12 @@ $result = $dbConn->executeWithReturn($command, $params);
 foreach ($result as $res) {
  
 }
-
+$command= "SELECT * from Social_Network where UserID LIKE :userID";
+$params= array (":userID" => $_GET['userID']);
+$result3 = $dbConn->executeWithReturn($command, $params);
+foreach ($result3 as $res3) {
+ 
+}
 
 ?>
 
@@ -117,6 +122,10 @@ foreach ($result as $res) {
             <dt class="bg-warning">Website:</dt>
             <dd> <? echo $res['Website']; ?> </dd>
             <dt class="bg-danger">Social Networks:</dt>
+            <dd><? foreach ($result3 as $res4){
+             echo "<span class=\"text-info\"><strong>".$res4['Name'].": "."</span></strong>";
+              echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
+              } ?></dd>
             </div>
             
 

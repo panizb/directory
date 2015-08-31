@@ -22,7 +22,12 @@ $result = $dbConn->executeWithReturn($command, $params);
 foreach ($result as $res) {
  
 }
-
+$command= "SELECT * from Social_Network where userID LIKE :username";
+$params= array (":username" => $_GET['userID']);
+$result2 = $dbConn->executeWithReturn($command, $params);
+foreach ($result2 as $res2) {
+ 
+}
 
 ?>
 
@@ -96,12 +101,12 @@ foreach ($result as $res) {
       
       <!-- edit form column -->
       <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismissable">
+      <!--   <div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           <i class="fa fa-coffee"></i>
           This is an <strong>.alert</strong>. Use this to show important messages to the user.
-        </div>
-        <h3>Profile info</h3>
+        </div> -->
+        <h3 class="text-muted">Profile info:</h3>
         
         <form class="form-horizontal" role="form" action="manipulate.php?userID=<?php echo $res['User_Name']; ?>">
           <div class="form-group">
@@ -119,7 +124,7 @@ foreach ($result as $res) {
           <div class="form-group">
             <label class="col-lg-3 control-label">Private Email:</label>
             <div class="col-lg-8">
-              <input name="email" class="form-control" type="text" value=<?php echo $res['Private_Email']; ?> >
+              <input name="email" class="form-control" type="email" value=<?php echo $res['Private_Email']; ?> >
             </div>
           </div>
           <div class="form-group">
@@ -131,7 +136,7 @@ foreach ($result as $res) {
           <div class="form-group">
             <label class="col-md-3 control-label">Website:</label>
             <div class="col-md-8">
-              <input name="web" class="form-control" type="text" value=<?php echo $res['Website']; ?> >
+              <input name="web" class="form-control" type="url" value=<?php echo $res['Website']; ?> >
             </div>
           </div>
           <div class="form-group">
@@ -179,9 +184,10 @@ foreach ($result as $res) {
             <div class="col-md-8">
               <input type="submit" name="save" class="btn btn-primary" value="Save Changes" onclick="">
               <span></span>
-              <input type="reset" name="cancel" class="btn btn-default" value="Cancel">
+              <input type="submit" name="cancel" class="btn btn-default" value="Cancel" onclick="">
             </div>
           </div>
+          
         </form>
       </div>
   </div>

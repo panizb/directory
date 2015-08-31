@@ -4,6 +4,7 @@ namespace directory;
 include 'DBHandler.php';
 //if (session_status() === PHP_SESSION_ACTIVE) ? TRUE : FALSE;
 session_start();
+$_SESSION['id']=$_GET['username'];
 $servername='localhost';
 $dbname='directory';
 $dBUsername='root';
@@ -22,7 +23,17 @@ $result2 = $dbConn->executeWithReturn($command, $params);
 foreach ($result2 as $res2) {
 
 }
+
+
+
+$command= "SELECT * from Social_Network where UserID LIKE :userID";
+$params= array (":userID" => $_GET['userID']);
+$result3 = $dbConn->executeWithReturn($command, $params);
+foreach ($result3 as $res3) {
+ 
+}
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -124,14 +135,14 @@ foreach ($result2 as $res2) {
 <div class="jumbotron">
   	<div class="container">
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 "><button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>
-    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h1>3FS Directory</h1></div>
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h1 >3FS Directory</h1></div>
     <!--contact scroll-->
         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <h1><? echo "<br>"; ?></h1>
               <h3><? echo "<br>"; ?></h3>
-               <h3>Your Contacts:</h3>
+               <h3 class="muted">Your Contacts:</h3>
               <div style="position:relative;">
                 <!-- Navigation -->
                 <!--nav class="navbar navbar-default navbar-static" role="navigation" id="navbar-spy">
@@ -170,7 +181,7 @@ foreach ($result2 as $res2) {
             
             <div class="row">
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
-                <h2> Hi <?php echo $res['Name']." !"; ?></h2>
+                <h2 class="text-warning"> Hi <?php echo $res['Name']." !"; ?></h2>
               </div>
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2">
                 <img class="img-responsive" src=<?php echo $res['Photo']?> width='120px' height='120px' alt="Your Photo"></img>
@@ -201,8 +212,12 @@ foreach ($result2 as $res2) {
             <dt class="bg-success">Phone Number:</dt>
             <dd> <? echo $res['Phone_Number']; ?> </dd>
             <dt class="bg-warning">Website:</dt>
-            <dd> <? echo $res['Website']; ?> </dd>
+            <dd> <a href="<? echo $res['Website']; ?>"><? echo $res['Website']; ?></a> </dd>
             <dt class="bg-danger">Social Networks:</dt>
+            <dd><? foreach ($result3 as $res4){
+               echo "<span class=\"text-info\"><strong>".$res4['Name'].": "."</span></strong>";
+              echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
+              } ?></dd>
             </div>
             
 
