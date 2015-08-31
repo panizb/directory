@@ -173,7 +173,7 @@ foreach ($result2 as $res2) {
                 <h2> Hi <?php echo $res['Name']." !"; ?></h2>
               </div>
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2">
-                <img class="img-responsive" src="img/profiles/me.png" width='120px' height='120px' alt="Your Photo"></img>
+                <img class="img-responsive" src=<?php echo $res['Photo']?> width='120px' height='120px' alt="Your Photo"></img>
               </div>
             </div>
             

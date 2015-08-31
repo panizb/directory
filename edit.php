@@ -75,8 +75,8 @@ foreach ($result as $res) {
 
       <div class="form-group" >
       <div class="col-md-3">
-        <div class="text-center">
-          <img src=<?php echo $res['Photo']; ?> class="img-responsive" alt="Profile Photo">
+        <div class="col-xs-4 col-sm-5 col-md-6 col-lg-6 ">
+          <img src=<?php echo $res['Photo']; ?> class="img-responsive" width='150px' height='150px' alt="Profile Photo">
 
 
           <form action="upload.php" method="post" enctype="multipart/form-data">

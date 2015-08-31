@@ -78,8 +78,74 @@ foreach ($result as $res) {
 <body>
   <div class="jumbotron">
     <div class="container">
+    <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><h2 class="bg-info">3FS Directory</h2></div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 "><button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>
-      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h1>3FS Directory</h1></div>
+      
+    </div>
+      
+            
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                <h2 class="bg-primary"> <?php echo $res['Name']."'s profile"; ?></h2>
+              </div>
+              
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+                <img class="img-responsive" src=<?php echo $res['Photo']?> width='120px' height='120px' alt="<?php echo $res['Name']."'s Photo"?>"></img>
+              </div>
+            <dl>
+            <div class="row">
+              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+               <h3 >Profile info:</h3>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+              
+              </div>
+            </div >
+            <div style="height:400px; overflow-y:scroll; width:700px">
+              <dt class="bg-info">First Name:</dt>
+            <dd> <? echo $res['Name']; ?> </dd>
+            <dt class="bg-success">Family Name:</dt>
+            <dd> <? echo $res['Family_Name']; ?> </dd>
+            <dt class="bg-warning">Private Email:</dt>
+            <dd> <? echo $res['Private_Email']; ?> </dd>
+            <dt class="bg-danger">Username:</dt>
+            <dd> <? echo $res['User_Name']; ?> </dd>
+            <dt class="bg-success">Phone Number:</dt>
+            <dd> <? echo $res['Phone_Number']; ?> </dd>
+            <dt class="bg-warning">Website:</dt>
+            <dd> <? echo $res['Website']; ?> </dd>
+            <dt class="bg-danger">Social Networks:</dt>
+            </div>
+            
+
+   </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
   </div>
 </html>
