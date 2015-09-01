@@ -4,7 +4,7 @@ namespace directory;
 include 'DBHandler.php';
 //if (session_status() === PHP_SESSION_ACTIVE) ? TRUE : FALSE;
 session_start();
-$_SESSION['id']=$_GET['username'];
+$_SESSION['id']=$_GET['userID'];
 $servername='localhost';
 $dbname='directory';
 $dBUsername='root';

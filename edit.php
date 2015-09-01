@@ -20,13 +20,16 @@ $command= "SELECT * from Employee where User_Name LIKE :username";
 $params= array (":username" => $_GET['userID']);
 $result = $dbConn->executeWithReturn($command, $params);
 foreach ($result as $res) {
- 
 }
 $command= "SELECT * from Social_Network where userID LIKE :username";
 $params= array (":username" => $_GET['userID']);
 $result2 = $dbConn->executeWithReturn($command, $params);
+ $new=array();
+foreach ($result2 as $val) {
+    $keys = array_keys($val);
+    $new[$val[$keys[0]]] = $val[$keys[1]];
+}
 foreach ($result2 as $res2) {
- 
 }
 
 ?>
@@ -100,7 +103,7 @@ foreach ($result2 as $res2) {
       </div>
       
       <!-- edit form column -->
-      <div class="col-md-9 personal-info">
+      <div class="col-md-9 col-sm-7 col-xs-7 personal-info">
       <!--   <div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           <i class="fa fa-coffee"></i>
@@ -108,7 +111,9 @@ foreach ($result2 as $res2) {
         </div> -->
         <h3 class="text-muted">Profile info:</h3>
         
-        <form class="form-horizontal" role="form" action="manipulate.php?userID=<?php echo $res['User_Name']; ?>">
+        <form class="form-horizontal" role="form" 
+        action="manipulate.php?userID=<?php echo $res['User_Name'];?>">
+        <input type="hidden" name="table" value=<?php echo urlencode(serialize($new));?>>
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
@@ -176,11 +181,14 @@ foreach ($result2 as $res2) {
           <div class="form-group">
             <label class="col-lg-3 control-label">Social Networks:</label>
             <div class="col-lg-8">
-              <input name="social[]" class="form-control" type="text" value= <?php
-                foreach ($result2 as $res2) {
-                    echo "<span class=\"text-info\"><strong>".$res2['Name'].": "."</span></strong>";
-                    echo '<a href='.$res2['Link'].'\'>'.$res2['Link'].'<br></a>';
-                }?> >
+
+            <? $count=1;
+             foreach ($result2 as $res2) {
+              $count= $count+1;
+              echo "<br><label class=\"col-lg-3 control-label\">".$res2['Name']."</label>".
+              "<input name=\"social".$count."\" class=\"form-control\" type=\"text\" value=".$res2['Link'].">";
+                    }?>
+           
             </div>
           </div>
           <!-- <div class="form-group">
