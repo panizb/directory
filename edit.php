@@ -134,13 +134,13 @@ foreach ($result2 as $res2) {
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">Phone Number:</label>
-            <div class="col-md-8">
+            <label class="col-lg-3 control-label">Phone Number:</label>
+            <div class="col-lg-8">
               <input name="phone" class="form-control" type="text" value=<?php echo $res['Phone_Number']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">Website:</label>
+            <label class="col-lg-3 control-label">Website:</label>
             <div class="col-md-8">
               <input name="web" class="form-control" type="url" value=<?php echo $res['Website']; ?> >
             </div>
@@ -174,18 +174,34 @@ foreach ($result2 as $res2) {
           </div-->
      
           <div class="form-group">
-            <label class="col-md-3 control-label">Password:</label>
-            <div class="col-md-8">
+            <label class="col-lg-3 control-label">Password:</label>
+            <div class="col-lg-8">
               <input name="pass" class="form-control" type="password" value=<?php echo $res['Password']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Social Networks:</label>
+            <label class="col-md-3 control-label">Social Networks:</label>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+              <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+                <span><br></span>
+              </div> -->
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6
+              col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-lg-offset-8">
+                
+              </div>
+            </div>
+            
+            
             <div class="col-lg-8">
-
+              <button type="submit" class="btn btn-info btn-mini" name="add">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>  
             <? $count=0;
              foreach ($result2 as $res2) {
-              echo "<br><label class=\"col-lg-3 control-label\">".$res2['Name']."</label>".
+              echo "<br><label class=\"col-lg-1 control-label\">".
+              "<div class=\"input-group \"><strong>".$res2['Name']."<button name=\"remove".$count."\" class = \"submit\" onclick=\"return confirm('Are you sure you want to remove this link?')\" >".
+              "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong></div>".
+              "</label>".
               "<input name=\"social".$count."\" class=\"form-control\" type=\"text\" value=".$res2['Link'].">".
               "<input type=\"hidden\" name=table".$count." value=".htmlentities(serialize($res2)).">";
               $count= $count+1;

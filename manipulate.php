@@ -10,13 +10,28 @@ session_start();
     // session_destroy();
     // header('Location: index.php');
 //}
-if (isset($_GET['save'])) {
-    $servername='localhost';
+$servername='localhost';
     $dbname='directory';
     $dBUsername='root';
     $dBPassword='';
     $dbConn = new DBHandler("mysql:host=$servername;dbname=$dbname", $dBUsername, $dBPassword);
     $dbConn->connect();
+for ($i=0; $i < $_GET['count']; $i++) {
+    $butName="remove".$i;
+    $rowName = "table".$i;
+    $inputName = "social".$i;
+    $row = unserialize($_GET[$rowName]);
+    if (isset($_GET[$butName])) {
+        $command = "DELETE FROM Social_Network WHERE UserID = :userID AND Link = :link AND Name = :name";
+        $params= array (":name" => $row['Name'], ":link" => $row['Link'], ":userID" => $row['UserID']);
+        $dbConn->executeWithoutReturn($command, $params);
+    }
+}
+if (isset($_GET['add'])) {
+
+}
+if (isset($_GET['save'])) {
+    
     $command= "UPDATE Employee SET Name = :name
     , Family_Name = :family
     , Private_Email = :email
