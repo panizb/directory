@@ -25,10 +25,12 @@ $command= "SELECT * from Social_Network where userID LIKE :username";
 $params= array (":username" => $_GET['userID']);
 $result2 = $dbConn->executeWithReturn($command, $params);
  $new=array();
+ $i=0;
 foreach ($result2 as $val) {
-    $keys = array_keys($val);
-    $new[$val[$keys[0]]] = $val[$keys[1]];
+    $new[$i] = $val;
+    $i=$i+1;
 }
+echo $new[0][2];
 foreach ($result2 as $res2) {
 }
 
@@ -113,7 +115,6 @@ foreach ($result2 as $res2) {
         
         <form class="form-horizontal" role="form" 
         action="manipulate.php?userID=<?php echo $res['User_Name'];?>">
-        <input type="hidden" name="table" value=<?php echo urlencode(serialize($new));?>>
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
@@ -182,15 +183,17 @@ foreach ($result2 as $res2) {
             <label class="col-lg-3 control-label">Social Networks:</label>
             <div class="col-lg-8">
 
-            <? $count=1;
+            <? $count=0;
              foreach ($result2 as $res2) {
-              $count= $count+1;
               echo "<br><label class=\"col-lg-3 control-label\">".$res2['Name']."</label>".
-              "<input name=\"social".$count."\" class=\"form-control\" type=\"text\" value=".$res2['Link'].">";
+              "<input name=\"social".$count."\" class=\"form-control\" type=\"text\" value=".$res2['Link'].">".
+              "<input type=\"hidden\" name=table".$count." value=".htmlentities(serialize($res2)).">";
+              $count= $count+1;
                     }?>
            
             </div>
           </div>
+          <input type="hidden" name="count" value=<?php echo $count;?>>
           <!-- <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
