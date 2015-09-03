@@ -1,0 +1,26 @@
+<?php
+
+namespace directory;
+
+include 'DBHandler.php';
+session_start();
+//check the session (if needed!)
+// if ($_SESSION['id']!=$_GET['userID']) {
+//     echo "Session timed out!";
+    // session_destroy();
+    // header('Location: index.php');
+//}
+$servername='localhost';
+    $dbname='directory';
+    $dBUsername='root';
+    $dBPassword='';
+    $dbConn = new DBHandler("mysql:host=$servername;dbname=$dbname", $dBUsername, $dBPassword);
+    $dbConn->connect();
+if (isset($_GET['add'])) {
+    echo "UserID: ".$_GET['userID'];
+    $command= "INSERT INTO Social_Network (Name, Link, UserID) VALUES (:sname, :link, :userID)";
+    $params= array (":sname" => $_GET['newSName'], ":link" => $_GET['newSLink'], ":userID" => $_GET['userID']);
+    $dbConn->executeWithoutReturn($command, $params);
+    header('Location: edit.php?userID='.$_GET['username']);
+}
+//header('Location: edit.php?userID='.$_GET['username']);

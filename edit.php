@@ -30,10 +30,13 @@ foreach ($result2 as $val) {
     $new[$i] = $val;
     $i=$i+1;
 }
-echo $new[0][2];
 foreach ($result2 as $res2) {
 }
-
+$command= "SELECT * from Membership where Username LIKE :userID";
+$params= array (":userID" => $_GET['userID']);
+$teams = $dbConn->executeWithReturn($command, $params);
+foreach ($teams as $team) {
+}
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +117,7 @@ foreach ($result2 as $res2) {
         <h3 class="text-muted">Profile info:</h3>
         
         <form class="form-horizontal" role="form" 
-        action="manipulate.php?userID=<?php echo $res['User_Name'];?>">
+        action="manipulate.php?userID=<?php echo $res['User_Name'];?>" novalidate>
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
@@ -179,6 +182,7 @@ foreach ($result2 as $res2) {
               <input name="pass" class="form-control" type="password" value=<?php echo $res['Password']; ?> >
             </div>
           </div>
+
           <div class="form-group">
             <label class="col-md-3 control-label">Social Networks:</label>
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -193,13 +197,49 @@ foreach ($result2 as $res2) {
             
             
             <div class="col-lg-8">
-              <button type="submit" class="btn btn-info btn-mini" name="add">
+              <button type="button" class="btn btn-info btn-mini" name="addHere" data-toggle="modal" data-target="#addModal">
                     <span class="glyphicon glyphicon-plus"></span>
                   </button>  
+                  <div id="addModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                   <div class="modal-content">
+                        <div class="modal-header" style="padding:35px 50px;">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                        </div>
+                        <div class="modal-body" style="padding:40px 50px;">
+                          <form role="form" action="manipulate.php?userID=<?php echo $_GET['userID'];?>" >
+                            <div class="form-group">
+                              <label for="usrname"><span class="glyphicon glyphicon-thumbs-up"></span> Social Network Name</label>
+                              <input type="text" class="form-control" name="newSName" placeholder="Enter name" required>
+                            </div>
+                            <div class="form-group">
+                              <label for="psw"><span class="glyphicon glyphicon-globe"></span> Link</label>
+                              <input type="text" class="form-control" name="newSLink" placeholder="Enter link" required>
+                            </div>
+                              <button name="add" type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add</button>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                      </div>
+
+                  </div>
+                </div>
+
+
+
+
+
             <? $count=0;
              foreach ($result2 as $res2) {
               echo "<br><label class=\"col-lg-1 control-label\">".
-              "<div class=\"input-group \"><strong>".$res2['Name']."<button name=\"remove".$count."\" class = \"submit\" onclick=\"return confirm('Are you sure you want to remove this link?')\" >".
+              "<div class=\"input-group \"><strong><span>".$res2['Name']."  "."</span><button name=\"remove".$count.
+              "\" class= \"btn btn-default btn-mini\" type = \"submit\" onclick=\"return confirm".
+              "('Are you sure you want to remove this link?')\" >".
               "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong></div>".
               "</label>".
               "<input name=\"social".$count."\" class=\"form-control\" type=\"text\" value=".$res2['Link'].">".
@@ -208,14 +248,78 @@ foreach ($result2 as $res2) {
                     }?>
            
             </div>
+            <input type="hidden" name="count" value=<?php echo $count;?>>
           </div>
-          <input type="hidden" name="count" value=<?php echo $count;?>>
-          <!-- <div class="form-group">
-            <label class="col-md-3 control-label">Confirm password:</label>
-            <div class="col-md-8">
-              <input name="cpass" class="form-control" type="password" value=<?php echo $res['Password']; ?> >
+          
+          <div class="form-group">
+            <label class="col-md-3 control-label">Teams:</label>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+              <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+                <span><br></span>
+              </div> -->
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6
+              col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-lg-offset-8">
+                
+              </div>
             </div>
-          </div> -->
+            
+            
+            <div class="col-lg-8">
+              <button type="button" class="btn btn-info btn-mini" name="addThere" data-toggle="modal" data-target="#addTeamModal">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>  
+                  <div id="addTeamModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                   <div class="modal-content">
+                        <div class="modal-header" style="padding:35px 50px;">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                        </div>
+                        <div class="modal-body" style="padding:40px 50px;">
+                          <form role="form" action="manipulate.php?userID=<?php echo $_GET['userID'];?>" >
+                            <div class="form-group">
+                              <label for="usrname"><span class="glyphicon glyphicon-thumbs-up"></span> Team Name</label>
+                              <input type="text" class="form-control" name="newTName" placeholder="Enter name" required>
+                            </div>
+                            <div class="form-group">
+                              <label for="psw"><span class="glyphicon glyphicon-globe"></span> Description</label>
+                              <input type="text" class="form-control" name="newTDesc" placeholder="Enter description" >
+                            </div>
+                              <button name="addTeam" type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add</button>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                      </div>
+
+                  </div>
+                </div>
+
+
+
+
+
+            <? $countT=0;
+             foreach ($teams as $team) {
+              echo "<br><label class=\"col-lg-1 control-label\">".
+              "<div class=\"input-group \"><strong><button type = \"submit\" name=\"removeT".$countT.
+              "\" class= \"btn btn-default btn-mini\" onclick=\"return confirm".
+              "('Are you sure you want to remove this team?')\" >".
+              "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong></div>".
+              "</label>".
+              "<input name=\"team".$countT."\" class=\"form-control\" type=\"text\" value=".$team['Team_Name'].">".
+              "<input type=\"hidden\" name=tableT".$countT." value=".htmlentities(serialize($team)).">";
+              $countT= $countT+1;
+                    }?>
+           
+            </div>
+            <input type="hidden" name="countT" value=<?php echo $countT;?>>
+          </div>
+
+
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
@@ -235,6 +339,8 @@ foreach ($result2 as $res2) {
 
   		</div>
   	</div>
+ <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+ <script src="js/bootstrap.js"></script>
  </body>
 
 

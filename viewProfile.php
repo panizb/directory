@@ -127,6 +127,7 @@ foreach ($result3 as $res3) {
               echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
               } ?></dd>
             </div>
+            </div>
             
 
    </dl>
@@ -157,4 +158,7 @@ foreach ($result3 as $res3) {
 
     </div>
   </div>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+  </body>
 </html>
