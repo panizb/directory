@@ -149,6 +149,10 @@ foreach ($teams as $team) {
               <h1><? echo "<br>"; ?></h1>
               <h3><? echo "<br>"; ?></h3>
                <h3 class="muted">Your Contacts:</h3>
+               <form class="form-search">
+                <input type="text" class="input-medium search-query">
+                <button type="submit" class="btn">Search</button>
+              </form>
               <div style="position:relative;">
                 <!-- Navigation -->
                 <!--nav class="navbar navbar-default navbar-static" role="navigation" id="navbar-spy">

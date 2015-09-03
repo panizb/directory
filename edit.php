@@ -237,7 +237,7 @@ foreach ($teams as $team) {
             <? $count=0;
              foreach ($result2 as $res2) {
               echo "<br><label class=\"col-lg-1 control-label\">".
-              "<div class=\"input-group \"><strong><span>".$res2['Name']."  "."</span><button name=\"remove".$count.
+              "<div class=\"input-group \"><strong><span style=\"color=#FF6600\">".$res2['Name']."  "."</span><button name=\"remove".$count.
               "\" class= \"btn btn-default btn-mini\" type = \"submit\" onclick=\"return confirm".
               "('Are you sure you want to remove this link?')\" >".
               "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong></div>".
@@ -265,7 +265,8 @@ foreach ($teams as $team) {
             
             
             <div class="col-lg-8">
-              <button type="button" class="btn btn-info btn-mini" name="addThere" data-toggle="modal" data-target="#addTeamModal">
+              <button type="button" class="btn btn-info btn-mini" name="addThere" 
+              data-toggle="modal" data-target="#addTeamModal">
                     <span class="glyphicon glyphicon-plus"></span>
                   </button>  
                   <div id="addTeamModal" class="modal fade" role="dialog">
@@ -287,11 +288,13 @@ foreach ($teams as $team) {
                               <label for="psw"><span class="glyphicon glyphicon-globe"></span> Description</label>
                               <input type="text" class="form-control" name="newTDesc" placeholder="Enter description" >
                             </div>
-                              <button name="addTeam" type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add</button>
+                              <button name="addTeam" type="submit" class="btn btn-success btn-block">
+                              <span class="glyphicon glyphicon-off"></span> Add</button>
                           </form>
                         </div>
                         <div class="modal-footer">
-                          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+                          <span class="glyphicon glyphicon-remove"></span> Cancel</button>
                         </div>
                       </div>
 
@@ -304,12 +307,11 @@ foreach ($teams as $team) {
 
             <? $countT=0;
              foreach ($teams as $team) {
-              echo "<br><label class=\"col-lg-1 control-label\">".
-              "<div class=\"input-group \"><strong><button type = \"submit\" name=\"removeT".$countT.
+              echo "<br><strong>
+              <button type = \"submit\" name=\"removeT".$countT.
               "\" class= \"btn btn-default btn-mini\" onclick=\"return confirm".
               "('Are you sure you want to remove this team?')\" >".
-              "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong></div>".
-              "</label>".
+              "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong>".
               "<input name=\"team".$countT."\" class=\"form-control\" type=\"text\" value=".$team['Team_Name'].">".
               "<input type=\"hidden\" name=tableT".$countT." value=".htmlentities(serialize($team)).">";
               $countT= $countT+1;
