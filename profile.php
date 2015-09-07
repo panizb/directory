@@ -186,25 +186,29 @@ foreach ($projects as $project) {
                 <div style="height:400px; overflow-y:scroll; position:relative;">
                   <div id="scroll-first">
                   
-                    <?php foreach ($result2 as $res2) {
-                        echo "<table class=\"table-responsive\">
+                    <?php echo "<table class=\"table-responsive table-hover\" >
                         <thead>
                           <tr>
                             <th class=\"col-xs-1\"></th> 
                             <th class=\"col-xs-2\"></th> 
-                            <th class=\"col-xs-2\"></th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr ng-repeat-start=\"u in users\" ng-click=\"showDetail(u.user)\" ng-class-odd=\"'alt'\">
-                            <td class=\"col-xs-1\"><img height='50px' width='50px' title=\"Photo\" src=\"".$res2["Photo"]."\"class=\"img-circle\"></td> 
-                            <td class=\"col-xs-2 cap\">".$res2['Name']."</td> 
-                            <td class=\"col-xs-2 cap\">".$res2['Family_Name']."</td>
-                          </tr>
-                        </tbody>
-                        </table>";
+                        <tbody>" ;
+                    foreach ($result2 as $res2) {
+                        echo "
+                          <tr onclick=\" document.location = 'viewProfile.php?userID=".
+                          $res2['User_Name']."';\" ng-repeat-start=\"u in users\" ng-class-odd=\"'alt'\">
+                            <td class=\"col-xs-1\"><img height='50px' width='50px' title=\"Photo\" src=\"".
+                            $res2["Photo"]."\"class=\"img-circle\"></td> 
+                            <td class=\"col-xs-2 >"."<a href=\"viewProfile.php?userID=".$res2['User_Name']."\">".
+                            $res2['Name']
+                            ." ".$res2['Family_Name']."<br></a>"."</td> 
+                          </tr>";
                         //echo '<a href="viewProfile.php?userID='.$res2['User_Name']."\">".$res2['Name']." ".$res2['Family_Name']."<br></a>";
-}  ?>
+                    }
+                    echo "</tbody>
+                        </table>";
+?>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a congue nibh. Ut sodales ipsum sed purus efficitur, dignissim venenatis quam malesuada. Aliquam mattis aliquam erat quis congue. Donec volutpat tincidunt ante ut lacinia. In sit amet mattis libero. Fusce mattis ex nec fermentum scelerisque. Vestibulum mattis nibh pretium scelerisque varius. Duis gravida maximus ex, condimentum condimentum neque mattis sit amet. Cras metus arcu, posuere sed arcu ut, tempus lobortis felis. Nam sodales mauris sit amet leo dapibus consequat. Nam mollis, arcu sed pulvinar imperdiet, orci erat egestas lectus, in porta libero enim quis mi. Nunc quis lectus purus. Praesent quis congue lacus. Integer in scelerisque nisi.
                   </div>
                   <div id="scroll-second">
