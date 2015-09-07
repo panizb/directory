@@ -38,6 +38,12 @@ $params= array (":userID" => $_GET['userID']);
 $teams = $dbConn->executeWithReturn($command, $params);
 foreach ($teams as $team) {
 }
+
+$command= "SELECT * from Develop where Username LIKE :userID";
+$params= array (":userID" => $_GET['userID']);
+$projects = $dbConn->executeWithReturn($command, $params);
+foreach ($projects as $project) {
+}
 ?>
 
 
@@ -47,7 +53,7 @@ foreach ($teams as $team) {
 <head>
 	<meta name="google-signin-client_id" 
 	content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com">
-	<meta charset=”utf-8”>
+	<meta charset="utf-8">
 	<title>Home Page</title>
 	<!--link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"-->
 <link rel="stylesheet" href="./css/bootstrap.min.css"/>
@@ -146,11 +152,11 @@ foreach ($teams as $team) {
         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h1><? echo "<br>"; ?></h1>
-              <h3><? echo "<br>"; ?></h3>
+              <h1><?php echo "<br>"; ?></h1>
+              <h3><?php echo "<br>"; ?></h3>
                <h3 class="muted">Your Contacts:</h3>
-               <form class="form-search">
-                <input type="text" class="input-medium search-query">
+               <form class="form-search" action="searchResult.php?userID=<?php echo $_GET['userID'];?>">
+                <input name="search" type="text" class="input-medium search-query">
                 <button type="submit" class="btn">Search</button>
               </form>
               <div style="position:relative;">
@@ -168,9 +174,9 @@ foreach ($teams as $team) {
                 <div style="height:400px; overflow-y:scroll; position:relative;">
                   <div id="scroll-first">
                   
-                    <? foreach ($result2 as $res2) {
-                    echo '<a href="viewProfile.php?userID='.$res2['User_Name']."\">".$res2['Name']." ".$res2['Family_Name']."<br></a>"; 
-                    }  ?>
+                    <?php foreach ($result2 as $res2) {
+                        echo '<a href="viewProfile.php?userID='.$res2['User_Name']."\">".$res2['Name']." ".$res2['Family_Name']."<br></a>";
+}  ?>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a congue nibh. Ut sodales ipsum sed purus efficitur, dignissim venenatis quam malesuada. Aliquam mattis aliquam erat quis congue. Donec volutpat tincidunt ante ut lacinia. In sit amet mattis libero. Fusce mattis ex nec fermentum scelerisque. Vestibulum mattis nibh pretium scelerisque varius. Duis gravida maximus ex, condimentum condimentum neque mattis sit amet. Cras metus arcu, posuere sed arcu ut, tempus lobortis felis. Nam sodales mauris sit amet leo dapibus consequat. Nam mollis, arcu sed pulvinar imperdiet, orci erat egestas lectus, in porta libero enim quis mi. Nunc quis lectus purus. Praesent quis congue lacus. Integer in scelerisque nisi.
                   </div>
                   <div id="scroll-second">
@@ -210,28 +216,34 @@ foreach ($teams as $team) {
             </div >
             <div style="height:400px; overflow-y:scroll">
               <dt class="bg-info">First Name:</dt>
-            <dd> <? echo $res['Name']; ?> </dd>
-            <dt class="bg-success">Family Name:</dt>
-            <dd> <? echo $res['Family_Name']; ?> </dd>
-            <dt class="bg-warning">Private Email:</dt>
-            <dd> <? echo $res['Private_Email']; ?> </dd>
-            <dt class="bg-danger">Username:</dt>
-            <dd> <? echo $res['User_Name']; ?> </dd>
-            <dt class="bg-info">Password:</dt>
-            <dd> <? echo "******"; ?> </dd>
-            <dt class="bg-success">Phone Number:</dt>
-            <dd> <? echo $res['Phone_Number']; ?> </dd>
-            <dt class="bg-warning">Website:</dt>
-            <dd> <a href="<? echo $res['Website']; ?>"><? echo $res['Website']; ?></a> </dd>
-            <dt class="bg-danger">Social Networks:</dt>
-            <dd><? foreach ($result3 as $res4){
-               echo "<span class=\"text-info\"><strong>".$res4['Name'].": "."</span></strong>";
-              echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
-              } ?></dd>
+              <dd> <?php echo $res['Name']; ?> </dd>
+              <dt class="bg-success">Family Name:</dt>
+              <dd> <?php echo $res['Family_Name']; ?> </dd>
+              <dt class="bg-warning">Private Email:</dt>
+              <dd> <?php echo $res['Private_Email']; ?> </dd>
+              <dt class="bg-danger">Username:</dt>
+              <dd> <?php echo $res['User_Name']; ?> </dd>
+              <dt class="bg-info">Password:</dt>
+              <dd> <?php echo "******"; ?> </dd>
+              <dt class="bg-success">Phone Number:</dt>
+              <dd> <?php echo $res['Phone_Number']; ?> </dd>
+              <dt class="bg-warning">Website:</dt>
+              <dd> <a href="<?php echo $res['Website']; ?>"><?php echo $res['Website']; ?></a> </dd>
+              <dt class="bg-danger">Social Networks:</dt>
+              <dd><?php foreach ($result3 as $res4) {
+                          echo "<span class=\"text-info\"><strong>".$res4['Name'].": "."</span></strong>";
+                          echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
+}
+                    ?>
+              </dd>
               <dt class="bg-danger">Teams:</dt>
-            <dd><? foreach ($teams as $team2){
-             echo "<span style=\"color:#CC6666\"><strong>".$team2['Team_Name']."</span></strong><br>";
-              } ?></dd>
+              <dd><? foreach ($teams as $team2){
+               echo "<span style=\"color:#CC6666\"><strong>".$team2['Team_Name']."</span></strong><br>";
+                } ?></dd>
+                <dt class="bg-danger">Projects:</dt>
+              <dd><? foreach ($projects as $project2){
+               echo "<span style=\"color:#CC6666\"><strong>".$project2['Project_Name']."</span></strong><br>";
+                } ?></dd>
             </div>
             
 

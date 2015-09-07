@@ -32,7 +32,7 @@ foreach ($result3 as $res3) {
 <head>
 	<meta name="google-signin-client_id" 
 	content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com">
-	<meta charset=”utf-8”>
+	<meta charset="utf-8">
 	<title>Edit Profile</title>
 	<!--link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"-->
 <link rel="stylesheet" href="./css/bootstrap.min.css"/>
@@ -110,19 +110,19 @@ foreach ($result3 as $res3) {
             </div >
             <div style="height:400px; overflow-y:scroll; width:700px">
               <dt class="bg-info">First Name:</dt>
-            <dd> <? echo $res['Name']; ?> </dd>
+            <dd> <?php echo $res['Name']; ?> </dd>
             <dt class="bg-success">Family Name:</dt>
-            <dd> <? echo $res['Family_Name']; ?> </dd>
+            <dd> <?php echo $res['Family_Name']; ?> </dd>
             <dt class="bg-warning">Private Email:</dt>
-            <dd> <? echo $res['Private_Email']; ?> </dd>
+            <dd> <?php echo $res['Private_Email']; ?> </dd>
             <dt class="bg-danger">Username:</dt>
-            <dd> <? echo $res['User_Name']; ?> </dd>
+            <dd> <?php echo $res['User_Name']; ?> </dd>
             <dt class="bg-success">Phone Number:</dt>
-            <dd> <? echo $res['Phone_Number']; ?> </dd>
+            <dd> <?php echo $res['Phone_Number']; ?> </dd>
             <dt class="bg-warning">Website:</dt>
-            <dd> <? echo $res['Website']; ?> </dd>
+            <dd> <?php echo $res['Website']; ?> </dd>
             <dt class="bg-danger">Social Networks:</dt>
-            <dd><? foreach ($result3 as $res4){
+            <dd><?php foreach ($result3 as $res4){
              echo "<span class=\"text-info\"><strong>".$res4['Name'].": "."</span></strong>";
               echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
               } ?></dd>

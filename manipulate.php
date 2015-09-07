@@ -39,20 +39,57 @@ for ($i=0; $i < $_GET['countT']; $i++) {
         $command = "DELETE FROM Membership WHERE Username = :userID AND Team_Name = :tname";
         $params= array (":tname" => $row['Team_Name'], ":userID" => $_SESSION['id']);
         $dbConn->executeWithoutReturn($command, $params);
-        //header('Location: edit.php?userID='.$_SESSION['id']);
+        header('Location: edit.php?userID='.$_SESSION['id']);
     }
 }
+for ($i=0; $i < $_GET['countP']; $i++) {
+    $butName="removeP".$i;
+    $rowName = "tableP".$i;
+    $inputName = "project".$i;
+    $row = unserialize($_GET[$rowName]);
+    if (isset($_GET[$butName])) {
+        echo "found remove";
+        $command = "DELETE FROM Develop WHERE Username = :userID AND Project_Name = :pname";
+        $params= array (":pname" => $row['Project_Name'], ":userID" => $_SESSION['id']);
+        $dbConn->executeWithoutReturn($command, $params);
+        header('Location: edit.php?userID='.$_SESSION['id']);
+    }
+}
+if (isset($_GET['addHere'])) {
+    header('Location: addLink.php?userID='.$_SESSION['id']);
+}
+if (isset($_GET['addTHere'])) {
+    header('Location: addTeam.php?userID='.$_SESSION['id']);
+}
+if (isset($_GET['addPHere'])) {
+    header('Location: addProject.php?userID='.$_SESSION['id']);
+}
 if (isset($_GET['add'])) {
-    echo "UserID: ".$row['UserID'];
+    echo "UserID: ".$_GET['userID'];
     $command= "INSERT INTO Social_Network (Name, Link, UserID) VALUES (:sname, :link, :userID)";
-    $params= array (":sname" => $_GET['newSName'], ":link" => $_GET['newSLink'], ":userID" => $row['UserID']);
+    $params= array (":sname" => $_GET['newSName'], ":link" => $_GET['newSLink'], ":userID" => $_SESSION['id']);
     $dbConn->executeWithoutReturn($command, $params);
-    header('Location: edit.php?userID='.$_GET['username']);
+    header('Location: edit.php?userID='.$_SESSION['id']);
 }
 if (isset($_GET['addTeam'])) {
     $command= "INSERT INTO Membership (Username, Team_Name) VALUES (:userID, :tname)";
     $params= array (":tname" => $_GET['newTName'], ":userID" => $_SESSION['id']);
     $dbConn->executeWithoutReturn($command, $params);
+    header('Location: edit.php?userID='.$_SESSION['id']);
+}
+if (isset($_GET['addProject'])) {
+    $command= "INSERT INTO Develop (Username, Project_Name) VALUES (:userID, :pname)";
+    $params= array (":pname" => $_GET['newPName'], ":userID" => $_SESSION['id']);
+    $dbConn->executeWithoutReturn($command, $params);
+    header('Location: edit.php?userID='.$_SESSION['id']);
+}
+if (isset($_GET['cancelAdd'])) {
+    header('Location: edit.php?userID='.$_SESSION['id']);
+}
+if (isset($_GET['cancelAddT'])) {
+    header('Location: edit.php?userID='.$_SESSION['id']);
+}
+if (isset($_GET['cancelAddP'])) {
     header('Location: edit.php?userID='.$_SESSION['id']);
 }
 if (isset($_GET['save'])) {
@@ -73,7 +110,7 @@ if (isset($_GET['save'])) {
     $params= array (":userID" => $_SESSION['id']);
     $dbConn->executeWithoutReturn($command, $params);
     for ($i=0; $i < $_GET['count']; $i++) {
-        $rowName = "tableT".$i;
+        $rowName = "table".$i;
         $inputName = "social".$i;
         $row = unserialize($_GET[$rowName]);
         $input = $_GET[$inputName];
@@ -83,16 +120,26 @@ if (isset($_GET['save'])) {
 
     }
       //if the count hasn't changed rewrite all the teams' names of the user with the updated userID
-    $command = "DELETE FROM Membership WHERE UserID = :userID";
+    $command = "DELETE FROM Membership WHERE Username = :userID";
     $params= array (":userID" => $_SESSION['id']);
     $dbConn->executeWithoutReturn($command, $params);
     for ($i=0; $i < $_GET['countT']; $i++) {
         $rowName = "tableT".$i;
-        $inputName = "team".$i;
         $row = unserialize($_GET[$rowName]);
-        $input = $_GET[$inputName];
-        $command= "INSERT INTO Membership (Username, Team_Name) VALUES (:tname, :userID)";
-        $params= array (":tname" => $input['Team_Name'], ":userID" => $_GET['username']);
+        $command= "INSERT INTO Membership (Username, Team_Name) VALUES (:userID, :tname)";
+        $params= array (":tname" => $row['Team_Name'], ":userID" => $_GET['username']);
+        $dbConn->executeWithoutReturn($command, $params);
+
+    }
+         //if the count hasn't changed rewrite all the projects' names of the user with the updated userID
+    $command = "DELETE FROM Develop WHERE Username = :userID";
+    $params= array (":userID" => $_SESSION['id']);
+    $dbConn->executeWithoutReturn($command, $params);
+    for ($i=0; $i < $_GET['countP']; $i++) {
+        $rowName = "tableP".$i;
+        $row = unserialize($_GET[$rowName]);
+        $command= "INSERT INTO Develop (Username, Project_Name) VALUES (:userID, :pname)";
+        $params= array (":pname" => $row['Project_Name'], ":userID" => $_GET['username']);
         $dbConn->executeWithoutReturn($command, $params);
 
     }

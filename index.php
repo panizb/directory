@@ -9,7 +9,7 @@ include 'Authentication.php'
 <head>
 <meta name="google-signin-client_id" 
 content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com">
-<meta charset=”utf-8”>
+<meta charset="utf-8">
 <title>Welcome to directory!</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>

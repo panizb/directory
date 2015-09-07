@@ -37,6 +37,11 @@ $params= array (":userID" => $_GET['userID']);
 $teams = $dbConn->executeWithReturn($command, $params);
 foreach ($teams as $team) {
 }
+$command= "SELECT * from Develop where Username LIKE :userID";
+$params= array (":userID" => $_GET['userID']);
+$projects = $dbConn->executeWithReturn($command, $params);
+foreach ($projects as $project) {
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +50,7 @@ foreach ($teams as $team) {
 <head>
 	<meta name="google-signin-client_id" 
 	content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com">
-	<meta charset=”utf-8”>
+	<meta charset="utf-8">
 	<title>Edit Profile</title>
 	<!--link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"-->
 <link rel="stylesheet" href="./css/bootstrap.min.css"/>
@@ -197,55 +202,27 @@ foreach ($teams as $team) {
             
             
             <div class="col-lg-8">
-              <button type="button" class="btn btn-info btn-mini" name="addHere" data-toggle="modal" data-target="#addModal">
+              <button type="submit" class="btn btn-info btn-mini" name="addHere" >
                     <span class="glyphicon glyphicon-plus"></span>
                   </button>  
-                  <div id="addModal" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                   <div class="modal-content">
-                        <div class="modal-header" style="padding:35px 50px;">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
-                        </div>
-                        <div class="modal-body" style="padding:40px 50px;">
-                          <form role="form" action="manipulate.php?userID=<?php echo $_GET['userID'];?>" >
-                            <div class="form-group">
-                              <label for="usrname"><span class="glyphicon glyphicon-thumbs-up"></span> Social Network Name</label>
-                              <input type="text" class="form-control" name="newSName" placeholder="Enter name" required>
-                            </div>
-                            <div class="form-group">
-                              <label for="psw"><span class="glyphicon glyphicon-globe"></span> Link</label>
-                              <input type="text" class="form-control" name="newSLink" placeholder="Enter link" required>
-                            </div>
-                              <button name="add" type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add</button>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                        </div>
-                      </div>
-
-                  </div>
-                </div>
 
 
 
 
 
-            <? $count=0;
-             foreach ($result2 as $res2) {
-              echo "<br><label class=\"col-lg-1 control-label\">".
-              "<div class=\"input-group \"><strong><span style=\"color=#FF6600\">".$res2['Name']."  "."</span><button name=\"remove".$count.
-              "\" class= \"btn btn-default btn-mini\" type = \"submit\" onclick=\"return confirm".
-              "('Are you sure you want to remove this link?')\" >".
-              "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong></div>".
-              "</label>".
-              "<input name=\"social".$count."\" class=\"form-control\" type=\"text\" value=".$res2['Link'].">".
-              "<input type=\"hidden\" name=table".$count." value=".htmlentities(serialize($res2)).">";
-              $count= $count+1;
-                    }?>
+            <?php $count=0;
+            foreach ($result2 as $res2) {
+                echo "<br><label class=\"col-lg-1 control-label\">".
+                "<div class=\"input-group \"><strong><span style=\"color=#FF6600\">".$res2['Name']."  "."</span><button name=\"remove".$count.
+                "\" class= \"btn btn-default btn-mini\" type = \"submit\" onclick=\"return confirm".
+                "('Are you sure you want to remove this link?')\" >".
+                "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong></div>".
+                "</label>".
+                "<input name=\"social".$count."\" class=\"form-control\" type=\"text\" value=".$res2['Link'].">".
+                "<input type=\"hidden\" name=table".$count." value=".htmlentities(serialize($res2)).">";
+                $count= $count+1;
+            }
+                ?>
            
             </div>
             <input type="hidden" name="count" value=<?php echo $count;?>>
@@ -265,60 +242,60 @@ foreach ($teams as $team) {
             
             
             <div class="col-lg-8">
-              <button type="button" class="btn btn-info btn-mini" name="addThere" 
-              data-toggle="modal" data-target="#addTeamModal">
+              <button type="submit" class="btn btn-info btn-mini" name="addTHere">
                     <span class="glyphicon glyphicon-plus"></span>
                   </button>  
-                  <div id="addTeamModal" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
 
-                    <!-- Modal content-->
-                   <div class="modal-content">
-                        <div class="modal-header" style="padding:35px 50px;">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
-                        </div>
-                        <div class="modal-body" style="padding:40px 50px;">
-                          <form role="form" action="manipulate.php?userID=<?php echo $_GET['userID'];?>" >
-                            <div class="form-group">
-                              <label for="usrname"><span class="glyphicon glyphicon-thumbs-up"></span> Team Name</label>
-                              <input type="text" class="form-control" name="newTName" placeholder="Enter name" required>
-                            </div>
-                            <div class="form-group">
-                              <label for="psw"><span class="glyphicon glyphicon-globe"></span> Description</label>
-                              <input type="text" class="form-control" name="newTDesc" placeholder="Enter description" >
-                            </div>
-                              <button name="addTeam" type="submit" class="btn btn-success btn-block">
-                              <span class="glyphicon glyphicon-off"></span> Add</button>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
-                          <span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                        </div>
-                      </div>
-
-                  </div>
-                </div>
-
-
-
-
-
-            <? $countT=0;
-             foreach ($teams as $team) {
-              echo "<br><strong>
-              <button type = \"submit\" name=\"removeT".$countT.
-              "\" class= \"btn btn-default btn-mini\" onclick=\"return confirm".
-              "('Are you sure you want to remove this team?')\" >".
-              "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong>".
-              "<input name=\"team".$countT."\" class=\"form-control\" type=\"text\" value=".$team['Team_Name'].">".
-              "<input type=\"hidden\" name=tableT".$countT." value=".htmlentities(serialize($team)).">";
-              $countT= $countT+1;
-                    }?>
+            <?php $countT=0;
+            foreach ($teams as $team) {
+                echo "<br><strong>
+                <button type = \"submit\" name=\"removeT".$countT.
+                "\" class= \"btn btn-default btn-mini\" onclick=\"return confirm".
+                "('Are you sure you want to remove this team?')\" >".
+                "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong>".
+                "<dd> ".$team['Team_Name']."</dd>".
+                "<input type=\"hidden\" name=tableT".$countT." value=".htmlentities(serialize($team)).">";
+                $countT= $countT+1;
+            }
+                    ?>
            
             </div>
             <input type="hidden" name="countT" value=<?php echo $countT;?>>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label">Projects:</label>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+              <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+                <span><br></span>
+              </div> -->
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6
+              col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-lg-offset-8">
+                
+              </div>
+            </div>
+            
+            
+            <div class="col-lg-8">
+              <button type="submit" class="btn btn-info btn-mini" name="addPHere">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>  
+
+            <?php $countP=0;
+            foreach ($projects as $project) {
+                echo "<br><strong>
+                <button type = \"submit\" name=\"removeP".$countP.
+                "\" class= \"btn btn-default btn-mini\" onclick=\"return confirm".
+                "('Are you sure you want to remove this project?')\" >".
+                "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong>".
+                "<dd> ".$project['Project_Name']."</dd>".
+                "<input type=\"hidden\" name=tableP".$countP." value=".htmlentities(serialize($project)).">";
+                $countP= $countP+1;
+            }
+                    ?>
+           
+            </div>
+            <input type="hidden" name="countP" value=<?php echo $countP;?>>
           </div>
 
 
