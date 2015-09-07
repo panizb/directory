@@ -17,7 +17,7 @@ $result = $dbConn->executeWithReturn($command, $params);
 foreach ($result as $res) {
  
 }
-$command= "SELECT Name, Family_Name, User_Name from Employee";
+$command= "SELECT Name, Family_Name, User_Name, Photo from Employee";
 $params= array ();
 $result2 = $dbConn->executeWithReturn($command, $params);
 foreach ($result2 as $res2) {
@@ -149,6 +149,18 @@ foreach ($projects as $project) {
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 "><button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h1 >3FS Directory</h1></div>
     <!--contact scroll-->
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -156,7 +168,7 @@ foreach ($projects as $project) {
               <h3><?php echo "<br>"; ?></h3>
                <h3 class="muted">Your Contacts:</h3>
                <form class="form-search" action="searchResult.php?userID=<?php echo $_GET['userID'];?>">
-                <input name="search" type="text" class="input-medium search-query">
+                <input name="search" type="text" class="input-medium search-query" placeholder="Enter Name or UserID">
                 <button type="submit" class="btn">Search</button>
               </form>
               <div style="position:relative;">
@@ -175,7 +187,23 @@ foreach ($projects as $project) {
                   <div id="scroll-first">
                   
                     <?php foreach ($result2 as $res2) {
-                        echo '<a href="viewProfile.php?userID='.$res2['User_Name']."\">".$res2['Name']." ".$res2['Family_Name']."<br></a>";
+                        echo "<table class=\"table-responsive\">
+                        <thead>
+                          <tr>
+                            <th class=\"col-xs-1\"></th> 
+                            <th class=\"col-xs-2\"></th> 
+                            <th class=\"col-xs-2\"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat-start=\"u in users\" ng-click=\"showDetail(u.user)\" ng-class-odd=\"'alt'\">
+                            <td class=\"col-xs-1\"><img height='50px' width='50px' title=\"Photo\" src=\"".$res2["Photo"]."\"class=\"img-circle\"></td> 
+                            <td class=\"col-xs-2 cap\">".$res2['Name']."</td> 
+                            <td class=\"col-xs-2 cap\">".$res2['Family_Name']."</td>
+                          </tr>
+                        </tbody>
+                        </table>";
+                        //echo '<a href="viewProfile.php?userID='.$res2['User_Name']."\">".$res2['Name']." ".$res2['Family_Name']."<br></a>";
 }  ?>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a congue nibh. Ut sodales ipsum sed purus efficitur, dignissim venenatis quam malesuada. Aliquam mattis aliquam erat quis congue. Donec volutpat tincidunt ante ut lacinia. In sit amet mattis libero. Fusce mattis ex nec fermentum scelerisque. Vestibulum mattis nibh pretium scelerisque varius. Duis gravida maximus ex, condimentum condimentum neque mattis sit amet. Cras metus arcu, posuere sed arcu ut, tempus lobortis felis. Nam sodales mauris sit amet leo dapibus consequat. Nam mollis, arcu sed pulvinar imperdiet, orci erat egestas lectus, in porta libero enim quis mi. Nunc quis lectus purus. Praesent quis congue lacus. Integer in scelerisque nisi.
                   </div>

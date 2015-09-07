@@ -156,3 +156,6 @@ if (isset($_GET['save'])) {
     header('Location: profile.php?userID='.$_GET['username']);
 
 }
+if (isset($_GET['cancel'])) {
+    header('Location: profile.php?userID='.$_GET['username']);
+}
