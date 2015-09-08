@@ -9,6 +9,7 @@ $servername='localhost';
 $dbname='directory';
 $dBUsername='root';
 $dBPassword='';
+
 $dbConn = new DBHandler("mysql:host=$servername;dbname=$dbname", $dBUsername, $dBPassword);
 $dbConn->connect();
 $command= "SELECT * from Employee where User_Name LIKE :username";
@@ -131,7 +132,7 @@ foreach ($projects as $project) {
     //       profile.getName())
     // {
       console.log('User signed out.');
-      window.location = 'index.php'
+      window.location = 'index.php';
       //document.getElementById('name').innerText = "Signed out";
    //  } else {
    //    document.getElementById('name').innerText = "You have not signed in!";
@@ -146,7 +147,9 @@ foreach ($projects as $project) {
 <body>
 <div class="jumbotron">
   	<div class="container">
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 "><button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 
+    col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 ">
+      <button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h1 >3FS Directory</h1></div>
     <!--contact scroll-->
 
@@ -232,7 +235,7 @@ foreach ($projects as $project) {
                 <h2 class="text-warning"> Hi <?php echo $res['Name']." !"; ?></h2>
               </div>
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2">
-                <img class="img-responsive" src=<?php echo $res['Photo']?> width='120px' height='120px' alt="Your Photo"></img>
+                <img class="img-responsive img-circle" src=<?php echo $res['Photo']?> width='140px' height='140px' alt="Your Photo"></img>
               </div>
             </div>
             

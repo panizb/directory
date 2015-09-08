@@ -66,18 +66,45 @@ if (isset($_GET['addPHere'])) {
 }
 if (isset($_GET['add'])) {
     echo "UserID: ".$_GET['userID'];
+    //First search to check it's a new link
+    $command= "SELECT * FROM Social_Network WHERE Link = :link";
+    $params= array (":link" => $_GET['newSLink']);
+    $results=$dbConn->executeWithReturn($command, $params);
+    if (count($results)!=0) {
+        $msg="This link is already taken.";
+        header('Location: errorManipulate.php?userID='.$_SESSION['id'].'&msg='.$msg);
+    }
+
     $command= "INSERT INTO Social_Network (Name, Link, UserID) VALUES (:sname, :link, :userID)";
     $params= array (":sname" => $_GET['newSName'], ":link" => $_GET['newSLink'], ":userID" => $_SESSION['id']);
     $dbConn->executeWithoutReturn($command, $params);
     header('Location: edit.php?userID='.$_SESSION['id']);
 }
 if (isset($_GET['addTeam'])) {
+    //First search to check it's a new team
+    $command= "SELECT * FROM Membership WHERE Team_Name = :tname AND Username = :uname";
+    $params= array (":tname" => $_GET['newTName'], ":uname" => $_SESSION['id']);
+    $results=$dbConn->executeWithReturn($command, $params);
+    if (count($results)!=0) {
+        $msg="This team was added before.";
+        header('Location: errorManipulate.php?userID='.$_SESSION['id'].'&msg='.$msg);
+    }
+
     $command= "INSERT INTO Membership (Username, Team_Name) VALUES (:userID, :tname)";
     $params= array (":tname" => $_GET['newTName'], ":userID" => $_SESSION['id']);
     $dbConn->executeWithoutReturn($command, $params);
     header('Location: edit.php?userID='.$_SESSION['id']);
 }
 if (isset($_GET['addProject'])) {
+    //First search to check it's a new project
+    $command= "SELECT * FROM Develop WHERE Project_Name = :pname AND Username = :uname";
+    $params= array (":pname" => $_GET['newPName'], ":uname" => $_SESSION['id']);
+    $results=$dbConn->executeWithReturn($command, $params);
+    if (count($results)!=0) {
+        $msg="This project was added before.";
+        header('Location: errorManipulate.php?userID='.$_SESSION['id'].'&msg='.$msg);
+    }
+
     $command= "INSERT INTO Develop (Username, Project_Name) VALUES (:userID, :pname)";
     $params= array (":pname" => $_GET['newPName'], ":userID" => $_SESSION['id']);
     $dbConn->executeWithoutReturn($command, $params);

@@ -85,8 +85,9 @@ foreach ($result3 as $res3) {
     <div class="container">
     <div class="row">
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><h2 class="bg-info">3FS Directory</h2></div>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 "><button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>
-      
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 
+      col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 ">
+        <button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>
     </div>
       
             
@@ -97,7 +98,7 @@ foreach ($result3 as $res3) {
               
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
-                <img class="img-responsive" src=<?php echo $res['Photo']?> width='120px' height='120px' alt="<?php echo $res['Name']."'s Photo"?>"></img>
+                <img class="img-responsive img-circle" src=<?php echo $res['Photo']?> width='150px' height='150px' alt="<?php echo $res['Name']."'s Photo"?>"></img>
               </div>
             <dl>
             <div class="row">
@@ -122,10 +123,11 @@ foreach ($result3 as $res3) {
             <dt class="bg-warning">Website:</dt>
             <dd> <?php echo $res['Website']; ?> </dd>
             <dt class="bg-danger">Social Networks:</dt>
-            <dd><?php foreach ($result3 as $res4){
-             echo "<span class=\"text-info\"><strong>".$res4['Name'].": "."</span></strong>";
-              echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
-              } ?></dd>
+            <dd><?php foreach ($result3 as $res4) {
+                        echo "<span class=\"text-info\"><strong>".$res4['Name'].": "."</span></strong>";
+                        echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
+}
+                ?></dd>
             </div>
             </div>
             
@@ -160,5 +162,6 @@ foreach ($result3 as $res3) {
   </div>
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
+<script>startApp();</script>
   </body>
 </html>

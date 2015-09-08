@@ -14,31 +14,37 @@ $dbname='directory';
 $dBUsername='root';
 $dBPassword='';
 $results=[];
-print_r($results);
+if (!$_GET['search']) {
+    $msg = "Search field can't be empty!";
+    header('Location: noResult.php?userID='.$_SESSION['id'].'&msg='.$msg);
+}
 $dbConn = new DBHandler("mysql:host=$servername;dbname=$dbname", $dBUsername, $dBPassword);
 $dbConn->connect();
-$command= "SELECT User_Name from Employee where User_Name REGEXP :username";
+$command= "SELECT User_Name, Name, Family_Name, Photo from Employee where User_Name REGEXP :username";
 $params= array (":username" => $_GET['search']);
 $result = $dbConn->executeWithReturn($command, $params);
 foreach ($result as $res) {
-    echo "userID ".$res['User_Name']."<br>";
-    $results[]=$res['User_Name'];
+    //echo "userID ".$res['User_Name']."<br>";
+    $results[]=$res;
 }
-$command= "SELECT User_Name from Employee where Name REGEXP :name";
+$command= "SELECT User_Name, Name, Family_Name, Photo from Employee where Name REGEXP :name";
 $params= array (":name" => $_GET['search']);
 $result2 = $dbConn->executeWithReturn($command, $params);
 foreach ($result2 as $res2) {
-    echo "name ".$res2['User_Name']."<br>";
-    $results[]=$res2['User_Name'];
+    //echo "name ".$res2['User_Name']."<br>";
+    $results[]=$res2;
 }
-$command= "SELECT User_Name from Employee where Family_Name REGEXP :fname";
+$command= "SELECT User_Name, Name, Family_Name, Photo from Employee where Family_Name REGEXP :fname";
 $params= array (":fname" => $_GET['search']);
 $result3 = $dbConn->executeWithReturn($command, $params);
 foreach ($result3 as $res3) {
-    echo "family ".$res3['User_Name']."<br>";
-    $results[]=$res3['User_Name'];
+    //echo "family ".$res3['User_Name']."<br>";
+    $results[]=$res3;
 }
-$results=array_unique($results);
+$results=array_unique($results, SORT_REGULAR);
+foreach ($results as $key) {
+    //print_r($key."<br>");
+}
 
 ?>
 <!DOCTYPE html>
@@ -97,31 +103,27 @@ $results=array_unique($results);
                         </thead>
                         <tbody>
                     <?php
-                    foreach ($result2 as $res2) {
-                        echo "
-                          <tr onclick=\" document.location = 'viewProfile.php?userID=".
-                          $res2['User_Name']."';\" ng-repeat-start=\"u in users\" ng-class-odd=\"'alt'\">
-                            <td class=\"col-xs-1\"><img height='50px' width='50px' title=\"Photo\" src=\"".
-                            $res2["Photo"]."\"class=\"img-circle\"></td> 
-                            <td class=\"col-xs-2 >"."<a href=\"viewProfile.php?userID=".$res2['User_Name']."\">".
-                            $res2['Name']
-                            ." ".$res2['Family_Name']."<br></a>"."</td> 
-                          </tr>";
-                        //echo '<a href="viewProfile.php?userID='.$res2['User_Name']."\">".$res2['Name']." ".$res2['Family_Name']."<br></a>";
+                    if (count($results)==0) {
+                        echo "<p>No result found.</p>";
+                    } else {
+                        foreach ($results as $res2) {
+                            echo "
+                              <tr onclick=\" document.location = 'viewProfile.php?userID=".
+                              $res2['User_Name']."';\" ng-repeat-start=\"u in users\" ng-class-odd=\"'alt'\">
+                                <td class=\"col-xs-1\"><img height='50px' width='50px' title=\"Photo\" src=\"".
+                                $res2["Photo"]."\"class=\"img-circle\"></td> 
+                                <td class=\"col-xs-2 >"."<a href=\"viewProfile.php?userID=".$res2['User_Name']."\">".
+                                $res2['Name']
+                                ." ".$res2['Family_Name']."<br></a>"."</td> 
+                              </tr>";
+                            //echo '<a href="viewProfile.php?userID='.$res2['User_Name']."\">".$res2['Name']." ".$res2['Family_Name']."<br></a>";
+                        }
                     }
                     echo "</tbody>
                         </table>";
 ?>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a congue nibh. Ut sodales ipsum sed purus efficitur, dignissim venenatis quam malesuada. Aliquam mattis aliquam erat quis congue. Donec volutpat tincidunt ante ut lacinia. In sit amet mattis libero. Fusce mattis ex nec fermentum scelerisque. Vestibulum mattis nibh pretium scelerisque varius. Duis gravida maximus ex, condimentum condimentum neque mattis sit amet. Cras metus arcu, posuere sed arcu ut, tempus lobortis felis. Nam sodales mauris sit amet leo dapibus consequat. Nam mollis, arcu sed pulvinar imperdiet, orci erat egestas lectus, in porta libero enim quis mi. Nunc quis lectus purus. Praesent quis congue lacus. Integer in scelerisque nisi.
                   </div>
-                  <div id="scroll-second">
-                    <h2>Second</h2>
-                    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed quis pretium justo. Nam tristique vestibulum consectetur. Aliquam at porttitor lectus. Curabitur pharetra luctus arcu, ut lacinia neque tempus at. Sed malesuada purus sit amet risus convallis, ac elementum ex venenatis. Cras magna diam, viverra aliquet finibus eget, dapibus eu augue. Suspendisse potenti. Etiam nec sem turpis.
-                  </div>
-                  <div id="scroll-third">
-                    <h2>Third</h2>
-                    Donec in tincidunt ipsum. Praesent sed cursus magna. Donec ut tempor augue. Nunc blandit velit purus, in malesuada est tristique ut. Sed lobortis purus eu posuere volutpat. Sed eget massa suscipit libero interdum dapibus. Fusce ac massa non ex porta imperdiet eu ut nibh. Fusce ut sem blandit, mattis neque ut, dignissim massa. Vivamus aliquam non justo vitae scelerisque. Etiam venenatis hendrerit pellentesque.
-                  </div>
+
                 </div>
               </div>
             </div>

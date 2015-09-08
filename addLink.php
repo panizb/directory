@@ -34,14 +34,13 @@
   <body>
     <div class="jumbotron">
       <div class="container">
-        <div id="addModal" class="modal fade" role="dialog">
+        <div id="addModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
           <div class="modal-dialog">
 
             <!-- Modal content-->
            <div class="modal-content">
                 <div class="modal-header" style="padding:35px 50px;">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4><span class="glyphicon glyphicon-lock"></span> Add a new link </h4>
+                  <h4><span class="glyphicon glyphicon-globe"></span> Add a new link </h4>
                 </div>
                 <div class="modal-body" style="padding:40px 50px;">
                   <form role="form" action="manipulate.php?userID=<?php echo $_GET['userID'];?>" >
