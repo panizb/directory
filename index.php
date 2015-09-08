@@ -36,12 +36,12 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
   };
 
   function signInCallback(authResult) {
-    alert("in call back1");
+    //alert("in call back1");
     var code = authResult['code'];
     // var googleUser = auth2.then();
     // var email = googleUser.getBasicProfile().getEmail(); 
   if (authResult['code']) {
-    alert('auth code');
+    //alert('auth code');
     // Send the code to the server
     $.ajax({
       type: 'POST',
@@ -50,8 +50,8 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
     data: { code : code },
     //success: function(response) { //alert(response);
       success: function(result) {
-        alert ("on success call back2");
-        alert(result);
+        //alert ("on success call back2");
+        //alert(result);
       },
       // processData: false,
       // data: authResult['code']
@@ -60,7 +60,7 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
     alert("error in call back");
     // There was an error.
   }
-  alert("before attach3");
+  //alert("before attach3");
 }
 
   function attachSignin(element) {
@@ -75,7 +75,7 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
               url: 'authenticate.php',
               type: 'post',
               data: { userID : userID , id_token : id_token},
-              success: function(response) { alert(response);
+              success: function(response) { //alert(response);
                if(response!=1)
                 {
                   document.getElementById('name').innerText ="You have not registered yet.";

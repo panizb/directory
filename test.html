@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="google-signin-client_id" 
+content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com">
+<meta charset="utf-8">
+<title>Welcome to directory!</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<script src="https://apis.google.com/js/api:client.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+</head>
+<body>
+<div class="jumbotron">
+	<div class="container">
+
+		  <div class="col-lg-6">
+		    <div class="input-group">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="button">Go!</button>
+		      </span>
+		      <input type="text" class="form-control" placeholder="Search for...">
+		    </div><!-- /input-group -->
+		  </div><!-- /.col-lg-6 -->
+		  <div class="col-lg-6">
+		    <div class="input-group">
+		      <input type="text" class="form-control" placeholder="Search for...">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="button">Go!</button>
+		      </span>
+		    </div><!-- /input-group -->
+		  </div><!-- /.col-lg-6 -->
+
+
+		      <span style="color=#FF6600">sdsd</span>
+		      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		      	<div class="input-group ">
+		      	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+		      		                <span class="input-group-btn">
+                <button name="remove" class= "btn btn-default"
+					type = "submit" onclick="return confirm('Are you sure you want to remove this link?')" >
+                <span class="glyphicon glyphicon-minus"></span>
+                </button>
+                </span>
+		      	</div>
+
+                <input name="social" class="form-control" type="text" value=".$res2['Link'].">
+                <input type="hidden" name="table" value=".htmlentities(serialize($res2)).">
+                
+                </div>
+		      </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		      	<div class="input-group ">
+                <strong><span class="input-group-btn">
+                <button name="remove" class= "btn btn-default"
+					type = "submit" onclick="return confirm('Are you sure you want to remove this link?')" >
+                <span class="glyphicon glyphicon-minus"></span>
+                </button>
+                </span>
+                <input name="social" class="form-control" type="text" value=".$res2['Link'].">
+                <input type="hidden" name="table" value=".htmlentities(serialize($res2)).">
+                </strong>
+                </div>
+		      </div>
+		      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		      	<div class="input-group ">
+                <strong><span class="input-group-btn">
+                <button name="remove" class= "btn btn-default"
+					type = "submit" onclick="return confirm('Are you sure you want to remove this link?')" >
+                <span class="glyphicon glyphicon-minus"></span>
+                </button>
+                </span>
+                <input name="social" class="form-control" type="text" value=".$res2['Link'].">
+                <input type="hidden" name="table" value=".htmlentities(serialize($res2)).">
+                </strong>
+                </div>
+		      </div>
+                   
+	</div>
+</div>
+ <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+ <script src="js/bootstrap.js"></script>
+</body>
+</html>

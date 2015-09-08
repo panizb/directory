@@ -40,7 +40,7 @@
             <!-- Modal content-->
            <div class="modal-content">
                 <div class="modal-header" style="padding:35px 50px;">
-                  <h4><span class="glyphicon glyphicon-lock"></span> Add a new team </h4>
+                  <h4><span class="glyphicon glyphicon-asterisk"></span> Add a new team </h4>
                 </div>
                   <div class="modal-body" style="padding:40px 50px;">
                           <form role="form" action="manipulate.php?userID=<?php echo $_GET['userID'];?>" >

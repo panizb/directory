@@ -120,6 +120,15 @@ if (isset($_GET['cancelAddP'])) {
     header('Location: edit.php?userID='.$_SESSION['id']);
 }
 if (isset($_GET['save'])) {
+    //First search to check it's a new username
+    $command= "SELECT * FROM Employee WHERE User_Name = :uname AND User_Name != :preUname";
+    $params= array (":uname" => $_GET['username'], ":preUname" => $_SESSION['id']);
+    $results=$dbConn->executeWithReturn($command, $params);
+    if (count($results)!=0) {
+        $msg="This username was taken before.";
+        header('Location: errorManipulate.php?userID='.$_SESSION['id'].'&msg='.$msg);
+    }
+
     $command= "UPDATE Employee SET Name = :name
     , Family_Name = :family
     , Private_Email = :email

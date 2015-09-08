@@ -40,12 +40,12 @@
             <!-- Modal content-->
            <div class="modal-content">
                 <div class="modal-header" style="padding:35px 50px;">
-                  <h4><span class="glyphicon glyphicon-lock"></span> Add a new project </h4>
+                  <h4><span class="glyphicon glyphicon-briefcase"></span> Add a new project </h4>
                 </div>
                   <div class="modal-body" style="padding:40px 50px;">
                           <form role="form" action="manipulate.php?userID=<?php echo $_GET['userID'];?>" >
                             <div class="form-group">
-                              <label for="usrname"><span class="glyphicon glyphicon-asterisk"></span> Project Name</label>
+                              <label for="usrname"><span class="glyphicon glyphicon-briefcase"></span> Project Name</label>
                               <input type="text" class="form-control" name="newPName" placeholder="Enter name" required>
                             </div>
                             <div class="form-group">

@@ -48,18 +48,18 @@ foreach ($projects as $project) {
 <html>
 
 <head>
-	<meta name="google-signin-client_id" 
-	content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com">
-	<meta charset="utf-8">
-	<title>Edit Profile</title>
-	<!--link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"-->
+  <meta name="google-signin-client_id" 
+  content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.com">
+  <meta charset="utf-8">
+  <title>Edit Profile</title>
+  <!--link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"-->
 <link rel="stylesheet" href="./css/bootstrap.min.css"/>
-	<script src="https://apis.google.com/js/api:client.js"></script>
-	<!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script-->
+  <script src="https://apis.google.com/js/api:client.js"></script>
+  <!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script-->
 
 
 
-	<script>
+  <script>
 
   var googleUser = {};
   var startApp = function() {
@@ -78,13 +78,13 @@ foreach ($projects as $project) {
 </head>
 
 <body>
-	<div class="jumbotron">
-  		<div class="container">
+  <div class="jumbotron">
+      <div class="container">
 
 <div class="container">
     <h1>Edit Profile</h1>
-  	<hr>
-	<div class="row">
+    <hr>
+  <div class="row">
       <!-- left column -->
 
 
@@ -94,14 +94,14 @@ foreach ($projects as $project) {
       <div class="form-group" >
       <div class="col-md-3">
         <div class="col-xs-4 col-sm-5 col-md-6 col-lg-6 ">
-          <img src=<?php echo $res['Photo']; ?> class="img-responsive" width='150px' height='150px' alt="Profile Photo">
+          <img src=<?php echo $res['Photo']; ?> class="img-responsive" width='170px' height='170px' alt="Profile Photo">
 
 
           <form action="upload.php" method="post" enctype="multipart/form-data">
-			<h6>Change profile photo</h6>
-    		<input type="file" name="fileToUpload" id="fileToUpload">
-   			<input type="submit" value="Upload Image" name="submit">
-		  </form>
+      <h6>Change profile photo</h6>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+      </form>
           
           
           <!--input type="file" class="form-control" enctype="multipart/form-data" name="upload"-->
@@ -190,36 +190,27 @@ foreach ($projects as $project) {
 
           <div class="form-group">
             <label class="col-md-3 control-label">Social Networks:</label>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-              <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
-                <span><br></span>
-              </div> -->
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6
-              col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-lg-offset-8">
-                
-              </div>
-            </div>
+            
             
             
             <div class="col-lg-8">
               <button type="submit" class="btn btn-info btn-mini" name="addHere" >
                     <span class="glyphicon glyphicon-plus"></span>
-                  </button>  
-
-
-
-
+                  </button> 
 
             <?php $count=0;
             foreach ($result2 as $res2) {
-                echo "<br><label class=\"col-lg-1 control-label\">".
-                "<div class=\"input-group \"><strong><span style=\"color=#FF6600\">".$res2['Name']."  "."</span><button name=\"remove".$count.
+                echo "<br>"."<label class=\" control-label\">".$res2['Name']."</label>".
+                "<div class=\"input-group \">".
+
+                "<input name=\"social".$count."\" class=\"form-control\" type=\"text\" value=".$res2['Link'].">".
+                "<input type=\"hidden\" name=table".$count." value=".htmlentities(serialize($res2)).">".
+                "<span class=\"input-group-btn \">".
+                "<button name=\"remove".$count.
                 "\" class= \"btn btn-default btn-mini\" type = \"submit\" onclick=\"return confirm".
                 "('Are you sure you want to remove this link?')\" >".
-                "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong></div>".
-                "</label>".
-                "<input name=\"social".$count."\" class=\"form-control\" type=\"text\" value=".$res2['Link'].">".
-                "<input type=\"hidden\" name=table".$count." value=".htmlentities(serialize($res2)).">";
+                "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></span>".
+                "</div>";
                 $count= $count+1;
             }
                 ?>
@@ -230,17 +221,6 @@ foreach ($projects as $project) {
           
           <div class="form-group">
             <label class="col-md-3 control-label">Teams:</label>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-              <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
-                <span><br></span>
-              </div> -->
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6
-              col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-lg-offset-8">
-                
-              </div>
-            </div>
-            
-            
             <div class="col-lg-8">
               <button type="submit" class="btn btn-info btn-mini" name="addTHere">
                     <span class="glyphicon glyphicon-plus"></span>
@@ -248,12 +228,12 @@ foreach ($projects as $project) {
 
             <?php $countT=0;
             foreach ($teams as $team) {
-                echo "<br><strong>
-                <button type = \"submit\" name=\"removeT".$countT.
-                "\" class= \"btn btn-default btn-mini\" onclick=\"return confirm".
+                echo "<br><br>".
+                "<button type = \"submit\" name=\"removeT".$countT.
+                "\" class= \"btn btn-danger btn-mini\" onclick=\"return confirm".
                 "('Are you sure you want to remove this team?')\" >".
-                "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong>".
-                "<dd> ".$team['Team_Name']."</dd>".
+                "<span class=\"glyphicon glyphicon-minus\"></span>"."</button>".
+                "<span style=\"ont-size: 100pt\">"."    ".$team['Team_Name']."</span>".
                 "<input type=\"hidden\" name=tableT".$countT." value=".htmlentities(serialize($team)).">";
                 $countT= $countT+1;
             }
@@ -265,17 +245,6 @@ foreach ($projects as $project) {
 
           <div class="form-group">
             <label class="col-md-3 control-label">Projects:</label>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-              <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
-                <span><br></span>
-              </div> -->
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6
-              col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-lg-offset-8">
-                
-              </div>
-            </div>
-            
-            
             <div class="col-lg-8">
               <button type="submit" class="btn btn-info btn-mini" name="addPHere">
                     <span class="glyphicon glyphicon-plus"></span>
@@ -283,12 +252,12 @@ foreach ($projects as $project) {
 
             <?php $countP=0;
             foreach ($projects as $project) {
-                echo "<br><strong>
-                <button type = \"submit\" name=\"removeP".$countP.
-                "\" class= \"btn btn-default btn-mini\" onclick=\"return confirm".
+                echo "<br><br>".
+                "<button type = \"submit\" name=\"removeP".$countP.
+                "\" class= \"btn btn-danger btn-mini\" onclick=\"return confirm".
                 "('Are you sure you want to remove this project?')\" >".
-                "<span class=\"glyphicon glyphicon-minus\"></span>"."</button></strong>".
-                "<dd> ".$project['Project_Name']."</dd>".
+                "<span class=\"glyphicon glyphicon-minus\"></span>"."</button>".
+                "<span class=\" control-label\">"."  ".$project['Project_Name']."</span>".
                 "<input type=\"hidden\" name=tableP".$countP." value=".htmlentities(serialize($project)).">";
                 $countP= $countP+1;
             }
@@ -316,8 +285,8 @@ foreach ($projects as $project) {
 
 
 
-  		</div>
-  	</div>
+      </div>
+    </div>
  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
  <script src="js/bootstrap.js"></script>
  </body>
