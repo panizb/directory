@@ -128,7 +128,22 @@ if (isset($_GET['save'])) {
         $msg="This username was taken before.";
         header('Location: errorManipulate.php?userID='.$_SESSION['id'].'&msg='.$msg);
     }
-
+    //Check if select any new team
+    if (isset($_GET['selectedTeam'])) {
+        $selectedTeam = $_GET['selectedTeam'];
+        echo $selectedTeam."<br>";
+        $command= "INSERT INTO Membership (Username, Team_Name) VALUES (:userID, :tname)";
+        $params= array (":tname" => $selectedTeam, ":userID" => $_SESSION['id']);
+        $dbConn->executeWithoutReturn($command, $params);
+    }
+    //Check if select any new project
+    if (isset($_GET['selectedProject'])) {
+        $selectedProject = $_GET['selectedProject'];
+        echo $selectedProject."<br>";
+        $command= "INSERT INTO Develop (Username, Project_Name) VALUES (:userID, :pname)";
+        $params= array (":pname" => $selectedProject, ":userID" => $_SESSION['id']);
+        $dbConn->executeWithoutReturn($command, $params);
+    }
     $command= "UPDATE Employee SET Name = :name
     , Family_Name = :family
     , Private_Email = :email
@@ -189,7 +204,7 @@ if (isset($_GET['save'])) {
     // $command= "UPDATE Social_Network SET  = :userID2 WHERE UserID = :userID1" ;
     //     $params= array (":userID2" => $_GET['username'], ":userID1" => $_SESSION['id']);
     echo "Changes saved!";
-    header('Location: profile.php?userID='.$_GET['username']);
+    //header('Location: profile.php?userID='.$_GET['username']);
 
 }
 if (isset($_GET['cancel'])) {

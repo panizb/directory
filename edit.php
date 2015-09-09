@@ -10,6 +10,14 @@ if ($_SESSION['id']!=$_GET['userID']) {
     session_destroy();
     header('Location: index.php');
 }
+if (isset($_GET['selected'])) {
+    if (isset($_GET['index']) && $_GET['index']=='selectTeam') {
+        $selectedTeam = $_GET['selected'];
+    } elseif (isset($_GET['index']) && $_GET['index']=='selectProject') {
+        $selectedroject = $_GET['selected'];
+    }
+    
+}
 $servername='localhost';
 $dbname='directory';
 $dBUsername='root';
@@ -37,10 +45,22 @@ $params= array (":userID" => $_GET['userID']);
 $teams = $dbConn->executeWithReturn($command, $params);
 foreach ($teams as $team) {
 }
+$command= "SELECT Team_Name from Membership where Username != :userID";
+$params= array (":userID" => $_GET['userID']);
+$otherTeams = $dbConn->executeWithReturn($command, $params);
+$otherTeams=array_unique($otherTeams, SORT_REGULAR);
+foreach ($otherTeams as $otherTeam) {
+}
 $command= "SELECT * from Develop where Username LIKE :userID";
 $params= array (":userID" => $_GET['userID']);
 $projects = $dbConn->executeWithReturn($command, $params);
 foreach ($projects as $project) {
+}
+$command= "SELECT Project_Name from Develop where Username != :userID";
+$params= array (":userID" => $_GET['userID']);
+$otherProjects = $dbConn->executeWithReturn($command, $params);
+$otherProjects=array_unique($otherProjects, SORT_REGULAR);
+foreach ($otherProjects as $otherProject) {
 }
 ?>
 
@@ -74,7 +94,20 @@ foreach ($projects as $project) {
     });
     
   };
-    </script>
+    function getval(sel) {
+       window.location = 'select.php?selected='+sel.value+'&index=selectTeam';
+    }
+</script>
+    <style type="text/css">
+    .selectWidth {
+    width: 300px;
+    height: auto;
+    margin:0px;
+  }
+  .bootstrap-select > .btn {
+    height: 45px;
+} 
+    </style>
 </head>
 
 <body>
@@ -194,8 +227,8 @@ foreach ($projects as $project) {
             
             
             <div class="col-lg-8">
-              <button type="submit" class="btn btn-info btn-mini" name="addHere" >
-                    <span class="glyphicon glyphicon-plus"></span>
+              <button type="submit" class="btn btn-info btn-sm" name="addHere" >
+                    <span class="glyphicon glyphicon-plus">Add New Link</span>
                   </button> 
 
             <?php $count=0;
@@ -222,15 +255,42 @@ foreach ($projects as $project) {
           <div class="form-group">
             <label class="col-md-3 control-label">Teams:</label>
             <div class="col-lg-8">
-              <button type="submit" class="btn btn-info btn-mini" name="addTHere">
-                    <span class="glyphicon glyphicon-plus"></span>
-                  </button>  
+            <div class="row">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <button type="submit" class="btn btn-info btn-sm" name="addTHere">
+                  <span class="glyphicon glyphicon-plus">Add New Team</span>
+                </button>
+              </div>
+              <div class="col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+                <select class="form-control selectWidth input-sm col-xs-3 col-sm-3 col-md-3 col-lg-3" name="selectTeam" 
+                onchange="getval(this)" >
+                <?php
+                if (isset($_GET['selected']) && ($_GET['index']=='selectTeam')) {
+                    echo "<option >".$_GET['selected']."</option>";
+                } else {
+                      echo "<option selected disabled>Select from existing teams</option>";
+                }
+                ?>
+                  
+                    <?php
+                    foreach ($otherTeams as $otherTeam) {
+                        echo "<option value=\"".$otherTeam['Team_Name'].
+                        "\">".$otherTeam['Team_Name']."</option>";
+                    }
+                    ?>
+                </select>
+                <input type="hidden" name="selectedTeam" value="<?php echo $selectedTeam;?>">
+              </div>
+                
+            </div>
+
+              
 
             <?php $countT=0;
             foreach ($teams as $team) {
                 echo "<br><br>".
                 "<button type = \"submit\" name=\"removeT".$countT.
-                "\" class= \"btn btn-danger btn-mini\" onclick=\"return confirm".
+                "\" class= \"btn btn-danger btn-sm\" onclick=\"return confirm".
                 "('Are you sure you want to remove this team?')\" >".
                 "<span class=\"glyphicon glyphicon-minus\"></span>"."</button>".
                 "<span style=\"ont-size: 100pt\">"."    ".$team['Team_Name']."</span>".
@@ -246,15 +306,32 @@ foreach ($projects as $project) {
           <div class="form-group">
             <label class="col-md-3 control-label">Projects:</label>
             <div class="col-lg-8">
-              <button type="submit" class="btn btn-info btn-mini" name="addPHere">
-                    <span class="glyphicon glyphicon-plus"></span>
-                  </button>  
+              <div class="row">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <button type="submit" class="btn btn-info btn-sm" name="addPHere">
+                  <span class="glyphicon glyphicon-plus">Add New Project</span>
+                </button>
+              </div >
+              <div class="col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+                <select class="form-control selectWidth input-sm col-xs-3 col-sm-3 col-md-3 col-lg-3" name="selectProject onchange="getval(this)">
+                  <option selected disabled>Select from existing projects</option>
+                    <?php
+                    foreach ($otherProjects as $otherProject) {
+                        echo "<option value=\"".$otherProject['Project_Name'].
+                        "\">".$otherProject['Project_Name']."</option>";
+                    }
+                    ?>
+                </select>
+                <input type="hidden" name="selectedProject" value="<?php echo $selectedProject;?>">
+                </div>
+
+            </div>
 
             <?php $countP=0;
             foreach ($projects as $project) {
                 echo "<br><br>".
                 "<button type = \"submit\" name=\"removeP".$countP.
-                "\" class= \"btn btn-danger btn-mini\" onclick=\"return confirm".
+                "\" class= \"btn btn-danger btn-sm\" onclick=\"return confirm".
                 "('Are you sure you want to remove this project?')\" >".
                 "<span class=\"glyphicon glyphicon-minus\"></span>"."</button>".
                 "<span class=\" control-label\">"."  ".$project['Project_Name']."</span>".
