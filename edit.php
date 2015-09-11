@@ -5,19 +5,19 @@ namespace directory;
 include 'DBHandler.php';
 session_start();
 //check the session (if needed!)
-if ($_SESSION['id']!=$_GET['userID']) {
-    echo "Session timed out!";
-    session_destroy();
-    header('Location: index.php');
-}
-if (isset($_GET['selected'])) {
-    if (isset($_GET['index']) && $_GET['index']=='selectTeam') {
-        $selectedTeam = $_GET['selected'];
-    } elseif (isset($_GET['index']) && $_GET['index']=='selectProject') {
-        $selectedroject = $_GET['selected'];
-    }
+// if ($_SESSION['id']!=$_GET['userID']) {
+//     echo "Session timed out!";
+//     session_destroy();
+//     header('Location: index.php');
+// }
+// if (isset($_GET['selected'])) {
+//     if (isset($_GET['index']) && $_GET['index']=='selectTeam') {
+//         $selectedTeam = $_GET['selected'];
+//     } elseif (isset($_GET['index']) && $_GET['index']=='selectProject') {
+//         $selectedroject = $_GET['selected'];
+//     }
     
-}
+// }
 $servername='localhost';
 $dbname='directory';
 $dBUsername='root';
@@ -25,12 +25,12 @@ $dBPassword='';
 $dbConn = new DBHandler("mysql:host=$servername;dbname=$dbname", $dBUsername, $dBPassword);
 $dbConn->connect();
 $command= "SELECT * from Employee where User_Name LIKE :username";
-$params= array (":username" => $_GET['userID']);
+$params= array (":username" => $_SESSION['id']);
 $result = $dbConn->executeWithReturn($command, $params);
 foreach ($result as $res) {
 }
 $command= "SELECT * from Social_Network where userID LIKE :username";
-$params= array (":username" => $_GET['userID']);
+$params= array (":username" => $_SESSION['id']);
 $result2 = $dbConn->executeWithReturn($command, $params);
  $new=array();
  $i=0;
@@ -41,23 +41,23 @@ foreach ($result2 as $val) {
 foreach ($result2 as $res2) {
 }
 $command= "SELECT * from Membership where Username LIKE :userID";
-$params= array (":userID" => $_GET['userID']);
+$params= array (":userID" => $_SESSION['id']);
 $teams = $dbConn->executeWithReturn($command, $params);
 foreach ($teams as $team) {
 }
 $command= "SELECT Team_Name from Membership where Username != :userID";
-$params= array (":userID" => $_GET['userID']);
+$params= array (":userID" => $_SESSION['id']);
 $otherTeams = $dbConn->executeWithReturn($command, $params);
 $otherTeams=array_unique($otherTeams, SORT_REGULAR);
 foreach ($otherTeams as $otherTeam) {
 }
 $command= "SELECT * from Develop where Username LIKE :userID";
-$params= array (":userID" => $_GET['userID']);
+$params= array (":userID" => $_SESSION['id']);
 $projects = $dbConn->executeWithReturn($command, $params);
 foreach ($projects as $project) {
 }
 $command= "SELECT Project_Name from Develop where Username != :userID";
-$params= array (":userID" => $_GET['userID']);
+$params= array (":userID" => $_SESSION['id']);
 $otherProjects = $dbConn->executeWithReturn($command, $params);
 $otherProjects=array_unique($otherProjects, SORT_REGULAR);
 foreach ($otherProjects as $otherProject) {
@@ -94,8 +94,47 @@ foreach ($otherProjects as $otherProject) {
     });
     
   };
-    function getval(sel) {
-       window.location = 'select.php?selected='+sel.value+'&index=selectTeam';
+    // function getval(sel) {
+    //    //window.location = 'select.php?selected='+sel.value+'&index=selectTeam';
+    // }
+    // $(document).ready(function() {
+    //       $("#save").click(function(){
+    //         alert ("selectExamin");
+    //       });
+    //     });
+    function selectExamin() {
+        var valueT=$('#T').val();
+        var valueP=$('#P').val();
+        $.ajax({
+                  type: 'get',
+                   url: 'doSelect.php',
+                  data: {valueT: valueT, valueP: valueP},
+                 // contentType: 'application/json; charset=utf-8',
+                  //async : false,
+                 error: function(jqXHR, textStatus, errorThrown) {
+                  if (jqXHR.status == 500) {
+                     alert('Internal error: ' + jqXHR.responseText);
+                  } else {
+                     alert('Unexpected error.');
+                    }
+                 },
+                  success: function(data){
+                //     $('#select').empty();
+                //     $('#select').append("<option value='0'>--date--</option>");
+                // //       $('#select').append('<option'+data[0].date+'></option>');
+                        
+                //        $.each(data,function(i,item) { 
+                //       $('#select').append('<option>'+data[i].date+'</option>');
+                 }
+                   //
+                //        $('#select').empty();
+                //        $('#select').append("<option value='0'>--date--</option>");
+                // //       $('#select').append('<option'+data[0].date+'></option>');
+                        
+                //        $.each(data,function(i,item) { 
+                //       $('#select').append('<option>'+data[i].date+'</option>');
+                      })
+                    
     }
 </script>
     <style type="text/css">
@@ -155,7 +194,7 @@ foreach ($otherProjects as $otherProject) {
         <h3 class="text-muted">Profile info:</h3>
         
         <form class="form-horizontal" role="form" 
-        action="manipulate.php?userID=<?php echo $res['User_Name'];?>" novalidate>
+         action="manipulate.php" novalidate>
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
@@ -182,7 +221,7 @@ foreach ($otherProjects as $otherProject) {
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Website:</label>
-            <div class="col-md-8">
+            <div class="col-lg-8">
               <input name="web" class="form-control" type="url" value=<?php echo $res['Website']; ?> >
             </div>
           </div>
@@ -253,25 +292,23 @@ foreach ($otherProjects as $otherProject) {
           </div>
           
           <div class="form-group">
-            <label class="col-md-3 control-label">Teams:</label>
+              <h3 class="visible-lg">large</h3>
+              <h3 class="visible-md">mediume</h3>
+              <h3 class="visible-sm">samll</h3>
+              <h3 class="visible-xs">extra</h3>
+            <label class="col-lg-3 control-label">Teams:</label>
             <div class="col-lg-8">
             <div class="row">
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <div class="col-lg-2">
                 <button type="submit" class="btn btn-info btn-sm" name="addTHere">
                   <span class="glyphicon glyphicon-plus">Add New Team</span>
                 </button>
               </div>
-              <div class="col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-                <select class="form-control selectWidth input-sm col-xs-3 col-sm-3 col-md-3 col-lg-3" name="selectTeam" 
-                onchange="getval(this)" >
-                <?php
-                if (isset($_GET['selected']) && ($_GET['index']=='selectTeam')) {
-                    echo "<option >".$_GET['selected']."</option>";
-                } else {
-                      echo "<option selected disabled>Select from existing teams</option>";
-                }
-                ?>
-                  
+              <div class="col-xs-offset-6 col-sm-offset-6 col-md-offset-4 col-lg-offset-4">
+
+                <select class="form-control selectWidth input-sm  col-lg-3" 
+                name="selectTeam" id="T">
+                  <option selected disabled>Select from existing teams</option>
                     <?php
                     foreach ($otherTeams as $otherTeam) {
                         echo "<option value=\"".$otherTeam['Team_Name'].
@@ -279,7 +316,7 @@ foreach ($otherProjects as $otherProject) {
                     }
                     ?>
                 </select>
-                <input type="hidden" name="selectedTeam" value="<?php echo $selectedTeam;?>">
+                <!-- <input type="hidden" name="selectedTeam" value="<?php echo $selectedTeam;?>"> -->
               </div>
                 
             </div>
@@ -313,7 +350,8 @@ foreach ($otherProjects as $otherProject) {
                 </button>
               </div >
               <div class="col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-                <select class="form-control selectWidth input-sm col-xs-3 col-sm-3 col-md-3 col-lg-3" name="selectProject onchange="getval(this)">
+                <select class=" selectWidth input-sm col-xs-3 col-sm-3 col-md-3 col-lg-3" 
+                name="selectProject" id="P">
                   <option selected disabled>Select from existing projects</option>
                     <?php
                     foreach ($otherProjects as $otherProject) {
@@ -322,7 +360,7 @@ foreach ($otherProjects as $otherProject) {
                     }
                     ?>
                 </select>
-                <input type="hidden" name="selectedProject" value="<?php echo $selectedProject;?>">
+               <!--  <input type="hidden" name="selectedProject" value="<?php echo $selectedProject;?>"> -->
                 </div>
 
             </div>
@@ -348,7 +386,7 @@ foreach ($otherProjects as $otherProject) {
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input type="submit" name="save" class="btn btn-primary" value="Save Changes" onclick="">
+              <input type="submit" name="save" class="btn btn-primary" value="Save Changes"  id="save" onclick="selectExamin()">
               <span></span>
               <input type="submit" name="cancel" class="btn btn-default" value="Cancel" onclick="">
             </div>

@@ -65,7 +65,7 @@ if (isset($_GET['addPHere'])) {
     header('Location: addProject.php?userID='.$_SESSION['id']);
 }
 if (isset($_GET['add'])) {
-    echo "UserID: ".$_GET['userID'];
+    //echo "UserID: ".$_GET['userID'];
     //First search to check it's a new link
     $command= "SELECT * FROM Social_Network WHERE Link = :link";
     $params= array (":link" => $_GET['newSLink']);
@@ -119,6 +119,25 @@ if (isset($_GET['cancelAddT'])) {
 if (isset($_GET['cancelAddP'])) {
     header('Location: edit.php?userID='.$_SESSION['id']);
 }
+    //Check if select any new team
+if (isset($_GET['valueT']) && !empty($_GET['valueT'])) {
+    $selectedTeam = $_GET['valueT'];
+    echo "<br>".$selectedTeam;
+    $command= "INSERT INTO Membership (Username, Team_Name) VALUES (:userID, :tname)";
+    $params= array (":tname" => $selectedTeam, ":userID" => $_SESSION['id']);
+    var_dump($params);
+    $dbConn->executeWithoutReturn($command, $params);
+}
+//Check if select any new project
+if (isset($_GET['valueP']) && !empty($_GET['valueP'])) {
+    echo "ridi";
+    $selectedProject = $_GET['valueP'];
+    echo $selectedProject."<br>";
+    $command= "INSERT INTO Develop (Username, Project_Name) VALUES (:userID, :pname)";
+    $params= array (":pname" => $selectedProject, ":userID" => $_SESSION['id']);
+    $dbConn->executeWithoutReturn($command, $params);
+}
+
 if (isset($_GET['save'])) {
     //First search to check it's a new username
     $command= "SELECT * FROM Employee WHERE User_Name = :uname AND User_Name != :preUname";
@@ -128,22 +147,7 @@ if (isset($_GET['save'])) {
         $msg="This username was taken before.";
         header('Location: errorManipulate.php?userID='.$_SESSION['id'].'&msg='.$msg);
     }
-    //Check if select any new team
-    if (isset($_GET['selectedTeam'])) {
-        $selectedTeam = $_GET['selectedTeam'];
-        echo $selectedTeam."<br>";
-        $command= "INSERT INTO Membership (Username, Team_Name) VALUES (:userID, :tname)";
-        $params= array (":tname" => $selectedTeam, ":userID" => $_SESSION['id']);
-        $dbConn->executeWithoutReturn($command, $params);
-    }
-    //Check if select any new project
-    if (isset($_GET['selectedProject'])) {
-        $selectedProject = $_GET['selectedProject'];
-        echo $selectedProject."<br>";
-        $command= "INSERT INTO Develop (Username, Project_Name) VALUES (:userID, :pname)";
-        $params= array (":pname" => $selectedProject, ":userID" => $_SESSION['id']);
-        $dbConn->executeWithoutReturn($command, $params);
-    }
+    
     $command= "UPDATE Employee SET Name = :name
     , Family_Name = :family
     , Private_Email = :email
@@ -171,29 +175,35 @@ if (isset($_GET['save'])) {
 
     }
       //if the count hasn't changed rewrite all the teams' names of the user with the updated userID
-    $command = "DELETE FROM Membership WHERE Username = :userID";
-    $params= array (":userID" => $_SESSION['id']);
-    $dbConn->executeWithoutReturn($command, $params);
-    for ($i=0; $i < $_GET['countT']; $i++) {
-        $rowName = "tableT".$i;
-        $row = unserialize($_GET[$rowName]);
-        $command= "INSERT INTO Membership (Username, Team_Name) VALUES (:userID, :tname)";
-        $params= array (":tname" => $row['Team_Name'], ":userID" => $_GET['username']);
-        $dbConn->executeWithoutReturn($command, $params);
+    // $command = "DELETE FROM Membership WHERE Username = :userID";
+    // $params= array (":userID" => $_SESSION['id']);
+    // $dbConn->executeWithoutReturn($command, $params);
+    // for ($i=0; $i < $_GET['countT']; $i++) {
+    //     $rowName = "tableT".$i;
+    //     $row = unserialize($_GET[$rowName]);
+    //     $command= "INSERT INTO Membership (Username, Team_Name) VALUES (:userID, :tname)";
+    //     $params= array (":tname" => $row['Team_Name'], ":userID" => $_GET['username']);
+    //     $dbConn->executeWithoutReturn($command, $params);
 
-    }
-         //if the count hasn't changed rewrite all the projects' names of the user with the updated userID
-    $command = "DELETE FROM Develop WHERE Username = :userID";
-    $params= array (":userID" => $_SESSION['id']);
+    // }
+    $command = "UPDATE Membership SET Username = :uname WHERE Username = :userID";
+    $params= array ("uname" => $_GET['username'], ":userID" => $_SESSION['id']);
     $dbConn->executeWithoutReturn($command, $params);
-    for ($i=0; $i < $_GET['countP']; $i++) {
-        $rowName = "tableP".$i;
-        $row = unserialize($_GET[$rowName]);
-        $command= "INSERT INTO Develop (Username, Project_Name) VALUES (:userID, :pname)";
-        $params= array (":pname" => $row['Project_Name'], ":userID" => $_GET['username']);
-        $dbConn->executeWithoutReturn($command, $params);
+    //if the count hasn't changed rewrite all the projects' names of the user with the updated userID
+    $command = "UPDATE Develop SET Username = :uname WHERE Username = :userID";
+    $params= array ("uname" => $_GET['username'], ":userID" => $_SESSION['id']);
+    $dbConn->executeWithoutReturn($command, $params);
+    // $command = "DELETE FROM Develop WHERE Username = :userID";
+    // $params= array (":userID" => $_SESSION['id']);
+    // $dbConn->executeWithoutReturn($command, $params);
+    // for ($i=0; $i < $_GET['countP']; $i++) {
+    //     $rowName = "tableP".$i;
+    //     $row = unserialize($_GET[$rowName]);
+    //     $command= "INSERT INTO Develop (Username, Project_Name) VALUES (:userID, :pname)";
+    //     $params= array (":pname" => $row['Project_Name'], ":userID" => $_GET['username']);
+    //     $dbConn->executeWithoutReturn($command, $params);
 
-    }
+    // }
     $_SESSION['id']=$_GET['username'];
     // if ($_GET['username']!=$_SESSION['id']) {
     //     $command= "UPDATE Social_Network SET UserID = :userID_new WHERE UserID = :userID_prev" ;
@@ -204,9 +214,10 @@ if (isset($_GET['save'])) {
     // $command= "UPDATE Social_Network SET  = :userID2 WHERE UserID = :userID1" ;
     //     $params= array (":userID2" => $_GET['username'], ":userID1" => $_SESSION['id']);
     echo "Changes saved!";
-    //header('Location: profile.php?userID='.$_GET['username']);
+    header('Location: profile.php?userID='.$_GET['username']);
 
 }
 if (isset($_GET['cancel'])) {
     header('Location: profile.php?userID='.$_GET['username']);
 }
+?>
