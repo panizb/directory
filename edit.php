@@ -139,7 +139,7 @@ foreach ($otherProjects as $otherProject) {
 </script>
     <style type="text/css">
     .selectWidth {
-    width: 300px;
+    width: 250px;
     height: auto;
     margin:0px;
   }
@@ -292,10 +292,10 @@ foreach ($otherProjects as $otherProject) {
           </div>
           
           <div class="form-group">
-              <h3 class="visible-lg">large</h3>
+              <!-- <h3 class="visible-lg">large</h3>
               <h3 class="visible-md">mediume</h3>
               <h3 class="visible-sm">samll</h3>
-              <h3 class="visible-xs">extra</h3>
+              <h3 class="visible-xs">extra</h3> -->
             <label class="col-lg-3 control-label">Teams:</label>
             <div class="col-lg-8">
             <div class="row">
@@ -341,16 +341,16 @@ foreach ($otherProjects as $otherProject) {
           </div>
 
           <div class="form-group">
-            <label class="col-md-3 control-label">Projects:</label>
+            <label class="col-lg-3 control-label">Projects:</label>
             <div class="col-lg-8">
               <div class="row">
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <div class="col-lg-2">
                 <button type="submit" class="btn btn-info btn-sm" name="addPHere">
                   <span class="glyphicon glyphicon-plus">Add New Project</span>
                 </button>
               </div >
-              <div class="col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-                <select class=" selectWidth input-sm col-xs-3 col-sm-3 col-md-3 col-lg-3" 
+              <div class="col-xs-offset-6 col-sm-offset-6 col-md-offset-4 col-lg-offset-4">
+                <select class=" form-control selectWidth input-sm col-lg-3" 
                 name="selectProject" id="P">
                   <option selected disabled>Select from existing projects</option>
                     <?php
