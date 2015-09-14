@@ -45,7 +45,7 @@ $params= array (":userID" => $_SESSION['id']);
 $teams = $dbConn->executeWithReturn($command, $params);
 foreach ($teams as $team) {
 }
-$command= "SELECT Team_Name from Membership where Username != :userID";
+$command= "SELECT Team_Name from Membership where Team_Name NOT IN (SELECT Team_Name from Membership where Username = :userID)";
 $params= array (":userID" => $_SESSION['id']);
 $otherTeams = $dbConn->executeWithReturn($command, $params);
 $otherTeams=array_unique($otherTeams, SORT_REGULAR);
@@ -56,7 +56,7 @@ $params= array (":userID" => $_SESSION['id']);
 $projects = $dbConn->executeWithReturn($command, $params);
 foreach ($projects as $project) {
 }
-$command= "SELECT Project_Name from Develop where Username != :userID";
+$command= "SELECT Project_Name from Develop where Project_Name NOT IN (SELECT Project_Name from Develop where Username = :userID)";
 $params= array (":userID" => $_SESSION['id']);
 $otherProjects = $dbConn->executeWithReturn($command, $params);
 $otherProjects=array_unique($otherProjects, SORT_REGULAR);
@@ -150,21 +150,18 @@ foreach ($otherProjects as $otherProject) {
 .responsive-width {
     font-size: 3vw;
 }
-body {
-  background-image: url('');
 
-}
 @media (max-width: 768px) {
   .btn-responsive {
-    padding:3px 4px;
+    padding:4px 4px;
     font-size:75%;
     line-height: 1;
   }
     .select-responsive {
-    padding:2px 4px;
+    padding:4px 4px;
     font-size:75%;
     line-height: 1.2;
-    width: auto;
+    width: 220px;
     height: 10px;
   }
 }
@@ -177,19 +174,19 @@ body {
     line-height: 1.2;
   }
       .select-responsive {
-    padding:2px 4px;
+    padding:4px 4px;
     font-size:90%;
     line-height: 1.2;
-    width: auto;
+    width: 220px;
   }
 }
 @media (min-width: 993px) {
 
     .select-responsive {
-    padding:2px 4px;
+    padding:4px 4px;
     font-size:90%;
-    line-height: 1.2;
-    width: auto;
+
+    width: 280px;
     height: 10px;
   }
 }
@@ -218,7 +215,10 @@ body {
 
 
           <form action="upload.php" method="post" enctype="multipart/form-data">
-      <h6>Change profile photo</h6>
+          <div class="row">
+      <h6 style="color:#663399;">Change photo</h6>      
+          </div>
+      
         <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" value="Upload Image" name="submit">
       </form>
@@ -242,41 +242,41 @@ body {
         <h3 class="text-muted">Profile info:</h3>
         
         <form class="form-horizontal" role="form" 
-         action="manipulate.php" novalidate>
+         action="manipulate.php" >
           <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
+            <label style="color:#0099FF;" class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
               <input name="name" class="form-control" type="text" value=<?php echo $res['Name']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Family name:</label>
+            <label style="color:#0099FF;" class="col-lg-3 control-label">Family name:</label>
             <div class="col-lg-8">
               <input name="family" class="form-control" type="text" value=<?php echo $res['Family_Name']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Private Email:</label>
+            <label style="color:#0099FF;" class="col-lg-3 control-label">Private Email:</label>
             <div class="col-lg-8">
               <input name="email" class="form-control" type="email" value=<?php echo $res['Private_Email']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Phone Number:</label>
+            <label style="color:#0099FF;" class="col-lg-3 control-label">Phone Number:</label>
             <div class="col-lg-8">
-              <input name="phone" class="form-control" type="text" value=<?php echo $res['Phone_Number']; ?> >
+              <input name="phone" class="form-control" type="number" value=<?php echo $res['Phone_Number']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Website:</label>
+            <label style="color:#0099FF;" class="col-lg-3 control-label">Website:</label>
             <div class="col-lg-8">
               <input name="web" class="form-control" type="url" value=<?php echo $res['Website']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Username:</label>
+            <label style="color:#0099FF;" class="col-lg-3 control-label">Username:</label>
             <div class="col-lg-8">
-              <input name="username" class="form-control" type="text" value=<?php echo $res['User_Name']; ?> disabled>
+              <input name="username" class="form-control" type="text" value="<?php echo $res['User_Name']; ?>" disabled>
             </div>
           </div>
 
@@ -302,14 +302,14 @@ body {
           </div-->
      
           <div class="form-group">
-            <label class="col-lg-3 control-label">Password:</label>
+            <label style="color:#0099FF;" class="col-lg-3 control-label">Password:</label>
             <div class="col-lg-8">
               <input name="pass" class="form-control" type="password" value=<?php echo $res['Password']; ?> >
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-3 control-label">Social Networks:</label>
+            <label style="color:#0099FF;" class="col-lg-3 control-label">Social Networks:</label>
             
             
             
@@ -340,11 +340,11 @@ body {
           </div>
           
           <div class="form-group">
-            <h3 class="visible-lg">large</h3>
+<!--             <h3 class="visible-lg">large</h3>
             <h3 class="visible-md">mediume</h3>
             <h3 class="visible-sm">samll</h3>
-            <h3 class="visible-xs">extra</h3>
-            <label class="col-lg-3 control-label">Teams:</label>
+            <h3 class="visible-xs">extra</h3> -->
+            <label style="color:#0099FF;" class="col-lg-3 control-label">Teams:</label>
             <div class="col-lg-8">
               <div class="row">
                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2">
@@ -389,7 +389,7 @@ body {
           </div>
 
           <div class="form-group">
-            <label class="col-lg-3 control-label">Projects:</label>
+            <label style="color:#0099FF;" class="col-lg-3 control-label">Projects:</label>
             <div class="col-lg-8">
               <div class="row">
                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2">

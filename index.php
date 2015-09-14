@@ -131,30 +131,20 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
     #customBtn:hover {
       cursor: pointer;
     }
+    body {
+      background-image: url(./img/3fs_boljard.jpg);
+      background-attachment: fixed;
+      background-position: center;
+    }
+    .centerfy img{
+                margin: 0 auto;
+
+            }
+            .centerfy{
+                text-align: center;
+            }
     </style>
-    <!--style>
-    span.label {
-      font-weight: bold;
-    }
-    span.icon {
-      background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
-      display: inline-block;
-      vertical-align: middle;
-      width: 42px;
-      height: 42px;
-      border-right: #2265d4 1px solid;
-    }
-    span.buttonText {
-      display: inline-block;
-      vertical-align: middle;
-      padding-left: 42px;
-      padding-right: 42px;
-      font-size: 14px;
-      font-weight: bold;
-      /* Use the Roboto font that is loaded in the <head> */
-      font-family: 'Roboto', sans-serif;
-    }
-  </style-->
+
 </head>
 
 <body>
@@ -170,28 +160,37 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail());
 }
 </script-->
-<div class="jumbotron">
-  <div id="gSignInWrapper" class="container">
 
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
-      <img class="img-responsive" src="img/3fs.png" width='200px' height='100px' alt="3FS_Logo"></img>
-    </div>
-    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <p>Sign in with:</p>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-pull-1 col-sm-pull-1 col-md-pull-1 col-lg-pul-1">
-                <button id="customBtn" class="btn btn-primary :focus"> Sign in with Google account</button>
-            </div>
-        </div>      
-    </div>
+
+<div class="container">
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    
+  </div>
+  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-lg-pull-60 col-md-pull-60" style="margin-top:150px;">
+    
+
+  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
+        <img class="img-responsive" src="img/3fs.png" width='200px' height='100px' alt="3FS_Logo" align="center" ></img>
+      </div>
+      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
+          
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-pull-13 col-sm-pull-1 col-md-pull-1 col-lg-pul-1" style="margin-top:50px;">
+                  <button id="customBtn" class="btn btn-primary :focus"> Sign in with Google account</button>
+              </div>      
+      </div>
+
+      
+
+  </div>
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    
+  </div>
+  
     
 <!--     <div id="customBtn" class="customGPlusSignIn" >
       <span class="icon"></span>
       <span class="buttonText"> Google</span>
     </div> -->
-</div>
 </div>
 
   <!--button href="#" onclick="signOut();" class="btn">Sign out</button-->
