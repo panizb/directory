@@ -2,7 +2,8 @@
 
 namespace directory;
 
-include 'DBHandler.php';
+require 'DBHandler.php';
+require 'vendor/autoload.php';
 session_start();
 //check the session (if needed!)
 $servername='localhost';
@@ -15,13 +16,11 @@ $command= "SELECT * from Employee where User_Name LIKE :username";
 $params= array (":username" => $_GET['userID']);
 $result = $dbConn->executeWithReturn($command, $params);
 foreach ($result as $res) {
- 
 }
 $command= "SELECT * from Social_Network where UserID LIKE :userID";
 $params= array (":userID" => $_GET['userID']);
 $result3 = $dbConn->executeWithReturn($command, $params);
 foreach ($result3 as $res3) {
- 
 }
 
 ?>
@@ -123,10 +122,12 @@ foreach ($result3 as $res3) {
             <dt class="bg-warning">Website:</dt>
             <dd> <?php echo $res['Website']; ?> </dd>
             <dt class="bg-danger">Social Networks:</dt>
-            <dd><?php foreach ($result3 as $res4) {
+            <dd>
+                <?php
+                foreach ($result3 as $res4) {
                         echo "<span class=\"text-info\"><strong>".$res4['Name'].": "."</span></strong>";
                         echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
-}
+                }
                 ?></dd>
             </div>
             </div>

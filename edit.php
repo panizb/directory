@@ -2,7 +2,8 @@
 
 namespace directory;
 
-include 'DBHandler.php';
+require 'DBHandler.php';
+require 'vendor/autoload.php';
 session_start();
 //check the session (if needed!)
 // if ($_SESSION['id']!=$_GET['userID']) {
@@ -276,7 +277,8 @@ foreach ($otherProjects as $otherProject) {
           <div class="form-group">
             <label style="color:#0099FF;" class="col-lg-3 control-label">Username:</label>
             <div class="col-lg-8">
-              <input name="username" class="form-control" type="text" value="<?php echo $res['User_Name']; ?>" disabled>
+              <input name="usernamedis" class="form-control" type="text" value="<?php echo $res['User_Name']; ?>" disabled>
+              <input name="username" class="form-control" type="hidden" value="<?php echo $res['User_Name']; ?>" >
             </div>
           </div>
 

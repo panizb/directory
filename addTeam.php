@@ -1,3 +1,8 @@
+<?php
+namespace directory;
+
+require 'vendor/autoload.php';
+?>
 <!DOCTYPE html>
 <html>
   <head>

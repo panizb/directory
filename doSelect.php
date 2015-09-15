@@ -2,7 +2,7 @@
 
 namespace directory;
 
-include 'DBHandler.php';
+require 'DBHandler.php';
 session_start();
 $servername='localhost';
 $dbname='directory';
@@ -29,5 +29,5 @@ $params= array (":userID" => $_SESSION['id']);
 $otherTeams = $dbConn->executeWithReturn($command, $params);
 $otherTeams=array_unique($otherTeams, SORT_REGULAR);
 foreach ($otherTeams as $otherTeam) {
-    print_r ($otherTeam);
+    print_r($otherTeam);
 }

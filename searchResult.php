@@ -1,7 +1,7 @@
 <?php
 namespace directory;
 
-include 'DBHandler.php';
+require 'DBHandler.php';
 session_start();
 //check the session (if needed!)
 // if ($_SESSION['id']!=$_GET['userID']) {

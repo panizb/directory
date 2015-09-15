@@ -1,11 +1,15 @@
 <?php
-
+/**check if the google userid is in db
+/**author: Paniz
+**/
 namespace directory;
 
-include 'DBHandler.php';
+require 'DBHandler.php';
 
 use \PDO;
 
+/**the class to handle the authentication
+**/
 class Authentication
 {
     public function isAMember($username, $idToken)
@@ -14,7 +18,11 @@ class Authentication
         $dbname='directory';
         $dBUsername='root';
         $dBPassword='';
-        $dbConn = new DBHandler("mysql:host=$servername;dbname=$dbname", $dBUsername, $dBPassword);
+        $dbConn = new DBHandler(
+            "mysql:host=$servername;dbname=$dbname",
+            $dBUsername,
+            $dBPassword
+        );
         $dbConn->connect();
         $command= "SELECT * from Employee where User_Name LIKE :username";
         $params= array (":username" => $username);

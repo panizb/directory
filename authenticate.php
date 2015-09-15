@@ -2,7 +2,7 @@
 
 namespace directory;
 
-include 'Authentication.php';
+require 'Authentication.php';
 
 if (isset($_POST['userID'])) {
     $Email = $_POST['userID'];

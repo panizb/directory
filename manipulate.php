@@ -2,7 +2,7 @@
 
 namespace directory;
 
-include 'DBHandler.php';
+require 'DBHandler.php';
 session_start();
 //check the session (if needed!)
 // if ($_SESSION['id']!=$_GET['userID']) {
@@ -191,4 +191,3 @@ if (isset($_GET['save'])) {
 if (isset($_GET['cancel'])) {
     header('Location: profile.php?userID='.$_SESSION['id']);
 }
-?>

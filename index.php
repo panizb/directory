@@ -1,7 +1,8 @@
 <?php
 namespace directory;
 
-include 'Authentication.php'
+require 'Authentication.php';
+require 'vendor/autoload.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -174,7 +175,8 @@ function onSignIn(googleUser) {
       </div>
       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
           
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-pull-13 col-sm-pull-1 col-md-pull-1 col-lg-pul-1" style="margin-top:50px;">
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-pull-13 col-sm-pull-1 col-md-pull-1 col-lg-pul-1"
+               style="margin-top:50px;">
                   <button id="customBtn" class="btn btn-primary :focus"> Sign in with Google account</button>
               </div>      
       </div>

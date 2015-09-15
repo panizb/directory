@@ -1,7 +1,8 @@
 <?php
 namespace directory;
 
-include 'DBHandler.php';
+require 'DBHandler.php';
+require 'vendor/autoload.php';
 //if (session_status() === PHP_SESSION_ACTIVE) ? TRUE : FALSE;
 session_start();
 $_SESSION['id']=$_GET['userID'];
@@ -16,13 +17,11 @@ $command= "SELECT * from Employee where User_Name LIKE :username";
 $params= array (":username" => $_GET['userID']);
 $result = $dbConn->executeWithReturn($command, $params);
 foreach ($result as $res) {
- 
 }
 $command= "SELECT Name, Family_Name, User_Name, Photo from Employee";
 $params= array ();
 $result2 = $dbConn->executeWithReturn($command, $params);
 foreach ($result2 as $res2) {
-
 }
 
 
@@ -31,7 +30,6 @@ $command= "SELECT * from Social_Network where UserID LIKE :userID";
 $params= array (":userID" => $_GET['userID']);
 $result3 = $dbConn->executeWithReturn($command, $params);
 foreach ($result3 as $res3) {
- 
 }
 
 $command= "SELECT * from Membership where Username LIKE :userID";
@@ -169,6 +167,7 @@ foreach ($projects as $project) {
     body {
     background-image: url(./img/378d4d7.png);
     background-repeat: no-repeat;
+    background-color: #F0F0F0; 
 
     }
   </style>
@@ -178,9 +177,9 @@ foreach ($projects as $project) {
 
   	<div class="container">
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 
-    col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 ">
+    col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 " style="margin-top:20px;">
       <button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>
-    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h1 >3FS Directory</h1></div>
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="color:#E0E0E0 ;"><h1 >3FS Directory</h1></div>
     <!--contact scroll-->
 
 
@@ -202,7 +201,8 @@ foreach ($projects as $project) {
                <h3 class="muted">Your Contacts:</h3>
                <form class="form-search" action="searchResult.php?userID=<?php echo $_GET['userID'];?>">
                <div class="input-group">
-                 <input name="search" type="text" class="form-control input-medium search-query" placeholder="Enter Name or UserID">
+                 <input name="search" type="text" class="form-control input-medium search-query"
+                  placeholder="Enter Name or UserID">
                  <span class="input-group-btn">
                    <button type="submit" class="btn btn-info ">
                 <span class="glyphicon glyphicon-search">Search</span></button>
@@ -275,7 +275,8 @@ foreach ($projects as $project) {
                 <h2 class="text-warning"> Hi <?php echo $res['Name']." !"; ?></h2>
               </div>
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2">
-                <img class="img-responsive img-circle" src=<?php echo $res['Photo']?> width='140px' height='140px' alt="Your Photo"></img>
+                <img class="img-responsive img-circle" src=<?php echo $res['Photo']?>
+                width='140px' height='140px' alt="Your Photo"></img>
               </div>
             </div>
             
@@ -303,21 +304,30 @@ foreach ($projects as $project) {
               <dt class="bg-success">Phone Number:</dt>
               <dd style="color:#009966"> <strong> <?php echo $res['Phone_Number']; ?></strong> </dd>
               <dt class="bg-warning">Website:</dt>
-              <dd style="color:#CC9933" > <a href="<?php echo $res['Website']; ?>"><?php echo $res['Website']; ?></a> </dd>
+              <dd style="color:#CC9933" > 
+                <a href="<?php echo $res['Website']; ?>"><?php echo $res['Website']; ?></a>
+              </dd>
               <dt class="bg-danger">Social Networks:</dt>
-              <dd><?php foreach ($result3 as $res4) {
+              <dd>
+                <?php
+                foreach ($result3 as $res4) {
                           echo "<span class=\"text-info\"><strong>".$res4['Name'].": "."</span></strong>";
                           echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
-}
-                    ?>
+                }
+                ?>
               </dd>
               <dt class="bg-danger">Teams:</dt>
-              <dd><? foreach ($teams as $team2){
-               echo "<span style=\"color:#CC6666\"><strong>".$team2['Team_Name']."</span></strong><br>";
-                } ?></dd>
+              <dd>
+                <?php
+                foreach ($teams as $team2) {
+                    echo "<span style=\"color:#CC6666\"><strong>".$team2['Team_Name']."</span></strong><br>";
+                }
+                ?></dd>
                 <dt class="bg-danger">Projects:</dt>
-              <dd><? foreach ($projects as $project2){
-               echo "<span style=\"color:#CC6666\"><strong>".$project2['Project_Name']."</span></strong><br>";
+              <dd>
+                <?php
+                foreach ($projects as $project2) {
+                    echo "<span style=\"color:#CC6666\"><strong>".$project2['Project_Name']."</span></strong><br>";
                 } ?></dd>
             </div>
             

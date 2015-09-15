@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 <script type="text/javascript">
 	var msg = getQueryVariable("msg");
 	alert(decodeURIComponent(msg));

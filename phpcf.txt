@@ -1,0 +1,117 @@
+
+FILE: ...pplications/XAMPP/xamppfiles/htdocs/directory/Authentication.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | WARNING | A file should declare new symbols (classes, functions,
+   |         | constants, etc.) and cause no other side effects, or
+   |         | it should execute logic with side effects, but should
+   |         | not do both. The first symbol is defined on line 13
+   |         | and the first side effect is on line 7.
+----------------------------------------------------------------------
+
+
+FILE: /Applications/XAMPP/xamppfiles/htdocs/directory/DBHandler.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 20 | WARNING | Property name "$_conn" should not be prefixed with an
+    |         | underscore to indicate visibility
+----------------------------------------------------------------------
+
+
+FILE: /Applications/XAMPP/xamppfiles/htdocs/directory/addLink.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 3 WARNINGS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 48 | WARNING | Line exceeds 120 characters; contains 122 characters
+ 55 | WARNING | Line exceeds 120 characters; contains 147 characters
+ 60 | WARNING | Line exceeds 120 characters; contains 168 characters
+----------------------------------------------------------------------
+
+
+FILE: /Applications/XAMPP/xamppfiles/htdocs/directory/addProject.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 2 WARNINGS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 48 | WARNING | Line exceeds 120 characters; contains 123 characters
+ 61 | WARNING | Line exceeds 120 characters; contains 169 characters
+----------------------------------------------------------------------
+
+
+FILE: /Applications/XAMPP/xamppfiles/htdocs/directory/addTeam.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 61 | WARNING | Line exceeds 120 characters; contains 169 characters
+----------------------------------------------------------------------
+
+
+FILE: /Applications/XAMPP/xamppfiles/htdocs/directory/edit.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 5 WARNINGS AFFECTING 5 LINES
+----------------------------------------------------------------------
+  48 | WARNING | Line exceeds 120 characters; contains 128 characters
+  59 | WARNING | Line exceeds 120 characters; contains 131 characters
+ 279 | WARNING | Line exceeds 120 characters; contains 123 characters
+ 297 | WARNING | Line exceeds 120 characters; contains 136 characters
+ 438 | WARNING | Line exceeds 120 characters; contains 143 characters
+----------------------------------------------------------------------
+
+
+FILE: ...plications/XAMPP/xamppfiles/htdocs/directory/errorManipulate.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | WARNING | No PHP code was found in this file and short open tags
+   |         | are not allowed by this install of PHP. This file may
+   |         | be using short open tags but PHP does not allow them.
+----------------------------------------------------------------------
+
+
+FILE: /Applications/XAMPP/xamppfiles/htdocs/directory/index.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 177 | WARNING | Line exceeds 120 characters; contains 144 characters
+----------------------------------------------------------------------
+
+
+FILE: /Applications/XAMPP/xamppfiles/htdocs/directory/noResult.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | WARNING | No PHP code was found in this file and short open tags
+   |         | are not allowed by this install of PHP. This file may
+   |         | be using short open tags but PHP does not allow them.
+----------------------------------------------------------------------
+
+
+FILE: /Applications/XAMPP/xamppfiles/htdocs/directory/profile.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 3 WARNINGS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 249 | WARNING | Line exceeds 120 characters; contains 141 characters
+ 258 | WARNING | Line exceeds 120 characters; contains 443 characters
+ 262 | WARNING | Line exceeds 120 characters; contains 432 characters
+----------------------------------------------------------------------
+
+
+FILE: /Applications/XAMPP/xamppfiles/htdocs/directory/searchResult.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 2 WARNINGS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  84 | WARNING | Line exceeds 120 characters; contains 198 characters
+ 119 | WARNING | Line exceeds 120 characters; contains 145 characters
+----------------------------------------------------------------------
+
+
+FILE: /Applications/XAMPP/xamppfiles/htdocs/directory/viewProfile.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 99 | WARNING | Line exceeds 120 characters; contains 164 characters
+----------------------------------------------------------------------
+
+Time: 190ms; Memory: 6.75Mb
+
