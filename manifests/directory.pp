@@ -35,3 +35,6 @@ package { 'php5':
 exec { 'composer':                    # exec resource named 'apt-update'
   command => '/usr/bin/php -r "readfile("https://getcomposer.org/installer");" | php'  # command this resource will run
 }
+#exec { 'import':                    # exec resource named 'apt-update'
+#  command => '/usr/bin/mysql -u root -p directory < /vagrant/Database\ Backup/directory.sql'
+#}

@@ -11,7 +11,11 @@ if (isset($_POST['id_token'])) {
     $token = $_POST['id_token'];
 }
 $auth = new Authentication();
+try {
     $result = $auth->isAMember($Email, $token);
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
 if ($result) {
     session_start();
     $_SESSION['id'] = $Email;

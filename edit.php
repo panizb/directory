@@ -196,20 +196,13 @@ foreach ($otherProjects as $otherProject) {
 </head>
 
 <body>
-  <div class="jumbotron">
-      <div class="container">
+
 
 <div class="container">
-    <h1>Edit Profile</h1>
-    <hr>
+  <h1>Edit Profile</h1>
+  <hr>
   <div class="row">
-      <!-- left column -->
-
-
-
-
-
-      <div class="form-group" >
+   <div class="form-group" >
       <div class="col-md-3">
         <div class="col-xs-4 col-sm-5 col-md-6 col-lg-6 ">
           <img src=<?php echo $res['Photo']; ?> class="img-responsive" width='170px' height='170px' alt="Profile Photo">
@@ -450,8 +443,7 @@ foreach ($otherProjects as $otherProject) {
 
 
 
-      </div>
-    </div>
+
  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
  <script src="js/bootstrap.js"></script>
  </body>

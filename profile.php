@@ -170,6 +170,9 @@ foreach ($projects as $project) {
     background-color: #F0F0F0; 
 
     }
+    .sortable tr {
+    cursor: pointer;
+}
   </style>
 </head>
 
@@ -226,7 +229,7 @@ foreach ($projects as $project) {
                 <div style="height:400px; overflow-y:scroll; position:relative;">
                   <div id="scroll-first">
                   
-                    <?php echo "<table class=\"table-responsive table-hover\" >
+                    <?php echo "<table class=\"table-responsive table-hover sortable\" >
                         <thead>
                           <tr>
                             <th class=\"col-xs-1\"></th> 

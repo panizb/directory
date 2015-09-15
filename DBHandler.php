@@ -27,7 +27,9 @@ class DBHandler
 
             //echo "Connected successfully";
         } catch (PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
+            echo "PDO: Connection failed: " . $e->getMessage();
+        } catch (Exception $e) {
+            echo "Something is wrong woth database";
         }
     }
     public function executeWithReturn($query, array $params = [])
@@ -37,9 +39,10 @@ class DBHandler
             $sth->execute($params);
             return $sth->fetchAll();
         } catch (PDOException $e) {
-            echo "Execute with return Error: " .$e->getMessage(). "</br>";
+            echo "PDO: Execute with return Error: " .$e->getMessage(). "</br>";
+        } catch (Exception $e) {
+            echo "Something is wrong woth database";
         }
-        
     }
     public function executeWithoutReturn($query, array $params = [])
     {
@@ -47,7 +50,9 @@ class DBHandler
             $sth = $this->_conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
             $sth->execute($params);
         } catch (PDOException $e) {
-            echo "Execute without return Error: " .$e->getMessage(). "</br>";
+            echo "PDO: Execute without return Error: " .$e->getMessage(). "</br>";
+        } catch (Exception $e) {
+            echo "Something is wrong woth database";
         }
     }
 }

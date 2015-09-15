@@ -77,27 +77,41 @@ foreach ($results as $key) {
     
   };
     </script>
+    <style type="text/css">
+        .sortable tr {
+    cursor: pointer;
+}
+tr.spaceUnder > td
+{
+  padding-bottom: 1em;
+}
+    body {
+      background-image: url(./img/3fs_boljard.jpg);
+      background-attachment: fixed;
+      background-position: center;
+    }
+    </style>
 </head>
 <body>
-	<div class="jumbotron">
+	
   	<div class="container">
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 
-    col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 ">
-      <button  class="btn btn-primary" onclick="signOut()";>Sign out</button>
-    </div>
-    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h1 >3FS Directory</h1></div>
-    <!--contact scroll-->
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 
+      col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 ">
+        <button  class="btn btn-primary" onclick="signOut();" style="margin-top:20px">Sign out</button>
+      </div>
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h1 >3FS Directory</h1></div>
+      <!--contact scroll-->
 
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 ">
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <h1><?php echo "<br>"; ?></h1>
               <h3><?php echo "<br>"; ?></h3>
-               <h3 class="muted">Search Result:</h3>
+              <h3 class="muted">Search Result:</h3>
               <div style="position:relative;">
                 <div style="height:400px; overflow-y:scroll; position:relative;">
-                  <div id="scroll-first">
-                  <table class=\"table-responsive table-hover\" >
+
+                  <table class="table-responsive table-hover sortable" >
                         <thead>
                           <tr>
                             <th class=\"col-xs-1\"></th> 
@@ -105,32 +119,35 @@ foreach ($results as $key) {
                           </tr>
                         </thead>
                         <tbody>
-                    <?php
-                    if (count($results)==0) {
-                        echo "<p>No result found.</p>";
-                    } else {
-                        foreach ($results as $res2) {
-                            echo "
-                              <tr onclick=\" document.location = 'viewProfile.php?userID=".
-                              $res2['User_Name']."';\" ng-repeat-start=\"u in users\" ng-class-odd=\"'alt'\">
-                                <td class=\"col-xs-1\"><img height='50px' width='50px' title=\"Photo\" src=\"".
-                                $res2["Photo"]."\"class=\"img-circle\"></td> 
-                                <td class=\"col-xs-2 >"."<a href=\"viewProfile.php?userID=".$res2['User_Name']."\">".
-                                $res2['Name']
-                                ." ".$res2['Family_Name']."<br></a>"."</td> 
-                              </tr>";
+                        <?php
+                        if (count($results)==0) {
+                            echo "<p>No result found.</p>";
+                        } else {
+                            foreach ($results as $res2) {
+                                echo "
+                                  <tr onclick=\" document.location = 'viewProfile.php?userID=".
+                                  $res2['User_Name']."';\" ng-repeat-start=\"u in users\" ng-class-odd=\"'alt'\" class=\"spaceUnder\">
+                                    <td class=\"col-xs-1\"><img height='50px' width='50px' title=\"Photo\" src=\"".
+                                    $res2["Photo"]."\"class=\"img-circle\"></td> 
+                                    <td class=\"col-xs-2 >"."<a href=\"viewProfile.php?userID=".
+                                    $res2['User_Name']."\">".
+                                    $res2['Name'].
+                                    " ".$res2['Family_Name']."<br></a>"."</td> 
+                                  </tr>";
+                            }
                         }
-                    }
-                    echo "</tbody>
-                        </table>";
-?>
-                  </div>
+                        echo "</tbody>
+                            </table>";
+                        ?>
+
 
                 </div>
               </div>
             </div>
           </div>
         </div>
+    </div>
+
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>

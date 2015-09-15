@@ -36,6 +36,8 @@ class Authentication
             $dbConn->executeWithoutReturn($command, $params);
             return true;
         } else {
+            throw new Exception("No such user exist.", 1);
+            
             return false;
         }
     }

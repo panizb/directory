@@ -130,7 +130,6 @@ if (isset($_GET['valueT']) && !empty($_GET['valueT'])) {
 }
 //Check if select any new project
 if (isset($_GET['valueP']) && !empty($_GET['valueP'])) {
-    echo "ridi";
     $selectedProject = $_GET['valueP'];
     echo $selectedProject."<br>";
     $command= "INSERT INTO Develop (Username, Project_Name) VALUES (:userID, :pname)";
