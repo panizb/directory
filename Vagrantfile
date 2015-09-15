@@ -4,6 +4,7 @@ Vagrant.configure(2) do |config|
     puppet.manifests_path = "manifests"
     puppet.manifest_file = "directory.pp"
     end
+    config.vm.network :forwarded_port, guest: 80, host: 4567
 
     config.vm.synced_folder "./changes", "/vagrant/changes", create: true , type:"rsync"
 end

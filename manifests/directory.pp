@@ -21,9 +21,10 @@ package { 'mysql-server':
 }
 
 # ensure mysql service is running
-service { 'mysql':
-  ensure => running,
-}
+  service { 'mysql':
+    ensure  => running,
+    require => Package['mysql-server'],
+  }
 
 # install php5 package
 package { 'php5':

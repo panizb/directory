@@ -63,7 +63,8 @@ require 'vendor/autoload.php';
                         </div>
                 <div class="modal-footer">
                   <form role="form" action="manipulate.php?userID=<?php echo $_GET['userID'];?>" >
-                    <button name="cancelAddT" type="submit" class="btn btn-danger btn-default pull-left"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                    <button name="cancelAddT" type="submit" class="btn btn-danger btn-default pull-left">
+                    <span class="glyphicon glyphicon-remove"></span> Cancel</button>
                   </form>
                 </div>
               </div>

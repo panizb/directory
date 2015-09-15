@@ -81,7 +81,10 @@ foreach ($results as $key) {
 <body>
 	<div class="jumbotron">
   	<div class="container">
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 "><button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 
+    col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 ">
+      <button  class="btn btn-primary" onclick="signOut()";>Sign out</button>
+    </div>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><h1 >3FS Directory</h1></div>
     <!--contact scroll-->
 
@@ -116,7 +119,6 @@ foreach ($results as $key) {
                                 $res2['Name']
                                 ." ".$res2['Family_Name']."<br></a>"."</td> 
                               </tr>";
-                            //echo '<a href="viewProfile.php?userID='.$res2['User_Name']."\">".$res2['Name']." ".$res2['Family_Name']."<br></a>";
                         }
                     }
                     echo "</tbody>
