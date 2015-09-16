@@ -23,6 +23,17 @@ $result3 = $dbConn->executeWithReturn($command, $params);
 foreach ($result3 as $res3) {
 }
 
+$command= "SELECT * from Membership where Username LIKE :userID";
+$params= array (":userID" => $_GET['userID']);
+$teams = $dbConn->executeWithReturn($command, $params);
+foreach ($teams as $team) {
+}
+
+$command= "SELECT * from Develop where Username LIKE :userID";
+$params= array (":userID" => $_GET['userID']);
+$projects = $dbConn->executeWithReturn($command, $params);
+foreach ($projects as $project) {
+}
 ?>
 
 <!DOCTYPE html>
@@ -129,6 +140,19 @@ foreach ($result3 as $res3) {
                         echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
                 }
                 ?></dd>
+                              <dt class="bg-danger">Teams:</dt>
+              <dd>
+                <?php
+                foreach ($teams as $team2) {
+                    echo "<span style=\"color:#CC6666\"><strong>".$team2['Team_Name']."</span></strong><br>";
+                }
+                ?></dd>
+                <dt class="bg-danger">Projects:</dt>
+              <dd>
+                <?php
+                foreach ($projects as $project2) {
+                    echo "<span style=\"color:#CC6666\"><strong>".$project2['Project_Name']."</span></strong><br>";
+                } ?></dd>
             </div>
             </div>
             
