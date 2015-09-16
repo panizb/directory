@@ -278,7 +278,7 @@ foreach ($projects as $project) {
                 <h2 class="text-warning"> Hi <?php echo $res['Name']." !"; ?></h2>
               </div>
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2">
-                <img class="img-responsive img-circle" src=<?php echo $res['Photo']?>
+                <img class="img-responsive img-circle" src="<?php echo $res['Photo']?>"
                 width='140px' height='140px' alt="Your Photo"></img>
               </div>
             </div>

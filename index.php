@@ -65,6 +65,7 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
 }
 
   function attachSignin(element) {
+    //alert("attach Sign in4");
   	console.log(element.id);
     auth2.attachClickHandler(element, {},
         function(googleUser) {
