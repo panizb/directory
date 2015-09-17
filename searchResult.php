@@ -86,9 +86,21 @@ tr.spaceUnder > td
   padding-bottom: 1em;
 }
     body {
-      background-image: url(./img/3fs_boljard.jpg);
-      background-attachment: fixed;
-      background-position: center;
+      background-image: url(./img/people.jpg);
+    background-position: center center;
+      background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: ;
+  
+  /* Set a background color that will be displayed
+     while the background image is loading */
+  background-color: #464646;
     }
     </style>
 </head>
@@ -107,7 +119,7 @@ tr.spaceUnder > td
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <h1><?php echo "<br>"; ?></h1>
               <h3><?php echo "<br>"; ?></h3>
-              <h3 class="muted">Search Result:</h3>
+              <span style="color:#0099FF"><h3 >Search Result:</h3></span>
               <div style="position:relative;">
                 <div style="height:400px; overflow-y:scroll; position:relative;">
 
@@ -121,7 +133,7 @@ tr.spaceUnder > td
                         <tbody>
                         <?php
                         if (count($results)==0) {
-                            echo "<p>No result found.</p>";
+                            echo "<h4 style=\"color:#0099FF\">No results found.</h4>";
                         } else {
                             foreach ($results as $res2) {
                                 echo "
@@ -130,9 +142,9 @@ tr.spaceUnder > td
                                     <td class=\"col-xs-1\"><img height='50px' width='50px' title=\"Photo\" src=\"".
                                     $res2["Photo"]."\"class=\"img-circle\"></td> 
                                     <td class=\"col-xs-2 >"."<a href=\"viewProfile.php?userID=".
-                                    $res2['User_Name']."\">".
+                                    $res2['User_Name']."\">"."<span style=\"color:#0099FF\">".
                                     $res2['Name'].
-                                    " ".$res2['Family_Name']."<br></a>"."</td> 
+                                    " ".$res2['Family_Name']."<br>"."</span>"."</a>"."</td> 
                                   </tr>";
                             }
                         }

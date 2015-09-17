@@ -88,105 +88,107 @@ foreach ($projects as $project) {
     
   }
   </script>
+  <style type="text/css">
+      body {
+    background-image: url(./img/IMAG2256.jpg);
+    background-position: center center;
+      background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+  
+  /* Set a background color that will be displayed
+     while the background image is loading */
+  background-color: #464646;
+
+    }
+  </style>
 </head>
 
-<body>
-  <div class="jumbotron">
+  <body>
     <div class="container">
-    <div class="row">
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><h2 class="bg-info">3FS Directory</h2></div>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 
-      col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 ">
-        <button  class="btn btn-primary" onclick="signOut()";>Sign out</button></div>
-    </div>
+      <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="color:#E0E0E0 ; margin-top:44px;" >
+          <h1>3FS Directory</h1>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 
+        col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 ">
+          <button  class="btn btn-primary" onclick="signOut()";>Sign out</button>
+        </div>
+      </div>
       
             
-            <div class="row">
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
-                <h2 class="bg-primary"> <?php echo $res['Name']."'s profile"; ?></h2>
-              </div>
-              
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
-                <img class="img-responsive img-circle" src=<?php echo $res['Photo']?> width='150px' height='150px' alt="<?php echo $res['Name']."'s Photo"?>"></img>
-              </div>
-            <dl>
-            <div class="row">
-              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-               <h3 >Profile info:</h3>
-              </div>
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-              
-              </div>
-            </div >
-            <div style="height:400px; overflow-y:scroll; width:700px">
-              <dt class="bg-info">First Name:</dt>
-            <dd> <?php echo $res['Name']; ?> </dd>
-            <dt class="bg-success">Family Name:</dt>
-            <dd> <?php echo $res['Family_Name']; ?> </dd>
-            <dt class="bg-warning">Private Email:</dt>
-            <dd> <?php echo $res['Private_Email']; ?> </dd>
-            <dt class="bg-danger">Username:</dt>
-            <dd> <?php echo $res['User_Name']; ?> </dd>
-            <dt class="bg-success">Phone Number:</dt>
-            <dd> <?php echo $res['Phone_Number']; ?> </dd>
-            <dt class="bg-warning">Website:</dt>
-            <dd> <?php echo $res['Website']; ?> </dd>
-            <dt class="bg-danger">Social Networks:</dt>
-            <dd>
-                <?php
-                foreach ($result3 as $res4) {
-                        echo "<span class=\"text-info\"><strong>".$res4['Name'].": "."</span></strong>";
-                        echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
-                }
-                ?></dd>
-                              <dt class="bg-danger">Teams:</dt>
-              <dd>
-                <?php
-                foreach ($teams as $team2) {
-                    echo "<span style=\"color:#CC6666\"><strong>".$team2['Team_Name']."</span></strong><br>";
-                }
-                ?></dd>
-                <dt class="bg-danger">Projects:</dt>
-              <dd>
-                <?php
-                foreach ($projects as $project2) {
-                    echo "<span style=\"color:#CC6666\"><strong>".$project2['Project_Name']."</span></strong><br>";
-                } ?></dd>
-            </div>
-            </div>
-            
-
-   </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+          <!-- <h2 class="bg-primary"> <?php echo $res['Name']."'s profile"; ?></h2> -->
+        </div>
+        
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+        <img class="img-responsive img-circle" 
+        src=<?php echo $res['Photo']?> width='150px' height='150px' alt="<?php echo $res['Name']."'s Photo"?>">
+        </img>
+      </div>
+      <dl>
+        <div class="row">
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+           <h3 >Profile info:</h3>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          
+          </div>
+        </div>
+        <div style="height:400px; overflow-y:scroll; width:700px">
+          <dt class="bg-info">First Name:</dt>
+          <dd style="color:#6699FF"> <strong><?php echo $res['Name']; ?></strong> </dd>
+          <dt class="bg-success">Family Name:</dt>
+          <dd style="color:#009966"> <strong><?php echo $res['Family_Name']; ?></strong> </dd>
+          <dt class="bg-warning">Private Email:</dt>
+          <dd style="color:#FFCC00" > <strong><?php echo $res['Private_Email']; ?></strong> </dd>
+          <dt class="bg-danger">Username:</dt>
+          <dd style="color:#CC6666" > <strong><?php echo $res['User_Name']; ?></strong> </dd>
+          <dt class="bg-info">Password:</dt>
+          <dd style="color:#6699FF"> <strong> <?php echo "******"; ?></strong> </dd>
+          <dt class="bg-success">Phone Number:</dt>
+          <dd style="color:#009966"> <strong> <?php echo $res['Phone_Number']; ?></strong> </dd>
+          <dt class="bg-warning">Website:</dt>
+          <dd style="color:#CC9933" > 
+            <a href="<?php echo $res['Website']; ?>"><?php echo $res['Website']; ?></a>
+          </dd>
+          <dt class="bg-danger">Social Networks:</dt>
+          <dd>
+            <?php
+            foreach ($result3 as $res4) {
+                    echo "<span class=\"text-info\"><strong>".$res4['Name'].": "."</span></strong>";
+                    echo '<a href='.$res4['Link'].'\'>'.$res4['Link'].'<br></a>';
+            }
+            ?>
+          </dd>
+          <dt class="bg-danger">Teams:</dt>
+          <dd>
+            <?php
+            foreach ($teams as $team2) {
+                echo "<span style=\"color:#CC6666\"><strong>".$team2['Team_Name']."</span></strong><br>";
+            }
+            ?>
+          </dd>
+          <dt class="bg-danger">Projects:</dt>
+          <dd>
+            <?php
+            foreach ($projects as $project2) {
+                echo "<span style=\"color:#CC6666\"><strong>".$project2['Project_Name']."</span></strong><br>";
+            } ?>
+          </dd>
+        </div>
+      </dl>
     </div>
-  </div>
-  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script>startApp();</script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>startApp();</script>
   </body>
 </html>

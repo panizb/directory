@@ -171,7 +171,7 @@ foreach ($projects as $project) {
     body {
     background-image: url(./img/378d4d7.png);
     background-repeat: no-repeat;
-    background-color: #FFFFFF; 
+    background-color: #F0F0F0; 
 
     }
     .sortable tr {

@@ -135,8 +135,20 @@ content="548175158538-cth6bq97urq2r54alp2rn4dr2qk1fbee.apps.googleusercontent.co
     }
     body {
       background-image: url(./img/3fs_boljard.jpg);
-      background-attachment: fixed;
-      background-position: center;
+    background-position: center center;
+      background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+  
+  /* Set a background color that will be displayed
+     while the background image is loading */
+  background-color: #464646;
     }
     .centerfy img{
                 margin: 0 auto;

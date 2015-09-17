@@ -16,6 +16,8 @@ $servername='localhost';
     $dBPassword='';
     $dbConn = new DBHandler("mysql:host=$servername;dbname=$dbname", $dBUsername, $dBPassword);
     $dbConn->connect();
+
+
 for ($i=0; $i < $_GET['count']; $i++) {
     $butName="remove".$i;
     $rowName = "table".$i;
@@ -56,13 +58,13 @@ for ($i=0; $i < $_GET['countP']; $i++) {
     }
 }
 if (isset($_GET['addHere'])) {
-    header('Location: addLink.php?userID='.$_SESSION['id']);
+    header('Location: addLink.html?userID='.$_SESSION['id']);
 }
 if (isset($_GET['addTHere'])) {
-    header('Location: addTeam.php?userID='.$_SESSION['id']);
+    header('Location: addTeam.html?userID='.$_SESSION['id']);
 }
 if (isset($_GET['addPHere'])) {
-    header('Location: addProject.php?userID='.$_SESSION['id']);
+    header('Location: addProject.html?userID='.$_SESSION['id']);
 }
 if (isset($_GET['add'])) {
     //echo "UserID: ".$_GET['userID'];
