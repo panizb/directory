@@ -29,7 +29,7 @@ class DBHandler
         } catch (PDOException $e) {
             echo "PDO: Connection failed: " . $e->getMessage();
         } catch (Exception $e) {
-            echo "Something is wrong woth database";
+            echo "Something is wrong with database";
         }
     }
     public function executeWithReturn($query, array $params = [])

@@ -14,7 +14,15 @@ class Authentication
 {
     public function isAMember($username, $idToken)
     {
-        $servername='localhost';
+        if (empty($username)) {
+            throw new \Exception("Error Recieving userID", 1);
+            return false;
+        }
+        if (empty($idToken)) {
+            throw new \Exception("Error Recieving id_token", 1);
+            return false;
+        }
+        $servername='127.0.0.1';
         $dbname='directory';
         $dBUsername='root';
         $dBPassword='';
@@ -36,7 +44,7 @@ class Authentication
             $dbConn->executeWithoutReturn($command, $params);
             return true;
         } else {
-            throw new Exception("No such user exist.", 1);
+            throw new \Exception("No such user exist.", 1);
             
             return false;
         }

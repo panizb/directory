@@ -11,7 +11,11 @@ $dbname='directory';
 $dBUsername='root';
 $dBPassword='';
 
-$dbConn = new DBHandler("mysql:host=$servername;dbname=$dbname", $dBUsername, $dBPassword);
+$dbConn = new DBHandler(
+    "mysql:host=$servername;dbname=$dbname",
+    $dBUsername,
+    $dBPassword
+);
 $dbConn->connect();
 $command= "SELECT * from Employee where User_Name LIKE :username";
 $params= array (":username" => $_GET['userID']);
