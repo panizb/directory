@@ -2,8 +2,7 @@
 
 namespace directory;
 
-require 'DBHandler.php';
-require 'vendor/autoload.php';
+include 'DBHandler.php';
 session_start();
 //check the session (if needed!)
 // if ($_SESSION['id']!=$_GET['userID']) {
@@ -46,7 +45,7 @@ $params= array (":userID" => $_SESSION['id']);
 $teams = $dbConn->executeWithReturn($command, $params);
 foreach ($teams as $team) {
 }
-$command= "SELECT Team_Name from Membership where Team_Name NOT IN (SELECT Team_Name from Membership where Username = :userID)";
+$command= "SELECT Team_Name from Membership where Username != :userID";
 $params= array (":userID" => $_SESSION['id']);
 $otherTeams = $dbConn->executeWithReturn($command, $params);
 $otherTeams=array_unique($otherTeams, SORT_REGULAR);
@@ -57,7 +56,7 @@ $params= array (":userID" => $_SESSION['id']);
 $projects = $dbConn->executeWithReturn($command, $params);
 foreach ($projects as $project) {
 }
-$command= "SELECT Project_Name from Develop where Project_Name NOT IN (SELECT Project_Name from Develop where Username = :userID)";
+$command= "SELECT Project_Name from Develop where Username != :userID";
 $params= array (":userID" => $_SESSION['id']);
 $otherProjects = $dbConn->executeWithReturn($command, $params);
 $otherProjects=array_unique($otherProjects, SORT_REGULAR);
@@ -75,7 +74,6 @@ foreach ($otherProjects as $otherProject) {
   <title>Edit Profile</title>
   <!--link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"-->
 <link rel="stylesheet" href="./css/bootstrap.min.css"/>
-
   <script src="https://apis.google.com/js/api:client.js"></script>
   <!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script-->
 
@@ -141,78 +139,38 @@ foreach ($otherProjects as $otherProject) {
 </script>
     <style type="text/css">
     .selectWidth {
-    width: auto;
+    width: 250px;
     height: auto;
     margin:0px;
   }
   .bootstrap-select > .btn {
     height: 45px;
 } 
-.responsive-width {
-    font-size: 3vw;
-}
-
-@media (max-width: 768px) {
-  .btn-responsive {
-    padding:4px 4px;
-    font-size:75%;
-    line-height: 1;
-  }
-    .select-responsive {
-    padding:4px 4px;
-    font-size:75%;
-    line-height: 1.2;
-    width: 220px;
-    height: 10px;
-  }
-}
-
-
-@media (min-width: 769px) and (max-width: 992px) {
-  .btn-responsive {
-    padding:4px 9px;
-    font-size:90%;
-    line-height: 1.2;
-  }
-      .select-responsive {
-    padding:4px 4px;
-    font-size:90%;
-    line-height: 1.2;
-    width: 220px;
-  }
-}
-@media (min-width: 993px) {
-
-    .select-responsive {
-    padding:4px 4px;
-    font-size:90%;
-
-    width: 280px;
-    height: 10px;
-  }
-}
-
     </style>
 </head>
 
 <body>
-
+  <div class="jumbotron">
+      <div class="container">
 
 <div class="container">
-  <h1>Edit Profile</h1>
-  <hr>
+    <h1>Edit Profile</h1>
+    <hr>
   <div class="row">
-   <div class="form-group" >
+      <!-- left column -->
+
+
+
+
+
+      <div class="form-group" >
       <div class="col-md-3">
         <div class="col-xs-4 col-sm-5 col-md-6 col-lg-6 ">
           <img src=<?php echo $res['Photo']; ?> class="img-responsive" width='170px' height='170px' alt="Profile Photo">
 
 
           <form action="upload.php" method="post" enctype="multipart/form-data">
-          <div class="row">
-      <h6 style="color:#663399;">Change photo</h6>      
-          </div>
-      
+      <h6>Change profile photo</h6>
         <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" value="Upload Image" name="submit">
       </form>
@@ -227,7 +185,7 @@ foreach ($otherProjects as $otherProject) {
       </div>
       
       <!-- edit form column -->
-      <div class="col-md-9 col-sm-10 col-xs-10 personal-info">
+      <div class="col-md-9 col-sm-7 col-xs-7 personal-info">
       <!--   <div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           <i class="fa fa-coffee"></i>
@@ -236,42 +194,41 @@ foreach ($otherProjects as $otherProject) {
         <h3 class="text-muted">Profile info:</h3>
         
         <form class="form-horizontal" role="form" 
-         action="manipulate.php" >
+         action="manipulate.php" novalidate>
           <div class="form-group">
-            <label style="color:#0099FF;" class="col-lg-3 control-label">First name:</label>
+            <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
               <input name="name" class="form-control" type="text" value=<?php echo $res['Name']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label style="color:#0099FF;" class="col-lg-3 control-label">Family name:</label>
+            <label class="col-lg-3 control-label">Family name:</label>
             <div class="col-lg-8">
               <input name="family" class="form-control" type="text" value=<?php echo $res['Family_Name']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label style="color:#0099FF;" class="col-lg-3 control-label">Private Email:</label>
+            <label class="col-lg-3 control-label">Private Email:</label>
             <div class="col-lg-8">
               <input name="email" class="form-control" type="email" value=<?php echo $res['Private_Email']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label style="color:#0099FF;" class="col-lg-3 control-label">Phone Number:</label>
+            <label class="col-lg-3 control-label">Phone Number:</label>
             <div class="col-lg-8">
-              <input name="phone" class="form-control" type="number" value=<?php echo $res['Phone_Number']; ?> >
+              <input name="phone" class="form-control" type="text" value=<?php echo $res['Phone_Number']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label style="color:#0099FF;" class="col-lg-3 control-label">Website:</label>
+            <label class="col-lg-3 control-label">Website:</label>
             <div class="col-lg-8">
               <input name="web" class="form-control" type="url" value=<?php echo $res['Website']; ?> >
             </div>
           </div>
           <div class="form-group">
-            <label style="color:#0099FF;" class="col-lg-3 control-label">Username:</label>
+            <label class="col-lg-3 control-label">Username:</label>
             <div class="col-lg-8">
-              <input name="usernamedis" class="form-control" type="text" value="<?php echo $res['User_Name']; ?>" disabled>
-              <input name="username" class="form-control" type="hidden" value="<?php echo $res['User_Name']; ?>" >
+              <input name="username" class="form-control" type="text" value=<?php echo $res['User_Name']; ?> >
             </div>
           </div>
 
@@ -297,19 +254,19 @@ foreach ($otherProjects as $otherProject) {
           </div-->
      
           <div class="form-group">
-            <label style="color:#0099FF;" class="col-lg-3 control-label">Password:</label>
+            <label class="col-lg-3 control-label">Password:</label>
             <div class="col-lg-8">
               <input name="pass" class="form-control" type="password" value=<?php echo $res['Password']; ?> >
             </div>
           </div>
 
           <div class="form-group">
-            <label style="color:#0099FF;" class="col-lg-3 control-label">Social Networks:</label>
+            <label class="col-md-3 control-label">Social Networks:</label>
             
             
             
             <div class="col-lg-8">
-              <button type="submit" class="btn btn-info btn-sm btn-responsive" name="addHere" >
+              <button type="submit" class="btn btn-info btn-sm" name="addHere" >
                     <span class="glyphicon glyphicon-plus">Add New Link</span>
                   </button> 
 
@@ -335,76 +292,82 @@ foreach ($otherProjects as $otherProject) {
           </div>
           
           <div class="form-group">
-<!--             <h3 class="visible-lg">large</h3>
-            <h3 class="visible-md">mediume</h3>
-            <h3 class="visible-sm">samll</h3>
-            <h3 class="visible-xs">extra</h3> -->
-            <label style="color:#0099FF;" class="col-lg-3 control-label">Teams:</label>
+              <!-- <h3 class="visible-lg">large</h3>
+              <h3 class="visible-md">mediume</h3>
+              <h3 class="visible-sm">samll</h3>
+              <h3 class="visible-xs">extra</h3> -->
+            <label class="col-lg-3 control-label">Teams:</label>
             <div class="col-lg-8">
-              <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2">
-                  <button type="submit" class="btn btn-info btn-sm btn-responsive" name="addTHere">
-                    <span class="glyphicon glyphicon-plus">Add New Team</span>
-                  </button>
-                </div>
-                <div class="col-xs-offset-6 col-sm-offset-1 col-md-offset-4 col-lg-offset-4">
-
-                  <select class="form-control  input-sm  col-lg-3 select-responsive" 
-                  name="selectTeam" id="T">
-                    <option selected disabled>Select from existing teams</option>
-                        <?php
-                        foreach ($otherTeams as $otherTeam) {
-                            echo "<option value=\"".$otherTeam['Team_Name'].
-                            "\">".$otherTeam['Team_Name']."</option>";
-                        }
-                        ?>
-                  </select>
-                  <!-- <input type="hidden" name="selectedTeam" value="<?php echo $selectedTeam;?>"> -->
-                </div>
-                  
+            <div class="row">
+              <div class="container">
+                <div class="col-lg-2 col-sm-2" style="margin-left:10px;">
+                <button type="submit" class="btn btn-info btn-sm" name="addTHere">
+                  <span class="glyphicon glyphicon-plus">Add New Team </span>
+                </button>
               </div>
+              <div class="col-xs-offset-6 col-sm-offset-6 col-md-offset-4 col-lg-offset-4">
 
+                <select class="form-control selectWidth input-sm  col-lg-3" 
+                name="selectTeam" id="T">
+                  <option selected disabled>Select from existing teams</option>
+                    <?php
+                    foreach ($otherTeams as $otherTeam) {
+                        echo "<option value=\"".$otherTeam['Team_Name'].
+                        "\">".$otherTeam['Team_Name']."</option>";
+                    }
+                    ?>
+                </select>
+                <!-- <input type="hidden" name="selectedTeam" value="<?php echo $selectedTeam;?>"> -->
+              </div>
+              </div>
+              
                 
+            </div>
 
-                <?php $countT=0;
-                foreach ($teams as $team) {
-                    echo "<br><br>".
-                    "<button type = \"submit\" name=\"removeT".$countT.
-                    "\" class= \"btn btn-danger btn-sm btn-responsive\" onclick=\"return confirm".
-                    "('Are you sure you want to remove this team?')\" >".
-                    "<span class=\"glyphicon glyphicon-minus\"></span>"."</button>".
-                    "<span style=\"ont-size: 100pt\">"."    ".$team['Team_Name']."</span>".
-                    "<input type=\"hidden\" name=tableT".$countT." value=".htmlentities(serialize($team)).">";
-                    $countT= $countT+1;
-                }
-                        ?>
+              
+
+            <?php $countT=0;
+            foreach ($teams as $team) {
+                echo "<br><br>".
+                "<button type = \"submit\" name=\"removeT".$countT.
+                "\" class= \"btn btn-danger btn-sm\" onclick=\"return confirm".
+                "('Are you sure you want to remove this team?')\" >".
+                "<span class=\"glyphicon glyphicon-minus\"></span>"."</button>".
+                "<span style=\"ont-size: 100pt\">"."    ".$team['Team_Name']."</span>".
+                "<input type=\"hidden\" name=tableT".$countT." value=".htmlentities(serialize($team)).">";
+                $countT= $countT+1;
+            }
+                    ?>
            
             </div>
             <input type="hidden" name="countT" value=<?php echo $countT;?>>
           </div>
 
           <div class="form-group">
-            <label style="color:#0099FF;" class="col-lg-3 control-label">Projects:</label>
+            <label class="col-lg-3 control-label">Projects:</label>
             <div class="col-lg-8">
               <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2">
-                  <button type="submit" class="btn btn-info btn-sm btn-responsive" name="addPHere">
-                    <span class="glyphicon glyphicon-plus">Add New Project</span>
-                  </button>
-                </div >
-                <div class="col-xs-offset-6 col-sm-offset-1 col-md-offset-4 col-lg-offset-4">
-                  <select class=" form-control select-responsive input-sm col-lg-3" 
-                  name="selectProject" id="P">
-                    <option selected disabled>Select from existing projects</option>
-                        <?php
-                        foreach ($otherProjects as $otherProject) {
-                            echo "<option value=\"".$otherProject['Project_Name'].
-                            "\">".$otherProject['Project_Name']."</option>";
-                        }
-                        ?>
-                  </select>
-                 <!--  <input type="hidden" name="selectedProject" value="<?php echo $selectedProject;?>"> -->
-                  </div>
+                <div class="container">
+                  <div class="col-lg-2 col-ms-2 col-sm-2">
+                <button type="submit" class="btn btn-info btn-sm" name="addPHere">
+                  <span class="glyphicon glyphicon-plus">Add New Project</span>
+                </button>
+              </div >
+              <div class="col-xs-offset-6 col-sm-offset-6 col-md-offset-4 col-lg-offset-4">
+                <select class=" form-control selectWidth input-sm col-lg-3" 
+                name="selectProject" id="P">
+                  <option selected disabled>Select from existing projects</option>
+                    <?php
+                    foreach ($otherProjects as $otherProject) {
+                        echo "<option value=\"".$otherProject['Project_Name'].
+                        "\">".$otherProject['Project_Name']."</option>";
+                    }
+                    ?>
+                </select>
+               <!--  <input type="hidden" name="selectedProject" value="<?php echo $selectedProject;?>"> -->
+                </div>
+                </div>
+              
 
             </div>
 
@@ -412,7 +375,7 @@ foreach ($otherProjects as $otherProject) {
             foreach ($projects as $project) {
                 echo "<br><br>".
                 "<button type = \"submit\" name=\"removeP".$countP.
-                "\" class= \"btn btn-danger btn-sm btn-responsive\" onclick=\"return confirm".
+                "\" class= \"btn btn-danger btn-sm\" onclick=\"return confirm".
                 "('Are you sure you want to remove this project?')\" >".
                 "<span class=\"glyphicon glyphicon-minus\"></span>"."</button>".
                 "<span class=\" control-label\">"."  ".$project['Project_Name']."</span>".
@@ -429,9 +392,9 @@ foreach ($otherProjects as $otherProject) {
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input type="submit" name="save" class="btn btn-primary btn-responsive" value="Save Changes"  id="save" onclick="selectExamin()">
+              <input type="submit" name="save" class="btn btn-primary" value="Save Changes"  id="save" onclick="selectExamin()">
               <span></span>
-              <input type="submit" name="cancel" class="btn btn-default btn-responsive" value="Cancel" onclick="">
+              <input type="submit" name="cancel" class="btn btn-default" value="Cancel" onclick="">
             </div>
           </div>
 
@@ -443,7 +406,8 @@ foreach ($otherProjects as $otherProject) {
 
 
 
-
+      </div>
+    </div>
  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
  <script src="js/bootstrap.js"></script>
  </body>

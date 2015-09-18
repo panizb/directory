@@ -86,7 +86,7 @@ tr.spaceUnder > td
   padding-bottom: 1em;
 }
     body {
-      background-image: url(./img/people.jpg);
+      background-image: url(./img/people2.jpg);
     background-position: center center;
       background-repeat: no-repeat;
   
@@ -100,7 +100,7 @@ tr.spaceUnder > td
   
   /* Set a background color that will be displayed
      while the background image is loading */
-  background-color: #464646;
+  background-color: #FFFFFF;
     }
     </style>
 </head>

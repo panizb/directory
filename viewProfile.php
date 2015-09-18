@@ -90,7 +90,7 @@ foreach ($projects as $project) {
   </script>
   <style type="text/css">
       body {
-    background-image: url(./img/IMAG2256.jpg);
+    background-image: url(./img/kitchen.jpg);
     background-position: center center;
       background-repeat: no-repeat;
   
